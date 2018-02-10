@@ -42,7 +42,7 @@ function update () {
     const waveHeight = snowflake.size / 8
 
     snowflake.pos.x += waveLength * Math.sin(frequency * (snowflake.pos.y / waveHeight) * 2 * Math.PI)
-    snowflake.pos.y += gravity * snowflake.size
+    snowflake.pos.y += gravity * (snowflake.size + snowflake.random)
 
     snowflake.pos.x += wind
 
@@ -94,7 +94,8 @@ function makeSnowflakes (num) {
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight
       },
-      size: 3 + (Math.random() * 5)
+      size: 3 + (Math.random() * 5),
+      random: Math.random() * 10
     })
   }
 
