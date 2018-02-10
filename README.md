@@ -7,7 +7,7 @@ Nice snow in a JS Canvas.
 
   + git clone
   + nmp/yarn install
-  + npm/yarn run serve
+  + npm/yarn run watch
 
 
 ## Authors
