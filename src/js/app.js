@@ -22,7 +22,11 @@ function onResize () {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 
-  snowflakes = makeSnowflakes(250)
+  const tenEightyPee = 1920 * 1080
+  const thisScreen = window.innerWidth * window.innerHeight
+  const snowflakeCount = Math.round(250 * (thisScreen / tenEightyPee))
+
+  snowflakes = makeSnowflakes(snowflakeCount)
 }
 
 function onEnterFrame () {
