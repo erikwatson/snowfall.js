@@ -5,15 +5,24 @@ const appContainer = document.querySelector('#snow-container')
 const canvas = document.createElement('canvas')
 const ctx = canvas.getContext('2d')
 
-const snowflakes = makeSnowflakes(250)
-// const wind = -1 // Should be a Vector really
+const gravity = 0.2
+let snowflakes = makeSnowflakes(250)
+const wind = 0
 
 function start () {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
   appContainer.appendChild(canvas)
 
+  window.onresize = onResize
   window.requestAnimationFrame(onEnterFrame)
+}
+
+function onResize () {
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+
+  snowflakes = makeSnowflakes(250)
 }
 
 function onEnterFrame () {
@@ -24,29 +33,55 @@ function onEnterFrame () {
 }
 
 function update () {
+  sineWave({x: 0, y: 0}, 1, 1, 1)
+
   snowflakes.forEach(snowflake => {
-    // snowflake.y += (snowflake.size / 10)
-    // snowflake.x += (snowflake.size / 10) * wind
+    const frequency = snowflake.size / 5000
 
-    snowflake.x = sineWave({ x: snowflake.x, y: snowflake.y }, -1, 25, 50).x
-    snowflake.y = (window.innerHeight / 2) + sineWave({ x: snowflake.x, y: snowflake.y }, 1, 25, 50).y
+    const waveLength = snowflake.size / 10
+    const waveHeight = snowflake.size / 8
 
-    if (snowflake.y > window.innerHeight) {
-      snowflake.y = -snowflake.size
+    snowflake.pos.x += waveLength * Math.sin(frequency * (snowflake.pos.y / waveHeight) * 2 * Math.PI)
+    snowflake.pos.y += gravity * snowflake.size
+
+    snowflake.pos.x += wind
+
+    if (snowflake.pos.y > window.innerHeight + snowflake.size) {
+      snowflake.pos.y = -snowflake.size
     }
 
-    if (snowflake.x < -snowflake.size) {
-      snowflake.x = window.innerWidth + snowflake.size
+    if (snowflake.pos.x < -snowflake.size) {
+      snowflake.pos.x = window.innerWidth + snowflake.size
+      snowflake.pos.y = Math.random() * window.innerHeight
+    }
+
+    if (snowflake.pos.x > window.innerWidth + snowflake.size) {
+      snowflake.pos.x = -snowflake.size
+      snowflake.pos.y = Math.random() * window.innerHeight
     }
   })
 }
 
 function render () {
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
-  ctx.fillStyle = 'rgb(255, 255, 255)'
 
-  snowflakes.forEach(snowflake => {
-    ctx.fillRect(snowflake.x, snowflake.y, snowflake.size, snowflake.size)
+  const bgSize = 7
+
+  const foreground = snowflakes.filter(x => x.size >= bgSize)
+  const background = snowflakes.filter(x => x.size < bgSize)
+
+  ctx.fillStyle = '#8d90b7'
+  background.forEach(snowflake => {
+    ctx.beginPath()
+    drawCircle(snowflake.pos, snowflake.size)
+    ctx.fill()
+  })
+
+  ctx.fillStyle = 'white'
+  foreground.forEach(snowflake => {
+    ctx.beginPath()
+    drawCircle(snowflake.pos, snowflake.size)
+    ctx.fill()
   })
 }
 
@@ -55,9 +90,11 @@ function makeSnowflakes (num) {
 
   while (num--) {
     result.push({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      size: 5 + (Math.random() * 10)
+      pos: {
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight
+      },
+      size: 3 + (Math.random() * 5)
     })
   }
 
@@ -65,12 +102,16 @@ function makeSnowflakes (num) {
 }
 
 function sineWave (startPos, speed, waveHeight, waveLength) {
-  let p = startPos
+  let position = { x: 0, y: 0 }
 
-  p.x += speed
-  p.y = (Math.sin(p.x / waveLength) * waveHeight)
+  position.x = speed + startPos.x
+  position.y = Math.sin(startPos.x / waveLength) * waveHeight
 
-  return p
+  return position
+}
+
+function drawCircle (position, radius) {
+  ctx.arc(position.x, position.y, radius, 0, 2 * Math.PI, false)
 }
 
 // Start the app
