@@ -1,5 +1,5 @@
 {
-  "name": "snow-fall",
+  "name": "@erikwatson/snowfall",
   "version": "0.1.0",
   "description": "A simple template for frontend projects in JS",
   "main": "dist/snowfall.js",
