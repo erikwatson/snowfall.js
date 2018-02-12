@@ -1,30 +1,21 @@
 {
   "name": "@erikwatson/snowfall",
   "version": "0.1.0",
-  "description": "A simple template for frontend projects in JS",
+  "description": "Nice snow in a JS Canvas.",
   "main": "dist/snowfall.js",
-  "repository": "git@github.com:championchap/Frontend-Template.git",
-  "author": "Erik Watson <championchap@gmail.com>",
+  "repository": "git@github.com:championchap/SnowFall.js.git",
+  "author": "Erik Watson <erik@erikwatson.me>",
   "license": "MIT",
   "scripts": {
-    "build:sass": "node node_modules/gulp/bin/gulp.js build:sass",
-    "build:js": "node node_modules/gulp/bin/gulp.js build:js",
-    "build": "node node_modules/gulp/bin/gulp.js build",
-    "watch:sass": "node node_modules/gulp/bin/gulp.js watch:sass",
-    "watch:js": "node node_modules/gulp/bin/gulp.js watch:js",
-    "watch": "node node_modules/gulp/bin/gulp.js watch",
-    "check:js": "node node_modules/gulp/bin/gulp.js check:js",
-    "clean:libs": "rm -rf node_modules",
-    "clean:builds": "rm bin/build.js && rm bin/build.css && rm -rf build/maps",
-    "clean": "yarn clean:libs && yarn clean:builds"
+    "build": "./node_modules/.bin/rollup -c rollup.config.js"
   },
-  "devDependencies": {},
-  "dependencies": {
+  "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "rollup": "^0.55.5",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-node-resolve": "^3.0.2"
-  }
+  },
+  "dependencies": {}
 }
