@@ -1,8 +1,8 @@
 {
-  "name": "Frontend-Template",
+  "name": "@erikwatson/snowfall",
   "version": "0.1.0",
   "description": "A simple template for frontend projects in JS",
-  "main": "gulpfile.js",
+  "main": "dist/snowfall.js",
   "repository": "git@github.com:championchap/Frontend-Template.git",
   "author": "Erik Watson <championchap@gmail.com>",
   "license": "MIT",
@@ -18,20 +18,13 @@
     "clean:builds": "rm bin/build.js && rm bin/build.css && rm -rf build/maps",
     "clean": "yarn clean:libs && yarn clean:builds"
   },
-  "devDependencies": {
-    "babel-core": "^6.18.2",
-    "babel-loader": "^6.2.8",
-    "babel-preset-es2015": "^6.18.0",
-    "browser-sync": "^2.18.2",
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-sass": "^2.3.2",
-    "gulp-sourcemaps": "^1.9.1",
-    "gulp-standard": "^8.0.2",
-    "gulp-webpack": "^1.5.0"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "axios": "^0.17.1",
-    "moment": "^2.20.1"
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "rollup": "^0.55.5",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-node-resolve": "^3.0.2"
   }
 }
