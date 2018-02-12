@@ -1,32 +1,29 @@
-import { onPageLoaded } from './events'
-
 const appContainer = document.querySelector('#snow-container')
 
 const canvas = document.createElement('canvas')
 const ctx = canvas.getContext('2d')
 
 const gravity = 0.2
-let snowflakes = makeSnowflakes(250)
 const wind = 0
 
+let snowflakes = []
+
 function start () {
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+  canvas.width = appContainer.offsetWidth
+  canvas.height = appContainer.offsetHeight
   appContainer.appendChild(canvas)
+
+  snowflakes = makeSnowflakes(requiredSnowflakes())
 
   window.onresize = onResize
   window.requestAnimationFrame(onEnterFrame)
 }
 
 function onResize () {
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+  canvas.width = appContainer.offsetWidth
+  canvas.height = appContainer.offsetHeight
 
-  const tenEightyPee = 1920 * 1080
-  const thisScreen = window.innerWidth * window.innerHeight
-  const snowflakeCount = Math.round(250 * (thisScreen / tenEightyPee))
-
-  snowflakes = makeSnowflakes(snowflakeCount)
+  snowflakes = makeSnowflakes(requiredSnowflakes())
 }
 
 function onEnterFrame () {
@@ -37,15 +34,20 @@ function onEnterFrame () {
 }
 
 function update () {
-  sineWave({x: 0, y: 0}, 1, 1, 1)
-
   snowflakes.forEach(snowflake => {
     const frequency = snowflake.size / 5000
 
     const waveLength = snowflake.size / 10
     const waveHeight = snowflake.size / 8
 
-    snowflake.pos.x += waveLength * Math.sin(frequency * (snowflake.pos.y / waveHeight) * 2 * Math.PI)
+    const sineWaveOffset = sineWave(
+      snowflake.pos.y,
+      waveLength,
+      waveHeight,
+      frequency
+    )
+
+    snowflake.pos.x += sineWaveOffset
     snowflake.pos.y += gravity * (snowflake.size + snowflake.random)
 
     snowflake.pos.x += wind
@@ -106,20 +108,20 @@ function makeSnowflakes (num) {
   return result
 }
 
-function sineWave (startPos, speed, waveHeight, waveLength) {
-  let position = { x: 0, y: 0 }
+function requiredSnowflakes () {
+  const tenEightyPee = 1920 * 1080
+  const thisScreen = canvas.width * canvas.height
+  const snowflakeCount = Math.round(250 * (thisScreen / tenEightyPee))
 
-  position.x = speed + startPos.x
-  position.y = Math.sin(startPos.x / waveLength) * waveHeight
+  return snowflakeCount
+}
 
-  return position
+function sineWave (yPos, waveLength, waveHeight, frequency) {
+  return waveLength * Math.sin(frequency * (yPos / waveHeight) * 2 * Math.PI)
 }
 
 function drawCircle (position, radius) {
   ctx.arc(position.x, position.y, radius, 0, 2 * Math.PI, false)
 }
 
-// Start the app
-onPageLoaded(() => {
-  start()
-})
+export default start
