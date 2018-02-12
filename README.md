@@ -1,4 +1,4 @@
-# Snowfall.js
+# snowfall.js
 
 Nice snow in a JS Canvas.
 
@@ -8,7 +8,7 @@ Nice snow in a JS Canvas.
 First, install.
 
 ```sh
-yarn install snow-fall
+yarn install @erikwatson/snowfall
 ```
 
 Then...
