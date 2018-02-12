@@ -1,6 +1,13 @@
 # snowfall.js
 
-Nice snow in a JS Canvas.
+A nice snow effect drawn in a canvas element, perfect for a classic 90's Winter theme.
+
+
+## Features
+
+  + Foreground and Background Layers
+  + Proportional number of snowflakes across resolutions
+  + Small, with no dependencies
 
 
 ## Instructions
