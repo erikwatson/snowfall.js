@@ -1,6 +1,12 @@
 # snowfall.js
 
-Nice snow in a JS Canvas. [Demo](http://erikwatson.me/snowfall)
+A nice snow effect drawn in a canvas element, perfect for a classic 90's Winter theme. [Demo](http://erikwatson.me/snowfall)
+
+## Features
+
+  + Foreground and Background Layers
+  + Proportional number of snowflakes across resolutions
+  + Small, with no dependencies
 
 
 ## Instructions
@@ -23,11 +29,11 @@ const snowfall = require('@erikwatson/snowfall')
 snowfall()
 ```
 
-## Try it out
+## Build it yourself
 
-  + git clone
-  + nmp/yarn install
-  + npm/yarn run watch
+  + `git clone git@github.com:championchap/SnowFall.js.git`
+  + `yarn install`
+  + `yarn build`
 
 
 ## Authors
