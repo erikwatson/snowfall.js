@@ -23,11 +23,11 @@ const snowfall = require('@erikwatson/snowfall')
 snowfall()
 ```
 
-## Try it out
+## Build it yourself
 
-  + git clone
-  + nmp/yarn install
-  + npm/yarn run watch
+  + `git clone git@github.com:championchap/SnowFall.js.git`
+  + `yarn install`
+  + `yarn build`
 
 
 ## Authors
