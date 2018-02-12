@@ -1,5 +1,3 @@
-import { onPageLoaded } from './events'
-
 const appContainer = document.querySelector('#snow-container')
 
 const canvas = document.createElement('canvas')
@@ -126,6 +124,4 @@ function drawCircle (position, radius) {
   ctx.arc(position.x, position.y, radius, 0, 2 * Math.PI, false)
 }
 
-onPageLoaded(() => {
-  start()
-})
+export default start
