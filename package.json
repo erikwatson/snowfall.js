@@ -2,7 +2,7 @@
   "name": "snow-fall",
   "version": "0.1.0",
   "description": "A simple template for frontend projects in JS",
-  "main": "gulpfile.js",
+  "main": "dist/snowfall.js",
   "repository": "git@github.com:championchap/Frontend-Template.git",
   "author": "Erik Watson <championchap@gmail.com>",
   "license": "MIT",
