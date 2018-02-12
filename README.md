@@ -1,6 +1,6 @@
 # Snowfall.js
 
-Nice snow in a JS Canvas.
+Nice snow in a JS Canvas. [Demo](http://erikwatson.me/snowfall)
 
 
 ## Try it out
