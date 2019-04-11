@@ -5,7 +5,8 @@ export default {
   input: 'src/snowfall.js',
   output: {
     file: './dist/snowfall.js',
-    format: 'cjs'
+    format: 'iife',
+    name: 'snowfall'
   },
   plugins: [
     resolve(),
