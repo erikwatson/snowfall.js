@@ -1,4 +1,4 @@
-import vec2 from './vec2'
+const vec2 = require('./vec2')
 
 const appContainer = document.querySelector('#snow-container')
 
@@ -11,10 +11,68 @@ let density = 250
 
 let snowflakes = []
 
-// const primary = '#8d90b7'
-// const secondary = '#ffffff'
+let bg = '#000000'
+let primary = '#8d90b7'
+let secondary = '#ffffff'
 
-function start () {
+let amplitude = 0.00
+let frequency = 0.00
+
+function start (config = {}) {
+  if (config.bg !== undefined) {
+    bg = config.bg
+  }
+
+  if (config.primary !== undefined) {
+    primary = config.primary
+  }
+
+  if (config.secondary !== undefined) {
+    secondary = config.secondary
+  }
+
+  if (config.density !== undefined) {
+    density = config.density
+  }
+
+  if (config.wave !== undefined) {
+    if (config.wave.amplitude !== undefined) {
+      amplitude = config.wave.amplitude
+    }
+
+    if (config.wave.frequency !== undefined) {
+      frequency = config.wave.frequency
+    }
+  }
+
+  if (config.gravity !== undefined) {
+    if (config.gravity.angle !== undefined && config.gravity.strength !== undefined) {
+      setGravity(config.gravity.angle, config.gravity.strength)
+    }
+
+    if (config.gravity.angle !== undefined && config.gravity.strength === undefined) {
+      setGravity(config.gravity.angle, 0.6)
+    }
+
+    if (config.gravity.angle === undefined && config.gravity.strength !== undefined) {
+      setGravity(90, config.gravity.strength)
+    }
+  }
+
+  if (config.wind !== undefined) {
+    if (config.wind.angle !== undefined && config.wind.strength !== undefined) {
+      setWind(config.wind.angle, config.wind.strength)
+    }
+
+    if (config.wind.angle !== undefined && config.wind.strength === undefined) {
+      setWind(config.wind.angle, 0.0)
+    }
+
+    if (config.wind.angle === undefined && config.wind.strength !== undefined) {
+      setWind(0.0, config.wind.strength)
+    }
+  }
+
   canvas.width = appContainer.offsetWidth
   canvas.height = appContainer.offsetHeight
   appContainer.appendChild(canvas)
@@ -41,24 +99,27 @@ function onEnterFrame () {
 
 let t = 0
 
-const w = null
-const g = null
+const w = vec2.create(0, 0)
+const g = vec2.create(0, 0)
 
-const sine = null
+let sine = null
 
 function update () {
   snowflakes.forEach(snowflake => {
-    w = vec2.clone(wind)
+    w.x = wind.x
+    w.y = wind.y
+
     w.multiplyScalar(snowflake.size + snowflake.random)
+
     snowflake.pos.add(w)
 
-    g = vec2.clone(gravity)
+    g.x = gravity.x
+    g.y = gravity.y
+
     g.multiplyScalar(snowflake.size + snowflake.random)
+
     snowflake.pos.add(g)
 
-    // TODO: Make a nicer way to change these
-    // const amplitude = 1
-    // const frequency = 0.05
     const phase = snowflake.noise
 
     sine = vec2.create(
@@ -92,6 +153,11 @@ function update () {
 
 function render () {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+  if (bg) {
+    ctx.fillStyle = bg
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+  }
 
   const bgSize = 7
 
@@ -155,18 +221,28 @@ function restart () {
   snowflakes = makeSnowflakes(requiredSnowflakes())
 }
 
-export default {
+function setGravity (degrees, strength) {
+  gravity = vec2.fromDegrees(degrees)
+  gravity.multiplyScalar(strength)
+}
+
+function setWind (degrees, strength) {
+  wind = vec2.fromDegrees(degrees)
+  wind.multiplyScalar(strength)
+}
+
+module.exports = {
   start,
-  setGravity: (degrees, strength) => {
-    gravity = vec2.fromDegrees(degrees)
-    gravity.multiplyScalar(strength)
-  },
-  setWind: (degrees, strength) => {
-    wind = vec2.fromDegrees(degrees)
-    wind.multiplyScalar(strength)
-  },
+  setGravity,
+  setWind,
   setDensity: d => {
     density = d
     restart()
+  },
+  setPrimary: colour => {
+    primary = colour
+  },
+  setSecondary: colour => {
+    secondary = colour
   }
 }
