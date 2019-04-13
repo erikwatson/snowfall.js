@@ -18,7 +18,6 @@
       font-family: 'Overpass', sans-serif;
     }
 
-
     h2 {
       margin: 10px 0px 10px 20px;
     }
@@ -193,29 +192,23 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
   <script type="text/javascript" src="snowfall.js"></script>
   <script>
-    var primary = '#8d90b7'
-    var secondary = '#ffffff'
-
-    var amplitude = 0.00
-    var frequency = 0.00
-
     snowfall.start({
-      bg: '#232323',
-      primary: '#8d90b7',
-      secondary: '#ffffff',
-      density: 150,
-      wave: {
-        frequency: 0.02,
-        amplitude: 0,
-      },
-      gravity: {
-        angle: 90,
-        strength: 0.5
-      },
-      wind: {
-        angle: 0,
-        strength: 0
-      }
+      // bg: '#996633',
+      // primary: '#ff0000',
+      // secondary: '#000000',
+      // density: 1000,
+      // wave: {
+      //   frequency: 0.01,
+      //   amplitude: 1,
+      // },
+      // gravity: {
+      //   angle: 270,
+      //   strength: 1.5
+      // },
+      // wind: {
+      //   angle: 0,
+      //   strength: 2
+      // }
     })
 
     var freqInput = document.getElementById('frequency')
@@ -258,7 +251,7 @@
       snowfall.setGravity(parseFloat(gravityAngleInput.value), parseFloat(e.target.value))
     })
 
-    snowfall.setGravity(parseFloat(gravityAngleInput.value), parseFloat(gravityStrengthInput.value))
+    // snowfall.setGravity(parseFloat(gravityAngleInput.value), parseFloat(gravityStrengthInput.value))
 
 
     var windAngleInput = document.getElementById('wind-angle')
@@ -277,7 +270,8 @@
       snowfall.setWind(parseFloat(windAngleInput.value), parseFloat(e.target.value))
     })
 
-    snowfall.setWind(parseFloat(windAngleInput.value), parseFloat(windStrengthInput.value))
+    // snowfall.setWind(parseFloat(windAngleInput.value), parseFloat(windStrengthInput.value))
+
 
     var primaryColour = document.getElementById('primary')
     var secondaryColour = document.getElementById('secondary')

@@ -115,7 +115,7 @@ const clone = v => {
   return create(v.x, v.y)
 }
 
-export default {
+module.exports = {
   clone,
   create,
   fromDegrees,
