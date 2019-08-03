@@ -331,20 +331,51 @@ function setWind(degrees, strength) {
   wind.multiplyScalar(strength)
 }
 
+function setAmplitude (num) {
+  amplitude = num
+}
+
+function setAngle (deg) {
+  degrees = deg
+}
+
+function setBackground (col) {
+  bg = col
+}
+
+function setDensity (den) {
+  density = den
+  restart()
+}
+
+function setFrequency (freq) {
+  frequency = freq
+}
+
+function setPrimary (col) {
+  primary = col
+}
+
+function setSecondary (col) {
+  secondary = col
+}
+
+function setStrength (str) {
+  strength = str
+}
+
 module.exports = {
-  start,
+  setAmplitude,
+  setAngle,
+  setBackground,
+  setDensity,
+  setFrequency,
   setGravity,
+  setPrimary,
+  setSecondary,
+  setStrength,
   setWind,
-  setDensity: d => {
-    density = d
-    restart()
-  },
-  setPrimary: colour => {
-    primary = colour
-  },
-  setSecondary: colour => {
-    secondary = colour
-  }
+  start,
 }
 
 

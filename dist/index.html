@@ -105,10 +105,12 @@
         <h2>Background</h2>
         <div class="row bottom">
           <label for="bg">Colour</label>
-          <input type="color" name="bg-colour" id="bg">
+          <input type="color" name="bg-colour" id="bg" value="#0d0014">
         </div>
       </div>
+
       <hr />
+
       <div class="config-section">
         <h2>Snowflakes</h2>
         <div class="row">
@@ -121,25 +123,29 @@
         </div>
         <div class="row bottom">
           <label for="density">Density</label>
-          <input type="range" name="density" id="density" min="0" max="1000" value="250">
+          <input type="range" name="density" id="density" min="0" max="1000" value="200">
           <span id="density-count">0</span>
         </div>
       </div>
-<hr />
+      
+      <hr />
+      
       <div class="config-section">
         <h2>Waves</h2>
         <div class="row">
           <label for="amplitude">Amplitude</label>
-          <input type="range" id="amplitude" min="0" value="0" max="10" step="0.01">
+          <input type="range" id="amplitude" min="0" value="1" max="10" step="0.01">
           <span id="amplitude-count">0</span>
         </div>
         <div class="row bottom">
           <label for="frequency">Frequency</label>
-          <input type="range" id="frequency" min="0" value="0" max="0.1" step="0.001">
+          <input type="range" id="frequency" min="0" value="0.02" max="0.1" step="0.001">
           <span id="frequency-count">0</span>
         </div>
       </div>
-<hr />
+      
+      <hr />
+      
       <div class="config-section">
         <h2>Gravity</h2>
         <div class="row">
@@ -150,11 +156,13 @@
         </div>
         <div class="row bottom">
           <label for="gravity-strength">Strength</label>
-          <input type="range" id="gravity-strength" min="-5" value="0" max="5" step="0.1">
+          <input type="range" id="gravity-strength" min="-5" value="0.7" max="5" step="0.1">
           <span id="gravity-strength-count">0</span>
         </div>
       </div>
-<hr />
+
+      <hr />
+
       <div class="config-section">
         <h2>Wind</h2>
         <div class="row">
@@ -169,7 +177,9 @@
           <span id="wind-strength-count">0</span>
         </div>
       </div>
-<hr />
+
+      <hr />
+
       <div class="config-section">
         <h2>Your Config</h2>
         <div class="row bottom">
@@ -192,24 +202,7 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
   <script type="text/javascript" src="snowfall.js"></script>
   <script>
-    snowfall.start({
-      // bg: '#996633',
-      // primary: '#ff0000',
-      // secondary: '#000000',
-      // density: 1000,
-      // wave: {
-      //   frequency: 0.01,
-      //   amplitude: 1,
-      // },
-      // gravity: {
-      //   angle: 270,
-      //   strength: 1.5
-      // },
-      // wind: {
-      //   angle: 0,
-      //   strength: 2
-      // }
-    })
+    snowfall.start()
 
     var freqInput = document.getElementById('frequency')
     var ampInput = document.getElementById('amplitude')
@@ -222,18 +215,28 @@
     freqInput.addEventListener('input', e => {
       frequency = e.target.value
       freqCount.innerText = e.target.value
+      snowfall.setFrequency(frequency)
     })
+
+    snowfall.setFrequency(freqInput.value)
+    freqCount.innerText = freqInput.value
 
     ampInput.addEventListener('input', e => {
       amplitude = e.target.value
       ampCount.innerText = e.target.value
+      snowfall.setAmplitude(amplitude)
     })
+
+    snowfall.setAmplitude(ampInput.value)
+    ampCount.innerText = ampInput.value
 
     densityInput.addEventListener('input', e => {
       snowfall.setDensity(e.target.value)
       densityCount.innerText = e.target.value
     })
-
+    
+    snowfall.setDensity(densityInput.value)
+    densityCount.innerText = densityInput.value
 
     var gravityAngleInput = document.getElementById('gravity-angle')
     var gravityStrengthInput = document.getElementById('gravity-strength')
@@ -243,15 +246,27 @@
 
     gravityAngleInput.addEventListener('input', e => {
       gravityAngleCount.innerText = e.target.value
-      snowfall.setGravity(parseFloat(e.target.value), parseFloat(gravityStrengthInput.value))
+      snowfall.setGravity(
+        parseFloat(e.target.value), 
+        parseFloat(gravityStrengthInput.value)
+      )
     })
 
     gravityStrengthInput.addEventListener('input', e => {
       gravityStrengthCount.innerText = e.target.value
-      snowfall.setGravity(parseFloat(gravityAngleInput.value), parseFloat(e.target.value))
+      snowfall.setGravity(
+        parseFloat(gravityAngleInput.value), 
+        parseFloat(e.target.value)
+      )
     })
 
-    // snowfall.setGravity(parseFloat(gravityAngleInput.value), parseFloat(gravityStrengthInput.value))
+    snowfall.setGravity(
+      parseFloat(gravityAngleInput.value), 
+      parseFloat(gravityStrengthInput.value)
+    )
+
+    gravityAngleCount.innerText = gravityAngleInput.value
+    gravityStrengthCount.innerText = gravityStrengthInput.value
 
 
     var windAngleInput = document.getElementById('wind-angle')
@@ -262,36 +277,53 @@
 
     windAngleInput.addEventListener('input', e => {
       windAngleCount.innerText = e.target.value
-      snowfall.setWind(parseFloat(e.target.value), parseFloat(windStrengthInput.value))
+      snowfall.setWind(
+        parseFloat(e.target.value), 
+        parseFloat(windStrengthInput.value)
+      )
     })
 
     windStrengthInput.addEventListener('input', e => {
       windStrengthCount.innerText = e.target.value
-      snowfall.setWind(parseFloat(windAngleInput.value), parseFloat(e.target.value))
+      snowfall.setWind(
+        parseFloat(windAngleInput.value), 
+        parseFloat(e.target.value)
+      )
     })
 
-    // snowfall.setWind(parseFloat(windAngleInput.value), parseFloat(windStrengthInput.value))
+    snowfall.setWind(
+      parseFloat(windAngleInput.value), 
+      parseFloat(windStrengthInput.value)
+    )
+
+    windAngleCount.innerText = windAngleInput.value
+    windStrengthCount.innerText = windStrengthInput.value
 
 
     var primaryColour = document.getElementById('primary')
     var secondaryColour = document.getElementById('secondary')
 
     primaryColour.addEventListener('change', e => {
-      primary = e.target.value
+      snowfall.setPrimary(e.target.value)
     })
 
+    snowfall.setPrimary(primaryColour.value)
+
     secondaryColour.addEventListener('change', e => {
-      secondary = e.target.value
+      snowfall.setSecondary(e.target.value)
     })
+
+    snowfall.setSecondary(secondaryColour.value)
 
 
     var bgInput = document.getElementById('bg')
-    var snowContainer = document.getElementById('snow-container')
 
     bg.addEventListener('change', e => {
-      snowContainer.style.backgroundColor = e.target.value
+      snowfall.setBackground(e.target.value)
+      console.log(e.target.value)
     })
 
+    snowfall.setBackground(bgInput.value)
 
     function makeConfig () {
       // NOTE: Dumb indenting here is on purpose
@@ -325,8 +357,6 @@
       out.innerText = wrapInSnow(makeConfig())
       hljs.highlightBlock(out)
     }
-
-    outputToScreen()
 
     primaryColour.addEventListener('change', e => {
       outputToScreen()
@@ -364,7 +394,7 @@
       outputToScreen()
     })
 
-
+    outputToScreen()
     hljs.initHighlightingOnLoad()
   </script>
 </body>
