@@ -1,4 +1,4 @@
-function create (_x, _y) {
+function create(_x, _y) {
   let x = _x
   let y = _y
 
@@ -23,11 +23,11 @@ function create (_x, _y) {
   }
 
   const dot = v => {
-    return (x * v.x) + (y * v.y)
+    return x * v.x + y * v.y
   }
 
   const getLength = () => {
-    return Math.sqrt((x * x) + (y * y))
+    return Math.sqrt(x * x + y * y)
   }
 
   const getOpposite = v => {
@@ -39,7 +39,7 @@ function create (_x, _y) {
   }
 
   const isEqualTo = v => {
-    return (x == v.x && y == v.y)
+    return x == v.x && y == v.y
   }
 
   const multiply = v => {
@@ -91,18 +91,18 @@ function create (_x, _y) {
     setLength,
     subtract,
     subtractScalar,
-    set x (_x) {
+    set x(_x) {
       x = _x
     },
-    get x () {
+    get x() {
       return x
     },
-    set y (_y) {
+    set y(_y) {
       y = _y
     },
-    get y () {
+    get y() {
       return y
-    },
+    }
   }
 }
 
@@ -118,5 +118,5 @@ const clone = v => {
 module.exports = {
   clone,
   create,
-  fromDegrees,
+  fromDegrees
 }

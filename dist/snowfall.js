@@ -111,10 +111,10 @@ let bg = '#000000'
 let primary = '#8d90b7'
 let secondary = '#ffffff'
 
-let amplitude = 0.00
-let frequency = 0.00
+let amplitude = 0.0
+let frequency = 0.0
 
-function start (config = {}) {
+function start(config = {}) {
   if (config.bg !== undefined) {
     bg = config.bg
   }
@@ -142,15 +142,24 @@ function start (config = {}) {
   }
 
   if (config.gravity !== undefined) {
-    if (config.gravity.angle !== undefined && config.gravity.strength !== undefined) {
+    if (
+      config.gravity.angle !== undefined &&
+      config.gravity.strength !== undefined
+    ) {
       setGravity(config.gravity.angle, config.gravity.strength)
     }
 
-    if (config.gravity.angle !== undefined && config.gravity.strength === undefined) {
+    if (
+      config.gravity.angle !== undefined &&
+      config.gravity.strength === undefined
+    ) {
       setGravity(config.gravity.angle, 0.6)
     }
 
-    if (config.gravity.angle === undefined && config.gravity.strength !== undefined) {
+    if (
+      config.gravity.angle === undefined &&
+      config.gravity.strength !== undefined
+    ) {
       setGravity(90, config.gravity.strength)
     }
   }
@@ -179,14 +188,14 @@ function start (config = {}) {
   window.requestAnimationFrame(onEnterFrame)
 }
 
-function onResize () {
+function onResize() {
   canvas.width = appContainer.offsetWidth
   canvas.height = appContainer.offsetHeight
 
   snowflakes = makeSnowflakes(requiredSnowflakes())
 }
 
-function onEnterFrame () {
+function onEnterFrame() {
   update()
   render()
 
@@ -200,7 +209,7 @@ const g = vec2.create(0, 0)
 
 let sine = null
 
-function update () {
+function update() {
   snowflakes.forEach(snowflake => {
     w.x = wind.x
     w.y = wind.y
@@ -218,10 +227,7 @@ function update () {
 
     const phase = snowflake.noise
 
-    sine = vec2.create(
-      amplitude * Math.sin((frequency * t) + phase),
-      0
-    )
+    sine = vec2.create(amplitude * Math.sin(frequency * t + phase), 0)
 
     snowflake.pos.add(sine)
 
@@ -247,7 +253,7 @@ function update () {
   t += 1
 }
 
-function render () {
+function render() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
   if (bg) {
@@ -259,8 +265,6 @@ function render () {
 
   const foreground = snowflakes.filter(x => x.size >= bgSize)
   const background = snowflakes.filter(x => x.size < bgSize)
-
-
 
   ctx.fillStyle = primary
   background.forEach(snowflake => {
@@ -277,7 +281,7 @@ function render () {
   })
 }
 
-function makeSnowflakes (num) {
+function makeSnowflakes(num) {
   let result = []
 
   while (num--) {
@@ -286,7 +290,7 @@ function makeSnowflakes (num) {
         Math.random() * canvas.width,
         Math.random() * canvas.height
       ),
-      size: 3 + (Math.random() * 5),
+      size: 3 + Math.random() * 5,
       // Random value, just to add some uncertainty
       noise: Math.random() * 10,
       amplitude: Math.random() * 2,
@@ -301,7 +305,7 @@ function makeSnowflakes (num) {
 // This function figures out how many snowflakes we should use for our given canvas size
 // Just setting a fixed number of snowflakes would give an uneven distribution of
 // snowflakes across different screen sizes, for example.
-function requiredSnowflakes () {
+function requiredSnowflakes() {
   const tenEightyPee = 1920 * 1080
   const thisScreen = canvas.width * canvas.height
   const snowflakeCount = Math.round(density * (thisScreen / tenEightyPee))
@@ -309,20 +313,20 @@ function requiredSnowflakes () {
   return snowflakeCount
 }
 
-function drawCircle (position, radius) {
+function drawCircle(position, radius) {
   ctx.arc(position.x, position.y, radius, 0, 2 * Math.PI, false)
 }
 
-function restart () {
+function restart() {
   snowflakes = makeSnowflakes(requiredSnowflakes())
 }
 
-function setGravity (degrees, strength) {
+function setGravity(degrees, strength) {
   gravity = vec2.fromDegrees(degrees)
   gravity.multiplyScalar(strength)
 }
 
-function setWind (degrees, strength) {
+function setWind(degrees, strength) {
   wind = vec2.fromDegrees(degrees)
   wind.multiplyScalar(strength)
 }
@@ -353,7 +357,7 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function create (_x, _y) {
+function create(_x, _y) {
   let x = _x
   let y = _y
 
@@ -378,11 +382,11 @@ function create (_x, _y) {
   }
 
   const dot = v => {
-    return (x * v.x) + (y * v.y)
+    return x * v.x + y * v.y
   }
 
   const getLength = () => {
-    return Math.sqrt((x * x) + (y * y))
+    return Math.sqrt(x * x + y * y)
   }
 
   const getOpposite = v => {
@@ -394,7 +398,7 @@ function create (_x, _y) {
   }
 
   const isEqualTo = v => {
-    return (x == v.x && y == v.y)
+    return x == v.x && y == v.y
   }
 
   const multiply = v => {
@@ -446,18 +450,18 @@ function create (_x, _y) {
     setLength,
     subtract,
     subtractScalar,
-    set x (_x) {
+    set x(_x) {
       x = _x
     },
-    get x () {
+    get x() {
       return x
     },
-    set y (_y) {
+    set y(_y) {
       y = _y
     },
-    get y () {
+    get y() {
       return y
-    },
+    }
   }
 }
 
@@ -473,7 +477,7 @@ const clone = v => {
 module.exports = {
   clone,
   create,
-  fromDegrees,
+  fromDegrees
 }
 
 
