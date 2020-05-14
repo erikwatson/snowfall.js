@@ -1,6 +1,8 @@
 # snowfall.js
 
-A nice snow effect drawn in a canvas element, perfect for a classic 90's Winter theme. [Demo](http://erikwatson.me/snowfall)
+A nice snow effect drawn in a canvas element, perfect for a classic 90's Winter theme.
+[Config Editor Available](http://erikwatson.me/snowfall)
+
 
 ## Features
 
