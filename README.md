@@ -33,7 +33,7 @@ snowfall()
 
 ## Build it yourself
 
-  + `git clone git@github.com:championchap/SnowFall.js.git`
+  + `git clone git@github.com:erikwatson/SnowFall.js.git`
   + `yarn install`
   + `yarn build`
 
