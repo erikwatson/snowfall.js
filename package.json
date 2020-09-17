@@ -10,7 +10,8 @@
     "build": "yarn webpack --config ./webpack.development.js",
     "build:production": "yarn webpack --config ./webpack.production.js",
     "build:all": "yarn build && yarn build:production",
-    "watch": "yarn run build --watch"
+    "watch": "yarn run build --watch",
+    "publish": "yarn build:all && npm publish"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
