@@ -32,12 +32,14 @@ Then...
 ```
 
 ```js
+// You can change the defaults by passing in a config object here
+// Use the Visual Config Editor to create one
 snowfall.start()
 ```
 
 ## Build it yourself
 
-- `git clone git@github.com:championchap/SnowFall.js.git`
+- `git clone git@github.com:erikwatson/snowfall.js.git`
 - `yarn install`
 - `yarn build`
 
