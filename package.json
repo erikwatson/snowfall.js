@@ -1,6 +1,6 @@
 {
   "name": "@erikwatson/snowfall",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Nice snow in a JS Canvas.",
   "main": "dist/snowfall.js",
   "repository": "git@github.com:championchap/SnowFall.js.git",
@@ -11,7 +11,7 @@
     "build:production": "yarn webpack --config ./webpack.production.js",
     "build:all": "yarn build && yarn build:production",
     "watch": "yarn run build --watch",
-    "publish": "yarn build:all && npm publish"
+    "pub": "yarn build:all && npm publish"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
