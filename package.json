@@ -7,15 +7,21 @@
   "author": "Erik Watson <erik@erikwatson.me>",
   "license": "MIT",
   "scripts": {
-    "build": "./node_modules/.bin/rollup -c rollup.config.js"
+    "build": "yarn webpack --config ./webpack.development.js",
+    "build:production": "yarn webpack --config ./webpack.production.js",
+    "build:all": "yarn build && yarn build:production",
+    "watch": "yarn run build --watch"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.6.1",
-    "rollup": "^0.55.5",
-    "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-node-resolve": "^3.0.2"
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-external-helpers": "^7.2.0",
+    "@babel/preset-env": "^7.4.3",
+    "husky": "^3.0.2",
+    "prettier": "1.18.2",
+    "pretty-quick": "^1.11.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {}
 }
