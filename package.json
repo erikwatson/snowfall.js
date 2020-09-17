@@ -1,6 +1,6 @@
 {
   "name": "@erikwatson/snowfall",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Nice snow in a JS Canvas.",
   "main": "dist/snowfall.js",
   "repository": "git@github.com:championchap/SnowFall.js.git",
