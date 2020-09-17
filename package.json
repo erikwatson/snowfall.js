@@ -6,6 +6,12 @@
   "repository": "git@github.com:championchap/SnowFall.js.git",
   "author": "Erik Watson <erik@erikwatson.me>",
   "license": "MIT",
+  "keywords": [
+    "winter",
+    "snow",
+    "christmas",
+    "effect"
+  ],
   "scripts": {
     "build": "yarn webpack --config ./webpack.development.js",
     "build:production": "yarn webpack --config ./webpack.production.js",
