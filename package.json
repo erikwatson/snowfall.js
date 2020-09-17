@@ -9,6 +9,7 @@
   "scripts": {
     "build": "yarn webpack --config ./webpack.development.js",
     "build:production": "yarn webpack --config ./webpack.production.js",
+    "build:all": "yarn build && yarn build:production",
     "watch": "yarn run build --watch"
   },
   "devDependencies": {

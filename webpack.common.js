@@ -1,4 +1,4 @@
-var path = require('path');
+var path = require('path')
 
 module.exports = {
   entry: './src/snowfall.js',
@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'snowfall.js',
-    library: 'snowfall'
+    library: 'snowfall',
+    libraryTarget: 'window'
   }
 }
