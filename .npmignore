@@ -9,3 +9,4 @@ webpack.development.js
 webpack.production.js
 yarn-error.log
 yarn.lock
+dist/snowfall.js.map
