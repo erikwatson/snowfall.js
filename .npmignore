@@ -1,0 +1,11 @@
+docs/
+src/
+.babelrc
+.huskyrc.js
+.prettierignore
+.prettierrc.js
+webpack.common.js
+webpack.development.js
+webpack.production.js
+yarn-error.log
+yarn.lock
