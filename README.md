@@ -1,14 +1,18 @@
 # snowfall.js
 
-A nice snow effect drawn in a canvas element, perfect for a classic 90's Winter theme.
+The perfect snow effect for your Winter themed website!
+
+Suggested use: attach it as a fixed background to your page with the content displayed over the top.
 
 ## Features
 
 - [Visual config editor](https://erikwatson.github.io/snowfall.js/)
 - [API Reference](https://github.com/erikwatson/snowfall.js/wiki/API-Reference)
-- Foreground and Background Layers
-- Proportional number of snowflakes across resolutions
-- Small, with no dependencies
+- Easy to use.
+- Simple, but beautiful.
+- Multiple layers give the illusion of depth.
+- Density of snowflakes looks correct even when the window is resized.
+- Small, with no dependencies.
 
 ## Instructions
 
