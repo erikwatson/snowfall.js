@@ -38,12 +38,6 @@ Then...
 snowfall.start()
 ```
 
-## Build it yourself
-
-- `git clone git@github.com:erikwatson/snowfall.js.git`
-- `yarn install`
-- `yarn build`
-
 ## Authors
 
 - [Erik Watson](http://erikwatson.me)
