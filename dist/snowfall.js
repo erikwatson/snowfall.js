@@ -101,18 +101,18 @@ const appContainer = document.querySelector('#snow-container')
 const canvas = document.createElement('canvas')
 const ctx = canvas.getContext('2d')
 
-let gravity = vec2.create(0, 0)
+let gravity = vec2.create(0, 0.7)
 let wind = vec2.create(0, 0)
-let density = 250
+let density = 200
 
 let snowflakes = []
 
-let bg = '#000000'
+let bg = '#0d0014'
 let primary = '#8d90b7'
 let secondary = '#ffffff'
 
-let amplitude = 0.0
-let frequency = 0.0
+let amplitude = 1.0
+let frequency = 0.02
 
 function start(config = {}) {
   if (config.bg !== undefined) {
