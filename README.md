@@ -5,6 +5,7 @@ A nice snow effect drawn in a canvas element, perfect for a classic 90's Winter 
 ## Features
 
 - [Visual config editor](https://erikwatson.github.io/snowfall.js/)
+- [API Reference](https://github.com/erikwatson/snowfall.js/wiki/API-Reference)
 - Foreground and Background Layers
 - Proportional number of snowflakes across resolutions
 - Small, with no dependencies
