@@ -7,7 +7,7 @@ Suggested use: attach it as a fixed background to your page with the content dis
 ## Features
 
 - [Visual config editor](https://erikwatson.github.io/snowfall-editor/)
-- [API Reference](https://github.com/erikwatson/snowfall.js/API-Reference)
+- [API Reference](https://erikwatson.github.io/snowfall.js/)
 - Easy to use.
 - Simple, but beautiful.
 - Multiple layers give the illusion of depth.
