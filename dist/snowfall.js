@@ -94,6 +94,10 @@ window["snowfall"] =
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+/**
+ * @module snowfall
+ */
+
 const vec2 = __webpack_require__(/*! ./vec2 */ "./src/vec2.js")
 
 const appContainer = document.querySelector('#snow-container')
@@ -114,6 +118,31 @@ let secondary = '#ffffff'
 let amplitude = 1.0
 let frequency = 0.02
 
+/**
+ * @param {Object} config - A config, possibly from the Visual Config Editor.
+ * @param {string} config.bg - A hex string representing the Background Colour
+ * of the canvas.
+ * @param {string} config.primary - A hex string representing the colour of the
+ * snowflakes in the foreground.
+ * @param {string} config.secondary - A hex string representing the colour of
+ * the snowflakes in the background.
+ * @param {number} config.density - A number representing the required density
+ * of snowflakes on screen. Note, this is not the actual number of snowflakes.
+ *
+ * @param {Object} config.wave - Configure the wave motion of the snowflakes.
+ * @param {number} config.wave.frequency - The frequency of the wave the
+ * snowflakes follow.
+ * @param {number} config.wave.amplitude - The amplitude of the wave the
+ * snowflakes follow.
+ *
+ * @param {Object} config.gravity - Configure the gravity of the simulation.
+ * @param {number} config.gravity.angle - The angle of gravity, in degrees.
+ * @param {number} config.gravity.strength - The strength of gravity.
+ *
+ * @param {Object} config.wind - Configure the wind.
+ * @param {number} config.wind.angle - The angle of the wind, in degrees.
+ * @param {number} config.wind.strength - The strength of the wind.
+ */
 function start(config = {}) {
   if (config.bg !== undefined) {
     bg = config.bg
@@ -186,6 +215,88 @@ function start(config = {}) {
 
   window.onresize = onResize
   window.requestAnimationFrame(onEnterFrame)
+}
+
+/**
+ * Set the background colour
+ *
+ * @param {string} colour - The background colour of the Canvas
+ */
+function setBackground(col) {
+  bg = col
+}
+
+/**
+ * Sets the colour of the Snowflakes in the foreground
+ *
+ * @param {string} colour - A Hex string representing the colour of the
+ *                          foreground snow.
+ */
+function setPrimary(col) {
+  primary = col
+}
+
+/**
+ * Sets the colour of the Snowflakes in the background
+ *
+ * @param {string} colour - A Hex string representing the colour of the
+ *                          background snow.
+ */
+function setSecondary(col) {
+  secondary = col
+}
+
+/**
+ * Set the density of the Snowflakes. This is the number of snowflakes on screen
+ * at a resolution of 1280 x 1080, but this number is scaled up and down at
+ * higher and lower resolutions respectively to give a consistent look when
+ * resizing.
+ *
+ * @param {number} density - A number representing the density of snowflakes.
+ */
+function setDensity(den) {
+  density = den
+  restart()
+}
+
+/**
+ * Set the Amplitude of the Wave motion of the Snowflakes
+ *
+ * @param {number} amplitude - The Amplitude to set
+ */
+function setAmplitude(num) {
+  amplitude = num
+}
+
+/**
+ * Set the Frequency of the Wave motion of the Snowflakes.
+ *
+ * @param {number} frequency - The frequency to set
+ */
+function setFrequency(freq) {
+  frequency = freq
+}
+
+/**
+ * Set the angle and strength of gravity in the simulation.
+ *
+ * @param {number} angle - The angle of gravity, in degrees
+ * @param {number} strength - The strength of the gravity
+ */
+function setGravity(degrees, strength) {
+  gravity = vec2.fromDegrees(degrees)
+  gravity.multiplyScalar(strength)
+}
+
+/**
+ * Set the angle and strength of the wind in the simulation.
+ *
+ * @param {number} angle - The angle of the wind, in degrees
+ * @param {number} strength - The strength of the wind
+ */
+function setWind(degrees, strength) {
+  wind = vec2.fromDegrees(degrees)
+  wind.multiplyScalar(strength)
 }
 
 function onResize() {
@@ -321,59 +432,14 @@ function restart() {
   snowflakes = makeSnowflakes(requiredSnowflakes())
 }
 
-function setGravity(degrees, strength) {
-  gravity = vec2.fromDegrees(degrees)
-  gravity.multiplyScalar(strength)
-}
-
-function setWind(degrees, strength) {
-  wind = vec2.fromDegrees(degrees)
-  wind.multiplyScalar(strength)
-}
-
-function setAmplitude(num) {
-  amplitude = num
-}
-
-function setAngle(deg) {
-  degrees = deg
-}
-
-function setBackground(col) {
-  bg = col
-}
-
-function setDensity(den) {
-  density = den
-  restart()
-}
-
-function setFrequency(freq) {
-  frequency = freq
-}
-
-function setPrimary(col) {
-  primary = col
-}
-
-function setSecondary(col) {
-  secondary = col
-}
-
-function setStrength(str) {
-  strength = str
-}
-
 module.exports = {
   setAmplitude,
-  setAngle,
   setBackground,
   setDensity,
   setFrequency,
   setGravity,
   setPrimary,
   setSecondary,
-  setStrength,
   setWind,
   start
 }
