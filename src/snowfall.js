@@ -1,6 +1,5 @@
 /**
- * Snowfall.js - Stay cool.
- * @module @erikwatson/snowfall
+ * @module snowfall
  */
 
 const vec2 = require('./vec2')
@@ -33,9 +32,20 @@ let frequency = 0.02
  * the snowflakes in the background.
  * @param {number} config.density - A number representing the required density
  * of snowflakes on screen. Note, this is not the actual number of snowflakes.
+ *
  * @param {Object} config.wave - Configure the wave motion of the snowflakes.
+ * @param {number} config.wave.frequency - The frequency of the wave the
+ * snowflakes follow.
+ * @param {number} config.wave.amplitude - The amplitude of the wave the
+ * snowflakes follow.
+ *
  * @param {Object} config.gravity - Configure the gravity of the simulation.
+ * @param {number} config.gravity.angle - The angle of gravity, in degrees.
+ * @param {number} config.gravity.strength - The strength of gravity.
+ *
  * @param {Object} config.wind - Configure the wind.
+ * @param {number} config.wind.angle - The angle of the wind, in degrees.
+ * @param {number} config.wind.strength - The strength of the wind.
  */
 function start(config = {}) {
   if (config.bg !== undefined) {
