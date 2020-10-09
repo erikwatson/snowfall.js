@@ -2,7 +2,7 @@
   "name": "@erikwatson/snowfall",
   "version": "3.0.2",
   "description": "Nice snow in a JS Canvas.",
-  "main": "dist/snowfall.js",
+  "main": "dist/snowfall.min.js",
   "repository": "git@github.com:erikwatson/snowfall.js.git",
   "author": "Erik Watson <erik@erikwatson.me>",
   "license": "MIT",
