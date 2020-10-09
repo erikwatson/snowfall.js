@@ -12,3 +12,5 @@ yarn.lock
 dist/snowfall.js.map
 dist/snowfall.js
 docs/
+*.map
+*.swp
