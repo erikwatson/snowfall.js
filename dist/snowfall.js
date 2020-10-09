@@ -413,9 +413,11 @@ function makeSnowflakes(num) {
   return result
 }
 
-// This function figures out how many snowflakes we should use for our given canvas size
-// Just setting a fixed number of snowflakes would give an uneven distribution of
-// snowflakes across different screen sizes, for example.
+// This function figures out how many snowflakes we should use for our given
+// canvas size.
+//
+// Just setting a fixed number of snowflakes would give an uneven distribution
+// of snowflakes across different screen sizes, for example.
 function requiredSnowflakes() {
   const tenEightyPee = 1920 * 1080
   const thisScreen = canvas.width * canvas.height
