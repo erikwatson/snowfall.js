@@ -10,4 +10,5 @@ webpack.production.js
 yarn-error.log
 yarn.lock
 dist/snowfall.js.map
+dist/snowfall.js
 docs/
