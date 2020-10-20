@@ -226,26 +226,27 @@ let sine = null
 
 function update() {
   snowflakes.forEach(snowflake => {
+    // add the wind
     w.x = wind.x
     w.y = wind.y
 
     w.multiplyScalar(snowflake.size + snowflake.random)
-
     snowflake.pos.add(w)
 
+    // add gravity
     g.x = gravity.x
     g.y = gravity.y
 
     g.multiplyScalar(snowflake.size + snowflake.random)
-
     snowflake.pos.add(g)
 
+    // add the wave motion
     const phase = snowflake.noise
 
     sine = vec2.create(amplitude * Math.sin(frequency * t + phase), 0)
-
     snowflake.pos.add(sine)
 
+    // wrap the snowflakes when they move off screen
     if (snowflake.pos.x > canvas.width) {
       snowflake.pos.x = 0
     }
