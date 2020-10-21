@@ -94,13 +94,14 @@ window["snowfall"] =
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function lerp (start, end, alpha) {
+function lerp(start, end, alpha) {
   return start * (1 - alpha) + end * alpha
 }
 
 module.exports = {
   lerp
 }
+
 
 /***/ }),
 
@@ -148,7 +149,7 @@ let fadeIn = false
  * the snowflakes in the background.
  * @param {number} config.density - A number representing the required density
  * of snowflakes on screen. Note, this is not the actual number of snowflakes.
- * @param {Boolean} fadeIn - Should the snowflakes grow in size when the app
+ * @param {Boolean} config.fadeIn - Should the snowflakes grow in size when the app
  * starts or should they begin at their full size?
  *
  * @param {Object} config.wave - Configure the wave motion of the snowflakes.
@@ -386,7 +387,11 @@ function update() {
     }
 
     if (snowflake.renderedSize < snowflake.size) {
-      snowflake.renderedSize = lerp(snowflake.renderedSize, snowflake.size, 0.025)
+      snowflake.renderedSize = lerp(
+        snowflake.renderedSize,
+        snowflake.size,
+        0.025
+      )
     }
   })
 
@@ -427,7 +432,7 @@ function makeSnowflakes(num) {
 
   while (num--) {
     const size = 3 + Math.random() * 5
-    const renderedSize = (fadeIn === true) ? 0 : size
+    const renderedSize = fadeIn === true ? 0 : size
 
     result.push({
       pos: vec2.create(
