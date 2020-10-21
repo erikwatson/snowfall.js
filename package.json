@@ -16,6 +16,7 @@
     "build": "yarn webpack --config ./webpack.development.js",
     "build:production": "yarn webpack --config ./webpack.production.js",
     "build:all": "yarn build && yarn build:production",
+    "build:docs": "yarn jsdoc src/snowfall.js -d ./docs README.md",
     "watch": "yarn run build --watch",
     "pub": "yarn build:all && npm publish"
   },
