@@ -35,7 +35,7 @@ let fadeIn = false
  * the snowflakes in the background.
  * @param {number} config.density - A number representing the required density
  * of snowflakes on screen. Note, this is not the actual number of snowflakes.
- * @param {Boolean} fadeIn - Should the snowflakes grow in size when the app
+ * @param {Boolean} config.fadeIn - Should the snowflakes grow in size when the app
  * starts or should they begin at their full size?
  *
  * @param {Object} config.wave - Configure the wave motion of the snowflakes.
