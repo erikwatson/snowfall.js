@@ -87,6 +87,23 @@ window["snowfall"] =
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/math.js":
+/*!*********************!*\
+  !*** ./src/math.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function lerp (start, end, alpha) {
+  return start * (1 - alpha) + end * alpha
+}
+
+module.exports = {
+  lerp
+}
+
+/***/ }),
+
 /***/ "./src/snowfall.js":
 /*!*************************!*\
   !*** ./src/snowfall.js ***!
@@ -99,6 +116,7 @@ window["snowfall"] =
  */
 
 const vec2 = __webpack_require__(/*! ./vec2 */ "./src/vec2.js")
+const { lerp } = __webpack_require__(/*! ./math */ "./src/math.js")
 
 const appContainer = document.querySelector('#snow-container')
 
@@ -118,6 +136,8 @@ let secondary = '#ffffff'
 let amplitude = 1.0
 let frequency = 0.02
 
+let fadeIn = false
+
 /**
  * @param {Object} config - A config, possibly from the Visual Config Editor.
  * @param {string} config.bg - A hex string representing the Background Colour
@@ -128,6 +148,8 @@ let frequency = 0.02
  * the snowflakes in the background.
  * @param {number} config.density - A number representing the required density
  * of snowflakes on screen. Note, this is not the actual number of snowflakes.
+ * @param {Boolean} fadeIn - Should the snowflakes grow in size when the app
+ * starts or should they begin at their full size?
  *
  * @param {Object} config.wave - Configure the wave motion of the snowflakes.
  * @param {number} config.wave.frequency - The frequency of the wave the
@@ -158,6 +180,10 @@ function start(config = {}) {
 
   if (config.density !== undefined) {
     density = config.density
+  }
+
+  if (config.fadeIn !== undefined) {
+    fadeIn = config.fadeIn
   }
 
   if (config.wave !== undefined) {
@@ -318,30 +344,29 @@ let t = 0
 const w = vec2.create(0, 0)
 const g = vec2.create(0, 0)
 
-let sine = null
-
 function update() {
   snowflakes.forEach(snowflake => {
+    // add the wind
     w.x = wind.x
     w.y = wind.y
 
     w.multiplyScalar(snowflake.size + snowflake.random)
-
     snowflake.pos.add(w)
 
+    // add gravity
     g.x = gravity.x
     g.y = gravity.y
 
     g.multiplyScalar(snowflake.size + snowflake.random)
-
     snowflake.pos.add(g)
 
+    // add the wave motion
     const phase = snowflake.noise
-
-    sine = vec2.create(amplitude * Math.sin(frequency * t + phase), 0)
+    let sine = vec2.create(amplitude * Math.sin(frequency * t + phase), 0)
 
     snowflake.pos.add(sine)
 
+    // wrap the snowflakes when they move off screen
     if (snowflake.pos.x > canvas.width) {
       snowflake.pos.x = 0
     }
@@ -351,16 +376,21 @@ function update() {
     }
 
     if (snowflake.pos.y > canvas.height) {
-      snowflake.pos.y = 0
+      snowflake.pos.y = snowflake.pos.y - canvas.height
       snowflake.pos.x = Math.random() * canvas.width
     }
 
     if (snowflake.pos.y < 0) {
-      snowflake.pos.y = canvas.height
+      snowflake.pos.y = canvas.height - snowflake.pos.y
       snowflake.pos.x = Math.random() * canvas.width
+    }
+
+    if (snowflake.renderedSize < snowflake.size) {
+      snowflake.renderedSize = lerp(snowflake.renderedSize, snowflake.size, 0.025)
     }
   })
 
+  previousPageYOffset = window.pageYOffset
   t += 1
 }
 
@@ -380,14 +410,14 @@ function render() {
   ctx.fillStyle = primary
   background.forEach(snowflake => {
     ctx.beginPath()
-    drawCircle(snowflake.pos, snowflake.size)
+    drawCircle(snowflake.pos, snowflake.renderedSize)
     ctx.fill()
   })
 
   ctx.fillStyle = secondary
   foreground.forEach(snowflake => {
     ctx.beginPath()
-    drawCircle(snowflake.pos, snowflake.size)
+    drawCircle(snowflake.pos, snowflake.renderedSize)
     ctx.fill()
   })
 }
@@ -396,12 +426,16 @@ function makeSnowflakes(num) {
   let result = []
 
   while (num--) {
+    const size = 3 + Math.random() * 5
+    const renderedSize = (fadeIn === true) ? 0 : size
+
     result.push({
       pos: vec2.create(
         Math.random() * canvas.width,
         Math.random() * canvas.height
       ),
-      size: 3 + Math.random() * 5,
+      size,
+      renderedSize,
       // Random value, just to add some uncertainty
       noise: Math.random() * 10,
       amplitude: Math.random() * 2,
