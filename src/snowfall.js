@@ -47,11 +47,11 @@ let scroll = false
  * @param {number} [config.wave.amplitude = 1.0] - The amplitude of the wave the
  * snowflakes follow.
  *
- * @param {Object} [config.gravity = { x: 0, y: 0.7 }] - Configure the gravity of the simulation.
+ * @param {Object} config.gravity - Configure the gravity of the simulation.
  * @param {number} [config.gravity.angle = 90] - The angle of gravity, in degrees.
  * @param {number} [config.gravity.strength = 0.7] - The strength of gravity.
  *
- * @param {Object} [config.wind = { x: 0, y: 0 }] - Configure the wind.
+ * @param {Object} config.wind - Configure the wind.
  * @param {number} [config.wind.angle = 0] - The angle of the wind, in degrees.
  * @param {number} [config.wind.strength = 0] - The strength of the wind.
  */
