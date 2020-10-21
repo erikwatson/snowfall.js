@@ -28,27 +28,29 @@ let scroll = false
 
 /**
  * @param {Object} config - A config, possibly from the Visual Config Editor.
- * @param {string} [config.bg = '#0d0014'] - A hex string representing the Background Colour
- * of the canvas.
- * @param {string} [config.primary = '#8d90b7'] - A hex string representing the colour of the
- * snowflakes in the foreground.
- * @param {string} [config.secondary = '#ffffff'] - A hex string representing the colour of
- * the snowflakes in the background.
- * @param {number} [config.density = 200] - A number representing the required density
- * of snowflakes on screen. Note, this is not the actual number of snowflakes.
- * @param {Boolean} [config.fadeIn = false] - Should the snowflakes grow in size when the
- * app starts or should they begin at their full size?
- * @param {Boolean} [config.scroll = false] - Should the snowflakes scroll when the user
- * scrolls up and down the page?
+ * @param {string} [config.bg = '#0d0014'] - A hex string representing the
+ * Background Colour of the canvas.
+ * @param {string} [config.primary = '#8d90b7'] - A hex string representing the
+ * colour of the snowflakes in the foreground.
+ * @param {string} [config.secondary = '#ffffff'] - A hex string representing
+ * the colour of the snowflakes in the background.
+ * @param {number} [config.density = 200] - A number representing the required
+ * density of snowflakes on screen. Note, this is not the actual number of
+ * snowflakes.
+ * @param {Boolean} [config.fadeIn = false] - Should the snowflakes grow in size
+ * when the app starts or should they begin at their full size?
+ * @param {Boolean} [config.scroll = false] - Should the snowflakes scroll when
+ * the user scrolls up and down the page?
  *
  * @param {Object} config.wave - Configure the wave motion of the snowflakes.
- * @param {number} [config.wave.frequency = 0.02] - The frequency of the wave the
- * snowflakes follow.
+ * @param {number} [config.wave.frequency = 0.02] - The frequency of the wave
+ * the snowflakes follow.
  * @param {number} [config.wave.amplitude = 1.0] - The amplitude of the wave the
  * snowflakes follow.
  *
  * @param {Object} config.gravity - Configure the gravity of the simulation.
- * @param {number} [config.gravity.angle = 90] - The angle of gravity, in degrees.
+ * @param {number} [config.gravity.angle = 90] - The angle of gravity, in
+ * degrees.
  * @param {number} [config.gravity.strength = 0.7] - The strength of gravity.
  *
  * @param {Object} config.wind - Configure the wind.
