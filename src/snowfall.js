@@ -249,7 +249,7 @@ function setWind(degrees, strength) {
  * Set this to true to prevent the update.
  * Set it to true to continue from where we left off.
  *
- * @param {boolean} pause - The angle of the wind, in degrees
+ * @param {boolean} pause - If the simulation should be halted or not
  */
 function setPaused(pause) {
   paused = pause
