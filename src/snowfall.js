@@ -25,6 +25,7 @@ let frequency = 0.02
 
 let fadeIn = false
 let scroll = false
+let paused = false
 
 /**
  * @param {Object} config - A config, possibly from the Visual Config Editor.
@@ -244,6 +245,23 @@ function setWind(degrees, strength) {
   wind.multiplyScalar(strength)
 }
 
+/**
+ * Set this to true to prevent the update.
+ * Set it to true to continue from where we left off.
+ *
+ * @param {boolean} pause - The angle of the wind, in degrees
+ */
+function setPaused(pause) {
+  paused = pause
+}
+
+/**
+ * Pause/unpause the snowfall update loop
+ */
+function togglePaused() {
+  paused = !paused
+}
+
 function onResize() {
   canvas.width = appContainer.offsetWidth
   canvas.height = appContainer.offsetHeight
@@ -252,8 +270,10 @@ function onResize() {
 }
 
 function onEnterFrame() {
-  update()
-  render()
+  if (!paused) {
+    update()
+    render()
+  }
 
   window.requestAnimationFrame(onEnterFrame)
 }
@@ -402,5 +422,7 @@ module.exports = {
   setPrimary,
   setSecondary,
   setWind,
+  setPaused,
+  togglePaused,
   start
 }
