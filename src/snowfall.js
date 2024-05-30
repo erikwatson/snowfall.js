@@ -5,7 +5,7 @@
 const vec2 = require('./vec2')
 const { lerp } = require('./math')
 
-const appContainer = document.querySelector('#snow-container')
+let appContainer
 
 const canvas = document.createElement('canvas')
 const ctx = canvas.getContext('2d')
@@ -29,6 +29,8 @@ let paused = false
 
 /**
  * @param {Object} config - A config, possibly from the Visual Config Editor.
+ * @param {Object} config.attachTo - A HTML element that you want to attach
+ * snowfall to. If left blank, this defaults to #snowfall-container.
  * @param {string} [config.bg = '#0d0014'] - A hex string representing the
  * Background Colour of the canvas.
  * @param {string} [config.primary = '#8d90b7'] - A hex string representing the
@@ -128,6 +130,12 @@ function start(config = {}) {
     if (config.wind.angle === undefined && config.wind.strength !== undefined) {
       setWind(0.0, config.wind.strength)
     }
+  }
+
+  if (config.attachTo !== undefined) {
+    appContainer = config.attachTo
+  } else {
+    appContainer = document.querySelector('#snow-container')
   }
 
   canvas.width = appContainer.offsetWidth
