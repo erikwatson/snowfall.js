@@ -1,657 +1,89 @@
-window["snowfall"] =
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/snowfall.js");
-/******/ })
-/************************************************************************/
-/******/ ({
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/math.js":
-/*!*********************!*\
-  !*** ./src/math.js ***!
-  \*********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/.pnpm/@erikwatson+bramble@0.6.0/node_modules/@erikwatson/bramble/dist/bramble.js":
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/@erikwatson+bramble@0.6.0/node_modules/@erikwatson/bramble/dist/bramble.js ***!
+  \*******************************************************************************************************/
+/***/ ((module) => {
 
-function lerp(start, end, alpha) {
-  return start * (1 - alpha) + end * alpha
-}
-
-module.exports = {
-  lerp
-}
-
+eval("(function webpackUniversalModuleDefinition(root, factory) {\n\tif(true)\n\t\tmodule.exports = factory();\n\telse {}\n})(self, () => {\nreturn /******/ (() => { // webpackBootstrap\n/******/ \t\"use strict\";\n/******/ \tvar __webpack_modules__ = ({\n\n/***/ \"./src/assets.ts\":\n/*!***********************!*\\\n  !*** ./src/assets.ts ***!\n  \\***********************/\n/***/ ((__unused_webpack_module, exports) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.loadAllTerrain = exports.loadTerrain = exports.loadAllImages = exports.loadImage = exports.loadAllText = exports.loadText = void 0;\nfunction loadText(path) {\n    return new Promise(function (resolve, reject) {\n        var request = new XMLHttpRequest();\n        request.addEventListener('load', function (_) {\n            resolve(request.responseText);\n        });\n        request.addEventListener('error', function (event) {\n            reject(event);\n        });\n        request.open('GET', path);\n        request.send();\n    });\n}\nexports.loadText = loadText;\nfunction loadAllText(paths) {\n    if (paths === void 0) { paths = []; }\n    return Promise.all(paths.map(function (x) { return loadText(x); }));\n}\nexports.loadAllText = loadAllText;\nfunction loadImage(path) {\n    return new Promise(function (resolve, reject) {\n        var img = new Image();\n        img.addEventListener('load', function (_) {\n            resolve(img);\n        });\n        img.addEventListener('error', function (err) {\n            reject(err);\n        });\n        img.src = path;\n    });\n}\nexports.loadImage = loadImage;\nfunction loadAllImages(paths) {\n    if (paths === void 0) { paths = []; }\n    return Promise.all(paths.map(function (x) { return loadImage(x); }));\n}\nexports.loadAllImages = loadAllImages;\n// Downloads a Terrain file,\n// reads it,\n// downloads the related image file,\n// returns a new Terrain object\nfunction loadTerrain(path) {\n    var description;\n    return loadText(path)\n        .then(function (json) {\n        description = JSON.parse(json);\n        return loadImage(description.path);\n    })\n        .then(function (image) { return ({\n        name: description.name,\n        type: description.type,\n        image: image,\n        tiles: description.tiles\n    }); });\n}\nexports.loadTerrain = loadTerrain;\nfunction loadAllTerrain(paths) {\n    if (paths === void 0) { paths = []; }\n    return Promise.all(paths.map(function (x) { return loadTerrain(x); }));\n}\nexports.loadAllTerrain = loadAllTerrain;\nexports[\"default\"] = {\n    loadImage: loadImage,\n    loadText: loadText,\n    loadAllText: loadAllText,\n    loadAllImages: loadAllImages,\n    loadTerrain: loadTerrain,\n    loadAllTerrain: loadAllTerrain\n};\n\n\n/***/ }),\n\n/***/ \"./src/bramble.ts\":\n/*!************************!*\\\n  !*** ./src/bramble.ts ***!\n  \\************************/\n/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_3086__) {\n\n\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    var desc = Object.getOwnPropertyDescriptor(m, k);\n    if (!desc || (\"get\" in desc ? !m.__esModule : desc.writable || desc.configurable)) {\n      desc = { enumerable: true, get: function() { return m[k]; } };\n    }\n    Object.defineProperty(o, k2, desc);\n}) : (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    o[k2] = m[k];\n}));\nvar __exportStar = (this && this.__exportStar) || function(m, exports) {\n    for (var p in m) if (p !== \"default\" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.collisions = exports.load = exports.save = exports.vec2 = exports.sprite = exports.mouse = exports.keyboard = exports.graphics = exports.grid = exports.game = exports.assets = void 0;\nvar assets_1 = __nested_webpack_require_3086__(/*! ./assets */ \"./src/assets.ts\");\nObject.defineProperty(exports, \"assets\", ({ enumerable: true, get: function () { return assets_1.default; } }));\nvar game_1 = __nested_webpack_require_3086__(/*! ./game */ \"./src/game.ts\");\nObject.defineProperty(exports, \"game\", ({ enumerable: true, get: function () { return game_1.default; } }));\nvar grid_1 = __nested_webpack_require_3086__(/*! ./grid */ \"./src/grid.ts\");\nObject.defineProperty(exports, \"grid\", ({ enumerable: true, get: function () { return grid_1.default; } }));\nvar graphics_1 = __nested_webpack_require_3086__(/*! ./graphics */ \"./src/graphics.ts\");\nObject.defineProperty(exports, \"graphics\", ({ enumerable: true, get: function () { return graphics_1.default; } }));\nvar input_1 = __nested_webpack_require_3086__(/*! ./input */ \"./src/input.ts\");\nObject.defineProperty(exports, \"keyboard\", ({ enumerable: true, get: function () { return input_1.keyboard; } }));\nObject.defineProperty(exports, \"mouse\", ({ enumerable: true, get: function () { return input_1.mouse; } }));\nvar sprite_1 = __nested_webpack_require_3086__(/*! ./sprite */ \"./src/sprite.ts\");\nObject.defineProperty(exports, \"sprite\", ({ enumerable: true, get: function () { return sprite_1.default; } }));\nvar vec2_1 = __nested_webpack_require_3086__(/*! ./vec2 */ \"./src/vec2.ts\");\nObject.defineProperty(exports, \"vec2\", ({ enumerable: true, get: function () { return vec2_1.default; } }));\nvar storage_1 = __nested_webpack_require_3086__(/*! ./storage */ \"./src/storage.ts\");\nObject.defineProperty(exports, \"save\", ({ enumerable: true, get: function () { return storage_1.save; } }));\nObject.defineProperty(exports, \"load\", ({ enumerable: true, get: function () { return storage_1.load; } }));\nvar collision_1 = __nested_webpack_require_3086__(/*! ./collision */ \"./src/collision.ts\");\nObject.defineProperty(exports, \"collisions\", ({ enumerable: true, get: function () { return collision_1.default; } }));\n__exportStar(__nested_webpack_require_3086__(/*! ./types */ \"./src/types.ts\"), exports);\n\n\n/***/ }),\n\n/***/ \"./src/collision.ts\":\n/*!**************************!*\\\n  !*** ./src/collision.ts ***!\n  \\**************************/\n/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_6179__) {\n\n\nvar __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar bramble_1 = __nested_webpack_require_6179__(/*! ./bramble */ \"./src/bramble.ts\");\n// works\nfunction pointVsRect(point, rect) {\n    return (point.x >= rect.x &&\n        point.y >= rect.y &&\n        point.x < rect.x + rect.width &&\n        point.y < rect.y + rect.height);\n}\n// works\nfunction rectVsRect(rectA, rectB) {\n    return (rectA.x < rectB.x + rectB.width &&\n        rectA.x + rectA.width > rectB.x &&\n        rectA.y < rectB.y + rectB.height &&\n        rectA.y + rectA.height > rectB.y);\n}\n// works\n// returns false if no collision occurred, otherwise it returns an object\n// containing the results of the collision\n// { near, far, normal }\nfunction lineVsRect(line, rect) {\n    var from = bramble_1.vec2.create(line.from.x, line.from.y);\n    var to = bramble_1.vec2.create(line.to.x, line.to.y);\n    var dir = bramble_1.vec2.clone(to);\n    dir.subtract(from);\n    var invdir = {\n        x: 1.0 / dir.x,\n        y: 1.0 / dir.y\n    };\n    var timeNear = {\n        x: (rect.x - line.from.x) * invdir.x,\n        y: (rect.y - line.from.y) * invdir.y\n    };\n    var timeFar = {\n        x: (rect.x + rect.width - line.from.x) * invdir.x,\n        y: (rect.y + rect.height - line.from.y) * invdir.y\n    };\n    if (isNaN(timeNear.x) || isNaN(timeNear.y)) {\n        return false;\n    }\n    if (isNaN(timeFar.x) || isNaN(timeFar.y)) {\n        return false;\n    }\n    // sort the distances\n    var tempNear = __assign({}, timeNear);\n    var tempFar = __assign({}, timeFar);\n    if (tempNear.x > tempFar.x) {\n        timeNear.x = tempFar.x;\n        timeFar.x = tempNear.x;\n    }\n    tempNear = __assign({}, timeNear);\n    tempFar = __assign({}, timeFar);\n    if (tempNear.y > tempFar.y) {\n        timeNear.y = tempFar.y;\n        timeFar.y = tempNear.y;\n    }\n    // no collision detected\n    if (timeNear.x > timeFar.y || timeNear.y > timeFar.x) {\n        return false;\n    }\n    var hitNear = Math.max(timeNear.x, timeNear.y);\n    var hitFar = Math.min(timeFar.x, timeFar.y);\n    // abort if ray is facing away from our object\n    if (hitFar < 0) {\n        return false;\n    }\n    // abort if the ray does not reach the object\n    if (hitNear > 1) {\n        return false;\n    }\n    // abort if the ray's first collision is behind us\n    if (hitNear < 0) {\n        return false;\n    }\n    // construct a vector to hold the normal of the surface\n    var normal = bramble_1.vec2.create(0, 0);\n    if (timeNear.x > timeNear.y) {\n        if (invdir.x < 0) {\n            normal.x = 1;\n            normal.y = 0;\n        }\n        else {\n            normal.x = -1;\n            normal.y = 0;\n        }\n    }\n    else if (timeNear.x < timeNear.y) {\n        if (invdir.y < 0) {\n            normal.x = 0;\n            normal.y = 1;\n        }\n        else {\n            normal.x = 0;\n            normal.y = -1;\n        }\n    }\n    else if (timeNear.x === timeNear.y) {\n        if (invdir.x < 0 && invdir.y < 0) {\n            normal.x = -1;\n            normal.y = 1;\n        }\n        else if (invdir.x > 0 && invdir.y < 0) {\n            normal.x = 1;\n            normal.y = 1;\n        }\n        else if (invdir.x < 0 && invdir.y > 0) {\n            normal.x = -1;\n            normal.y = -1;\n        }\n        else if (invdir.x > 0 && invdir.y > 0) {\n            normal.x = 1;\n            normal.y = -1;\n        }\n    }\n    // collided with the object!\n    return {\n        normal: normal,\n        near: bramble_1.vec2.create(from.x + hitNear * dir.x, from.y + hitNear * dir.y),\n        far: bramble_1.vec2.create(from.x + hitFar * dir.x, from.y + hitFar * dir.y),\n        timeOfCollision: hitNear\n    };\n}\n// a dynamic rect is one that can move - has a velocity\n// static rect doesn't move\nfunction dynamicRectVsStaticRect(dynamicRect, staticRect) {\n    // assume no collision if the dynamic rect is not moving\n    // avoiding using length here because it calculates a square root\n    if (dynamicRect.velocity.x === 0 && dynamicRect.velocity.y === 0) {\n        return false;\n    }\n    var halfWidth = dynamicRect.width / 2;\n    var halfHeight = dynamicRect.height / 2;\n    var clone = bramble_1.vec2.clone(dynamicRect.position);\n    clone.add(dynamicRect.velocity);\n    clone.x += dynamicRect.width / 2;\n    clone.y += dynamicRect.height / 2;\n    var line = {\n        from: {\n            x: dynamicRect.position.x + halfWidth,\n            y: dynamicRect.position.y + halfHeight\n        },\n        to: clone\n    };\n    var rect = {\n        x: staticRect.position.x - halfWidth,\n        y: staticRect.position.y - halfHeight,\n        width: staticRect.width + dynamicRect.width,\n        height: staticRect.height + dynamicRect.height\n    };\n    return lineVsRect(line, rect);\n}\n// Compute the value of a point on a cubic Bezier curve at parameter t\nfunction cubicBezierPoint(P0, P1, P2, P3, t) {\n    var x = (1 - t) * (1 - t) * (1 - t) * P0.x +\n        3 * (1 - t) * (1 - t) * t * P1.x +\n        3 * (1 - t) * t * t * P2.x +\n        t * t * t * P3.x;\n    var y = (1 - t) * (1 - t) * (1 - t) * P0.y +\n        3 * (1 - t) * (1 - t) * t * P1.y +\n        3 * (1 - t) * t * t * P2.y +\n        t * t * t * P3.y;\n    return bramble_1.vec2.create(x, y);\n}\n// Compute the tangent of the curve at parameter t\nfunction cubicBezierTangent(P0, P1, P2, P3, t) {\n    var x = 3 * (1 - t) * (1 - t) * (P1.x - P0.x) +\n        6 * (1 - t) * t * (P2.x - P1.x) +\n        3 * t * t * (P3.x - P2.x);\n    var y = 3 * (1 - t) * (1 - t) * (P1.y - P0.y) +\n        6 * (1 - t) * t * (P2.y - P1.y) +\n        3 * t * t * (P3.y - P2.y);\n    return bramble_1.vec2.create(x, y);\n}\n// Helper function to find the roots of a cubic polynomial using Cardano's formula\nfunction findCubicRoots(A, B, C, D) {\n    if (Math.abs(A) < 1e-10) {\n        return findQuadraticRoots(B, C, D);\n    }\n    var a = B / A;\n    var b = C / A;\n    var c = D / A;\n    var p = (3 * b - a * a) / 3;\n    var q = (2 * a * a * a - 9 * a * b + 27 * c) / 27;\n    var discriminant = (q * q) / 4 + (p * p * p) / 27;\n    var roots = [];\n    if (discriminant > 0) {\n        var u = Math.cbrt(-q / 2 + Math.sqrt(discriminant));\n        var v = Math.cbrt(-q / 2 - Math.sqrt(discriminant));\n        roots.push(u + v - a / 3);\n    }\n    else if (discriminant === 0) {\n        var u = Math.cbrt(-q / 2);\n        roots.push(2 * u - a / 3);\n        roots.push(-u - a / 3);\n    }\n    else {\n        var r = Math.sqrt((-p * p * p) / 27);\n        var phi = Math.acos(-q / (2 * r));\n        roots.push(2 * Math.cbrt(r) * Math.cos(phi / 3) - a / 3);\n        roots.push(2 * Math.cbrt(r) * Math.cos((phi + 2 * Math.PI) / 3) - a / 3);\n        roots.push(2 * Math.cbrt(r) * Math.cos((phi + 4 * Math.PI) / 3) - a / 3);\n    }\n    return roots.filter(function (t) { return t >= 0 && t <= 1; });\n}\n// Helper function to find the roots of a quadratic polynomial\nfunction findQuadraticRoots(A, B, C) {\n    var discriminant = B * B - 4 * A * C;\n    if (discriminant < 0) {\n        return [];\n    }\n    else if (discriminant === 0) {\n        return [-B / (2 * A)];\n    }\n    else {\n        var sqrtDiscriminant = Math.sqrt(discriminant);\n        return [\n            (-B + sqrtDiscriminant) / (2 * A),\n            (-B - sqrtDiscriminant) / (2 * A)\n        ];\n    }\n}\n// Find intersection between a ray (defined by two points) and a cubic Bezier curve\nfunction lineVsCubicBezierCurve(P0, P1, P2, P3, R0, R1) {\n    var intersections = [];\n    // Coefficients of the cubic Bezier curve\n    var ax = -P0.x + 3 * P1.x - 3 * P2.x + P3.x;\n    var ay = -P0.y + 3 * P1.y - 3 * P2.y + P3.y;\n    var bx = 3 * P0.x - 6 * P1.x + 3 * P2.x;\n    var by = 3 * P0.y - 6 * P1.y + 3 * P2.y;\n    var cx = -3 * P0.x + 3 * P1.x;\n    var cy = -3 * P0.y + 3 * P1.y;\n    var dx = P0.x;\n    var dy = P0.y;\n    // Coefficients of the ray\n    var rx = R1.x - R0.x;\n    var ry = R1.y - R0.y;\n    var ex = R0.x;\n    var ey = R0.y;\n    // Construct the cubic equation: At^3 + Bt^2 + Ct + D = 0\n    var A = ax * ry - ay * rx;\n    var B = bx * ry - by * rx;\n    var C = cx * ry - cy * rx;\n    var D = (dx - ex) * ry - (dy - ey) * rx;\n    var roots = findCubicRoots(A, B, C, D);\n    // Check valid t values and compute intersections\n    roots.forEach(function (t) {\n        var intersection = cubicBezierPoint(P0, P1, P2, P3, t);\n        var tangent = cubicBezierTangent(P0, P1, P2, P3, t);\n        var angleRadians = Math.atan2(tangent.y, tangent.x);\n        var angleDegrees = angleRadians * (180 / Math.PI);\n        var tempvec = bramble_1.vec2.fromDegrees(angleDegrees);\n        var normal = bramble_1.vec2.create(tempvec.y, -tempvec.x);\n        // Calculate the distance along the ray\n        var dx = intersection.x - R0.x;\n        var dy = intersection.y - R0.y;\n        var distanceToIntersection = Math.sqrt(dx * dx + dy * dy);\n        var rayLength = Math.sqrt(rx * rx + ry * ry);\n        var remainderLength = rayLength - distanceToIntersection;\n        // Ensure the intersection point lies within the ray segment\n        var rayParam = (intersection.x - ex) / rx;\n        var rayParamY = (intersection.y - ey) / ry;\n        if ((rayParam >= 0 && rayParam <= 1) ||\n            (rayParamY >= 0 && rayParamY <= 1)) {\n            intersections.push({\n                point: bramble_1.vec2.create(intersection.x, intersection.y),\n                distance: distanceToIntersection,\n                remainderLength: remainderLength,\n                angleRadians: angleRadians,\n                angleDegrees: angleDegrees,\n                direction: bramble_1.vec2.fromDegrees(angleDegrees),\n                normal: normal\n            });\n        }\n    });\n    return intersections;\n}\nexports[\"default\"] = {\n    dynamicRectVsStaticRect: dynamicRectVsStaticRect,\n    rectVsRect: rectVsRect,\n    lineVsRect: lineVsRect,\n    pointVsRect: pointVsRect,\n    lineVsCubicBezierCurve: lineVsCubicBezierCurve\n};\n\n\n/***/ }),\n\n/***/ \"./src/game.ts\":\n/*!*********************!*\\\n  !*** ./src/game.ts ***!\n  \\*********************/\n/***/ ((__unused_webpack_module, exports, __nested_webpack_require_16558__) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar graphics_1 = __nested_webpack_require_16558__(/*! ./graphics */ \"./src/graphics.ts\");\nvar input_1 = __nested_webpack_require_16558__(/*! ./input */ \"./src/input.ts\");\nvar create = function () {\n    var backgroundColor = null;\n    var update = null;\n    var render = null;\n    // used for calculating the Delta Time for the Frame\n    var prevTime = 0;\n    var canvas = document.createElement('canvas');\n    var ctx = canvas.getContext('2d');\n    var graphics = graphics_1.default.create(ctx);\n    canvas.id = 'bramble-game';\n    var mouseInput = input_1.mouse.create(canvas);\n    var keyboardInput = input_1.keyboard.create();\n    var setBackgroundColor = function (color) {\n        backgroundColor = color;\n    };\n    var attachTo = function (element) {\n        element.appendChild(canvas);\n    };\n    var setUpdate = function (callback) {\n        update = callback;\n    };\n    var setRender = function (callback) {\n        render = callback;\n    };\n    var inputState = {\n        keyboard: keyboardInput.getState(),\n        mouse: mouseInput.getState(),\n    };\n    var step = function () {\n        if (update) {\n            inputState.keyboard = keyboardInput.getState();\n            inputState.mouse = mouseInput.getState();\n            update((performance.now() - prevTime) / 1000, inputState);\n        }\n        if (render) {\n            if (backgroundColor) {\n                graphics.clear(backgroundColor);\n            }\n            render(graphics);\n        }\n        mouseInput.update();\n        keyboardInput.update();\n        window.requestAnimationFrame(step);\n        prevTime = performance.now();\n    };\n    var start = function () {\n        mouseInput.start();\n        keyboardInput.start();\n        window.requestAnimationFrame(step);\n    };\n    var setSize = function (width, height) {\n        canvas.width = width;\n        canvas.height = height;\n    };\n    // Smoothing must be re-applied if any of the following is called\n    //   - setSize\n    var setSmoothing = function (to) {\n        if (to === void 0) { to = true; }\n        ctx.imageSmoothingEnabled = to;\n    };\n    var disableContextMenu = function () {\n        canvas.addEventListener('contextmenu', function (e) {\n            e.preventDefault();\n        });\n    };\n    return {\n        attachTo: attachTo,\n        setSize: setSize,\n        setUpdate: setUpdate,\n        setRender: setRender,\n        setBackgroundColor: setBackgroundColor,\n        canvas: canvas,\n        disableContextMenu: disableContextMenu,\n        setSmoothing: setSmoothing,\n        start: start\n    };\n};\nexports[\"default\"] = {\n    create: create\n};\n\n\n/***/ }),\n\n/***/ \"./src/graphics.ts\":\n/*!*************************!*\\\n  !*** ./src/graphics.ts ***!\n  \\*************************/\n/***/ ((__unused_webpack_module, exports, __nested_webpack_require_19407__) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar number_1 = __nested_webpack_require_19407__(/*! ./utils/number */ \"./src/utils/number.ts\");\nvar object_1 = __nested_webpack_require_19407__(/*! ./utils/object */ \"./src/utils/object.ts\");\nfunction clear(ctx, colour) {\n    rect(ctx, { x: 0, y: 0, width: ctx.canvas.width, height: ctx.canvas.height }, {\n        fill: { colour: colour },\n        line: { width: 0 }\n    });\n}\nfunction clearRect(ctx, rectangle, colour) {\n    rect(ctx, rectangle, {\n        fill: { colour: colour },\n        line: { width: 0 }\n    });\n}\nfunction square(ctx, position, size, options) {\n    if (options === void 0) { options = defaultRect; }\n    rect(ctx, { x: position.x, y: position.y, width: size, height: size }, options);\n}\nvar defaultRect = {\n    fill: {\n        colour: '#000000',\n        opacity: 1\n    },\n    line: {\n        width: 1,\n        colour: '#FFFFFF',\n        opacity: 1\n    }\n};\nfunction rect(ctx, rectangle, options) {\n    if (options === void 0) { options = defaultRect; }\n    options = (0, object_1.merge)(defaultRect, options);\n    ctx.globalAlpha = options.fill.opacity;\n    ctx.fillStyle = options.fill.colour;\n    ctx.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);\n    ctx.globalAlpha = 1;\n    if (options.line.width !== 0) {\n        ctx.globalAlpha = options.line.opacity;\n        ctx.strokeStyle = options.line.colour;\n        ctx.lineWidth = options.line.width;\n        ctx.strokeRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);\n        ctx.globalAlpha = 1;\n    }\n}\nvar defaultLine = {\n    width: 1,\n    colour: '#FFFFFF',\n    opacity: 1\n};\nfunction line(ctx, from, to, options) {\n    if (options === void 0) { options = defaultLine; }\n    options = (0, object_1.merge)(defaultLine, options);\n    ctx.globalAlpha = options.opacity;\n    ctx.strokeStyle = options.colour;\n    ctx.lineWidth = options.width;\n    ctx.beginPath();\n    ctx.moveTo(from.x, from.y);\n    ctx.lineTo(to.x, to.y);\n    ctx.stroke();\n    ctx.globalAlpha = 1;\n    ctx.closePath();\n}\nfunction bezier(ctx, from, to, cp1, cp2, options) {\n    if (options === void 0) { options = defaultLine; }\n    options = (0, object_1.merge)(defaultLine, options);\n    ctx.globalAlpha = options.opacity;\n    ctx.strokeStyle = options.colour;\n    ctx.lineWidth = options.width;\n    ctx.beginPath();\n    ctx.moveTo(from.x, from.y);\n    ctx.bezierCurveTo(cp1.x, cp1.y, cp2.x, cp2.y, to.x, to.y);\n    ctx.stroke();\n    ctx.globalAlpha = 1;\n    ctx.closePath();\n}\nfunction quadratic(ctx, from, to, cp, options) {\n    if (options === void 0) { options = defaultLine; }\n    options = (0, object_1.merge)(defaultLine, options);\n    ctx.globalAlpha = options.opacity;\n    ctx.strokeStyle = options.colour;\n    ctx.lineWidth = options.width;\n    ctx.beginPath();\n    ctx.moveTo(from.x, from.y);\n    ctx.quadraticCurveTo(cp.x, cp.y, to.x, to.y);\n    ctx.stroke();\n    ctx.globalAlpha = 1;\n    ctx.closePath();\n}\nfunction curve(ctx, from, to, controlPoints, options) {\n    if (options === void 0) { options = defaultLine; }\n    if (controlPoints.cp1 && controlPoints.cp2) {\n        bezier(ctx, from, to, controlPoints.cp1, controlPoints.cp2, options);\n    }\n    else if (controlPoints.cp1 && !controlPoints.cp2) {\n        quadratic(ctx, from, to, controlPoints.cp1, options);\n    }\n    else {\n        line(ctx, from, to, options);\n    }\n}\nvar defaultCircle = {\n    fill: {\n        colour: '#000000',\n        opacity: 1\n    },\n    line: {\n        colour: '#FFFFFF',\n        opacity: 1,\n        width: 1\n    }\n};\nfunction circle(ctx, position, radius, options) {\n    if (options === void 0) { options = defaultCircle; }\n    options = (0, object_1.merge)(defaultCircle, options);\n    ctx.globalAlpha = options.fill.opacity;\n    ctx.fillStyle = options.fill.colour;\n    ctx.beginPath();\n    ctx.arc(position.x, position.y, radius, 0, 2 * Math.PI);\n    ctx.closePath();\n    ctx.fill();\n    ctx.globalAlpha = 1;\n    if (options.line.width !== 0) {\n        ctx.globalAlpha = options.line.opacity;\n        ctx.strokeStyle = options.line.colour;\n        ctx.lineWidth = options.line.width;\n        ctx.arc(position.x, position.y, radius, 0, 2 * Math.PI);\n        ctx.closePath();\n        ctx.stroke();\n    }\n}\nfunction image(ctx, image, position, size) {\n    if (size) {\n        ctx.drawImage(image, position.x, position.y, size.width, size.height);\n    }\n    else {\n        ctx.drawImage(image, position.x, position.y, image.width, image.height);\n    }\n}\nfunction subImage(ctx, image, position, size, subPosition, subSize) {\n    ctx.drawImage(image, subPosition.x, subPosition.y, subSize.width, subSize.height, position.x, position.y, size.width, size.height);\n}\nfunction sprite(ctx, sprite) {\n    var halfWidth = sprite.size.width / 2;\n    var halfHeight = sprite.size.height / 2;\n    ctx.save();\n    ctx.translate(sprite.position.x + halfWidth, sprite.position.y + halfHeight);\n    ctx.rotate(number_1.default.toRadians(sprite.rotation));\n    if (sprite.frames.length > 1) {\n        subImage(ctx, sprite.texture, {\n            x: -halfWidth,\n            y: -halfHeight\n        }, {\n            width: sprite.size.width,\n            height: sprite.size.height\n        }, {\n            x: sprite.frames[sprite.frame].position.x,\n            y: sprite.frames[sprite.frame].position.y\n        }, {\n            width: sprite.frames[sprite.frame].size.width,\n            height: sprite.frames[sprite.frame].size.height\n        });\n    }\n    else {\n        image(ctx, sprite.texture, {\n            x: -halfWidth,\n            y: -halfHeight\n        }, {\n            width: sprite.size.width,\n            height: sprite.size.height\n        });\n    }\n    ctx.restore();\n}\nfunction txt(ctx, position, text, colour, font) {\n    if (text === void 0) { text = ''; }\n    if (colour === void 0) { colour = '#000000'; }\n    if (font === void 0) { font = '16pt sans-serif'; }\n    ctx.fillStyle = colour;\n    ctx.font = font;\n    ctx.textAlign = 'left';\n    ctx.textBaseline = 'top';\n    ctx.fillText(text, position.x, position.y);\n}\nfunction tile(ctx, position, tilesheet, gridPosition, tilesheetPosition, scale, tileSize) {\n    subImage(ctx, tilesheet, {\n        x: position.x + scale * (gridPosition.x * tileSize.width),\n        y: position.y + scale * (gridPosition.y * tileSize.height)\n    }, {\n        width: scale * tileSize.width,\n        height: scale * tileSize.height\n    }, {\n        x: tileSize.width * tilesheetPosition.x,\n        y: tileSize.height * tilesheetPosition.y\n    }, {\n        width: tileSize.width,\n        height: tileSize.height\n    });\n}\n// tilegrid: a 2d array of numbers representing terrain types\n// spritesheets: An object, each key is the value that represents a tile from this sheet\nfunction tiles(ctx, position, tileGrid, spriteSheets, scale) {\n    var dirValues = {\n        NW: 1,\n        N: 2,\n        NE: 4,\n        E: 8,\n        SE: 16,\n        S: 32,\n        SW: 64,\n        W: 128\n    };\n    var _loop_1 = function (y) {\n        var _loop_2 = function (x) {\n            if (tileGrid[y][x] === 0) {\n                return \"continue\";\n            }\n            // REAL VALUES\n            var tl = y > 0 ? tileGrid[y - 1][x - 1] : 0;\n            var tm = y > 0 ? tileGrid[y - 1][x] : 0;\n            var tr = y > 0 ? tileGrid[y - 1][x + 1] : 0;\n            var ml = tileGrid[y][x - 1];\n            var m = tileGrid[y][x];\n            var mr = tileGrid[y][x + 1];\n            var bl = y < tileGrid.length - 1 ? tileGrid[y + 1][x - 1] : 0;\n            var bm = y < tileGrid.length - 1 ? tileGrid[y + 1][x] : 0;\n            var br = y < tileGrid.length - 1 ? tileGrid[y + 1][x + 1] : 0;\n            // BINARY VALUES\n            var n = m === tm ? 1 : 0;\n            var e = m === mr ? 1 : 0;\n            var s = m === bm ? 1 : 0;\n            var w = m === ml ? 1 : 0;\n            var nw = m === tm && m === ml ? (m === tl ? 1 : 0) : 0;\n            var ne = m === tm && m === mr ? (m === tr ? 1 : 0) : 0;\n            var sw = m === bm && m === ml ? (m === bl ? 1 : 0) : 0;\n            var se = m === bm && m === mr ? (m === br ? 1 : 0) : 0;\n            var sum = dirValues.NW * nw +\n                dirValues.N * n +\n                dirValues.NE * ne +\n                dirValues.E * e +\n                dirValues.SE * se +\n                dirValues.S * s +\n                dirValues.SW * sw +\n                dirValues.W * w;\n            // Figure out which sheet we're supposed to be drawing from\n            var sheet = spriteSheets.filter(function (sheet) {\n                return sheet.type === tileGrid[y][x];\n            })[0];\n            if (!sheet) {\n                console.error(\"Sheet \".concat(tileGrid[y][x], \" not found!\"));\n                return { value: void 0 };\n            }\n            var selections = sheet.tiles.filter(function (x) { return x.type === sum; });\n            // Note: Just picking a random one of the variants every time we render for now\n            var selection = selections[Math.floor(Math.random() * selections.length)];\n            if (selection) {\n                tile(ctx, position, sheet.image, { x: x, y: y }, selection.position, scale, selection.size);\n            }\n            else {\n                console.log(\"Tile not defined \".concat(sum));\n            }\n        };\n        for (var x = 0; x < tileGrid[y].length; x++) {\n            var state_2 = _loop_2(x);\n            if (typeof state_2 === \"object\")\n                return state_2;\n        }\n    };\n    for (var y = 0; y < tileGrid.length; y++) {\n        var state_1 = _loop_1(y);\n        if (typeof state_1 === \"object\")\n            return state_1.value;\n    }\n}\nvar defaultDropShadow = {\n    shadowcolour: '#000000',\n    shadowBlur: 6,\n    shadowOffsetX: 4,\n    shadowOffsetY: 4\n};\nfunction shadow(ctx, drawingOperations, options) {\n    if (options === void 0) { options = defaultDropShadow; }\n    options = (0, object_1.merge)(defaultDropShadow, options);\n    ctx.save();\n    ctx.shadowColor = options.shadowcolour;\n    ctx.shadowBlur = options.shadowBlur;\n    ctx.shadowOffsetX = options.shadowOffsetX;\n    ctx.shadowOffsetY = options.shadowOffsetY;\n    drawingOperations();\n    ctx.restore();\n}\nfunction dodge(ctx, drawingOperations) {\n    ctx.save();\n    ctx.globalCompositeOperation = 'color-dodge';\n    drawingOperations();\n    ctx.restore();\n}\nfunction overlay(ctx, drawingOperations) {\n    ctx.save();\n    ctx.globalCompositeOperation = 'overlay';\n    drawingOperations();\n    ctx.restore();\n}\nfunction transparency(ctx, drawingOperations, alpha) {\n    if (alpha === void 0) { alpha = 0.25; }\n    ctx.save();\n    ctx.globalAlpha = alpha;\n    drawingOperations();\n    ctx.restore();\n}\nfunction create(ctx) {\n    return {\n        circle: function (position, radius, options) {\n            if (options === void 0) { options = defaultCircle; }\n            circle(ctx, position, radius, options);\n        },\n        clear: function (colour) {\n            clear(ctx, colour);\n        },\n        clearRect: function (rectangle, colour) {\n            clearRect(ctx, rectangle, colour);\n        },\n        square: function (position, size, options) {\n            if (options === void 0) { options = defaultRect; }\n            square(ctx, position, size, options);\n        },\n        rect: function (rectangle, options) {\n            if (options === void 0) { options = defaultRect; }\n            rect(ctx, rectangle, options);\n        },\n        image: function (img, position, size) {\n            image(ctx, img, position, size);\n        },\n        line: function (from, to, options) {\n            if (options === void 0) { options = defaultLine; }\n            line(ctx, from, to, options);\n        },\n        sprite: function (spr) {\n            sprite(ctx, spr);\n        },\n        subImage: function (img, position, size, subPosition, subSize) {\n            subImage(ctx, img, position, size, subPosition, subSize);\n        },\n        text: function (position, text, colour, font) {\n            if (position === void 0) { position = { x: 0, y: 0 }; }\n            if (text === void 0) { text = ''; }\n            if (colour === void 0) { colour = '#000000'; }\n            if (font === void 0) { font = '16pt sans-serif'; }\n            txt(ctx, position, text, colour, font);\n        },\n        tiles: function (position, tileGrid, spriteSheets, scale) {\n            tiles(ctx, position, tileGrid, spriteSheets, scale);\n        },\n        shadow: function (drawingOperations, options) {\n            if (options === void 0) { options = defaultDropShadow; }\n            shadow(ctx, drawingOperations, options);\n        },\n        dodge: function (drawingOperations) {\n            dodge(ctx, drawingOperations);\n        },\n        overlay: function (drawingOperations) {\n            overlay(ctx, drawingOperations);\n        },\n        transparency: function (drawingOperations, alpha) {\n            if (alpha === void 0) { alpha = 0.25; }\n            transparency(ctx, drawingOperations, alpha);\n        }\n    };\n}\nexports[\"default\"] = {\n    circle: circle,\n    clear: clear,\n    clearRect: clearRect,\n    create: create,\n    curve: curve,\n    dodge: dodge,\n    image: image,\n    line: line,\n    overlay: overlay,\n    rect: rect,\n    shadow: shadow,\n    sprite: sprite,\n    square: square,\n    subImage: subImage,\n    text: txt,\n    tiles: tiles,\n    transparency: transparency\n};\n\n\n/***/ }),\n\n/***/ \"./src/grid.ts\":\n/*!*********************!*\\\n  !*** ./src/grid.ts ***!\n  \\*********************/\n/***/ (function(__unused_webpack_module, exports) {\n\n\nvar __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nfunction make2DArray(width, height, defaultValue) {\n    if (width === void 0) { width = 1; }\n    if (height === void 0) { height = 1; }\n    if (defaultValue === void 0) { defaultValue = null; }\n    var result = [];\n    for (var y = 0; y < height; y++) {\n        var row = [];\n        for (var x = 0; x < width; x++) {\n            row.push(defaultValue);\n        }\n        result.push(row);\n    }\n    return result;\n}\nfunction copyTiles(tiles) {\n    return tiles.map(function (arr) { return arr.slice(); });\n}\nvar defaultGrid = {\n    pos: { x: 0, y: 0 },\n    visible: true,\n    divisions: 4,\n    tileWidth: 8,\n    tileHeight: 8,\n    scale: 1\n};\nfunction fill(tiles, position, target, replacement) {\n    var gridClone = copyTiles(tiles);\n    function floodFill(position, target, replacement) {\n        if (target === replacement) {\n            return;\n        }\n        var valueAtPosition = gridClone[position.y][position.x];\n        if (valueAtPosition !== target) {\n            return;\n        }\n        var isWithinBounds = position.x < gridClone[position.y].length &&\n            position.x >= 0 &&\n            position.y < gridClone.length &&\n            position.y >= 0;\n        if (isWithinBounds) {\n            gridClone[position.y][position.x] = replacement;\n            if (position.y < gridClone.length - 1) {\n                floodFill({ x: position.x, y: position.y + 1 }, target, replacement);\n            }\n            if (position.y > 0) {\n                floodFill({ x: position.x, y: position.y - 1 }, target, replacement);\n            }\n            if (position.x < gridClone[0].length - 1) {\n                floodFill({ x: position.x + 1, y: position.y }, target, replacement);\n            }\n            if (position.x > 0) {\n                floodFill({ x: position.x - 1, y: position.y }, target, replacement);\n            }\n        }\n        return;\n    }\n    if (true) {\n        floodFill(position, target, replacement);\n    }\n    return gridClone;\n}\nfunction create(size, options) {\n    if (options === void 0) { options = defaultGrid; }\n    options = __assign(__assign({}, defaultGrid), options);\n    var tiles = make2DArray(size.width, size.height, 0);\n    var pos = { x: options.pos.x, y: options.pos.y };\n    var visible = options.visible;\n    var divisions = options.divisions;\n    var tileWidth = options.tileWidth;\n    var tileHeight = options.tileHeight;\n    var tileSize = options.tileWidth;\n    var scale = options.scale;\n    return {\n        divisions: divisions,\n        pos: pos,\n        tileHeight: tileHeight,\n        tiles: tiles,\n        tileWidth: tileWidth,\n        visible: visible,\n        size: size,\n        tileSize: tileSize,\n        scale: scale\n    };\n}\nexports[\"default\"] = {\n    create: create,\n    fill: fill,\n    copyTiles: copyTiles\n};\n\n\n/***/ }),\n\n/***/ \"./src/input.ts\":\n/*!**********************!*\\\n  !*** ./src/input.ts ***!\n  \\**********************/\n/***/ ((__unused_webpack_module, exports, __nested_webpack_require_36336__) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.gamepad = exports.keyboard = exports.mouse = void 0;\nvar mouse_1 = __nested_webpack_require_36336__(/*! ./input/mouse */ \"./src/input/mouse.ts\");\nvar keyboard_1 = __nested_webpack_require_36336__(/*! ./input/keyboard */ \"./src/input/keyboard.ts\");\nvar gamepad_1 = __nested_webpack_require_36336__(/*! ./input/gamepad */ \"./src/input/gamepad.ts\");\nfunction createMouse(canvas) {\n    var mouseInput = mouse_1.default.create(canvas);\n    return {\n        start: function () { return mouseInput.start(); },\n        update: function () { return mouseInput.update(); },\n        getState: function () { return mouseInput.getState(); }\n    };\n}\nfunction createKeyboard() {\n    var keyboardInput = keyboard_1.default.create();\n    return {\n        start: function () { return keyboardInput.start(); },\n        update: function () { return keyboardInput.update(); },\n        getState: function () { return keyboardInput.getState(); }\n    };\n}\nfunction createGamepad() {\n    var gamepadInput = gamepad_1.default.create();\n    return {\n        start: function () { return gamepadInput.start(); },\n        update: function () { return gamepadInput.update(); },\n        getState: function () { return gamepadInput.getState(); }\n    };\n}\nexports.mouse = {\n    create: createMouse\n};\nexports.keyboard = {\n    create: createKeyboard\n};\nexports.gamepad = {\n    create: createGamepad\n};\n\n\n/***/ }),\n\n/***/ \"./src/input/gamepad.ts\":\n/*!******************************!*\\\n  !*** ./src/input/gamepad.ts ***!\n  \\******************************/\n/***/ ((__unused_webpack_module, exports) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nfunction create() {\n    var gamepad = {};\n    var connected = function (e) {\n        console.log(e.gamepad);\n    };\n    var disconnected = function (e) {\n        console.log(e.gamepad);\n    };\n    var start = function () {\n        window.addEventListener('gamepadconnected', connected);\n        window.addEventListener('gamepaddisconnected', disconnected);\n    };\n    var update = function () { };\n    return {\n        getState: function () { return gamepad; },\n        start: start,\n        update: update\n    };\n}\nexports[\"default\"] = { create: create };\n\n\n/***/ }),\n\n/***/ \"./src/input/keyboard.ts\":\n/*!*******************************!*\\\n  !*** ./src/input/keyboard.ts ***!\n  \\*******************************/\n/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_38795__) {\n\n\nvar __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar keys_1 = __nested_webpack_require_38795__(/*! ./keys */ \"./src/input/keys.ts\");\nvar keys = defaultState();\nfunction defaultState() {\n    var defaultState = {\n        pressed: false,\n        justPressed: false,\n        released: false,\n        justReleased: false\n    };\n    return keys_1.default.reduce(function (acc, key) {\n        var label = key.name;\n        delete key['label'];\n        acc[label] = __assign(__assign({}, key), defaultState);\n        return acc;\n    }, {});\n}\nfunction getKey(event, keys) {\n    var result = null;\n    var objectKeys = Object.keys(keys);\n    for (var i = 0; i < objectKeys.length; i++) {\n        if (keys[objectKeys[i]].code === event.code) {\n            result = keys[objectKeys[i]];\n        }\n    }\n    if (!result) {\n        console.error(\"No key definition found for \".concat(event.code));\n    }\n    return result;\n}\nfunction preventDefaultArrows(event) {\n    var keys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '];\n    if (keys.includes(event.key)) {\n        event.preventDefault();\n    }\n}\nfunction down(event) {\n    preventDefaultArrows(event);\n    var key = getKey(event, keys);\n    if (!key.pressed) {\n        key.justPressed = true;\n    }\n    key.pressed = true;\n}\nfunction up(event) {\n    var key = getKey(event, keys);\n    if (!key.released) {\n        key.justReleased = true;\n    }\n    key.pressed = false;\n    key.released = true;\n}\nfunction update() {\n    // reset the keys \"just\" properties\n    Object.keys(keys).forEach(function (key) {\n        keys[key].justPressed = false;\n        keys[key].justReleased = false;\n    });\n}\nfunction start() {\n    // keyboard events\n    document.addEventListener('keydown', down);\n    document.addEventListener('keyup', up);\n}\nfunction create() {\n    return {\n        start: start,\n        update: update,\n        getState: function () { return keys; }\n    };\n}\nexports[\"default\"] = { create: create };\n\n\n/***/ }),\n\n/***/ \"./src/input/keys.ts\":\n/*!***************************!*\\\n  !*** ./src/input/keys.ts ***!\n  \\***************************/\n/***/ ((__unused_webpack_module, exports) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar allKeys = [\n    { code: 'Backspace', name: 'backspace' },\n    { code: 'Tab', name: 'tab' },\n    { code: 'Enter', name: 'enter' },\n    { code: 'ShiftLeft', name: 'shift' },\n    { code: 'ControlLeft', name: 'ctrl' },\n    { code: 'AltLeft', name: 'alt' },\n    { code: 'CapsLock', name: 'caps' },\n    { code: 'Escape', name: 'escape' },\n    { code: 'Space', name: 'space' },\n    { code: 'PageUp', name: 'pageUp' },\n    { code: 'PageDown', name: 'pageDown' },\n    { code: 'End', name: 'end' },\n    { code: 'Home', name: 'home' },\n    { code: 'ArrowLeft', name: 'left' },\n    { code: 'ArrowUp', name: 'up' },\n    { code: 'ArrowRight', name: 'right' },\n    { code: 'ArrowDown', name: 'down' },\n    { code: 'Insert', name: 'insert' },\n    { code: 'Delete', name: 'delete' },\n    { code: 'Digit0', name: 'zero' },\n    { code: 'Digit1', name: 'one' },\n    { code: 'Digit2', name: 'two' },\n    { code: 'Digit3', name: 'three' },\n    { code: 'Digit4', name: 'four' },\n    { code: 'Digit5', name: 'five' },\n    { code: 'Digit6', name: 'six' },\n    { code: 'Digit7', name: 'seven' },\n    { code: 'Digit8', name: 'eight' },\n    { code: 'Digit9', name: 'nine' },\n    { code: 'KeyA', name: 'A' },\n    { code: 'KeyB', name: 'B' },\n    { code: 'KeyC', name: 'C' },\n    { code: 'KeyD', name: 'D' },\n    { code: 'KeyE', name: 'E' },\n    { code: 'KeyF', name: 'F' },\n    { code: 'KeyG', name: 'G' },\n    { code: 'KeyH', name: 'H' },\n    { code: 'KeyI', name: 'I' },\n    { code: 'KeyJ', name: 'J' },\n    { code: 'KeyK', name: 'K' },\n    { code: 'KeyL', name: 'L' },\n    { code: 'KeyM', name: 'M' },\n    { code: 'KeyN', name: 'N' },\n    { code: 'KeyO', name: 'O' },\n    { code: 'KeyP', name: 'P' },\n    { code: 'KeyQ', name: 'Q' },\n    { code: 'KeyR', name: 'R' },\n    { code: 'KeyS', name: 'S' },\n    { code: 'KeyT', name: 'T' },\n    { code: 'KeyU', name: 'U' },\n    { code: 'KeyV', name: 'V' },\n    { code: 'KeyW', name: 'W' },\n    { code: 'KeyX', name: 'X' },\n    { code: 'KeyY', name: 'Y' },\n    { code: 'KeyZ', name: 'Z' },\n    { code: 'OSLeft', name: 'superLeft' },\n    { code: 'OSRight', name: 'superRight' },\n    { code: 'ContextMenu', name: 'menu' },\n    { code: 'Numpad0', name: 'num0' },\n    { code: 'Numpad1', name: 'num1' },\n    { code: 'Numpad2', name: 'num2' },\n    { code: 'Numpad3', name: 'num3' },\n    { code: 'Numpad4', name: 'num4' },\n    { code: 'Numpad5', name: 'num5' },\n    { code: 'Numpad6', name: 'num6' },\n    { code: 'Numpad7', name: 'num7' },\n    { code: 'Numpad8', name: 'num8' },\n    { code: 'Numpad9', name: 'num9' },\n    { code: 'NumpadMultiply', name: 'multiply' },\n    { code: 'NumpaddAdd', name: 'add' },\n    { code: 'NumpaddDivide', name: 'divide' },\n    { code: 'NumpadDecimal', name: 'point' },\n    { code: 'NumpadMinus', name: 'minus' },\n    { code: 'F1', name: 'F1' },\n    { code: 'F2', name: 'F2' },\n    { code: 'F3', name: 'F3' },\n    { code: 'F4', name: 'F4' },\n    { code: 'F5', name: 'F5' },\n    { code: 'F6', name: 'F6' },\n    { code: 'F7', name: 'F7' },\n    { code: 'F8', name: 'F8' },\n    { code: 'F9', name: 'F9' },\n    { code: 'F10', name: 'F10' },\n    { code: 'F11', name: 'F11' },\n    { code: 'F12', name: 'F12' },\n    { code: 'NumLock', name: 'numLock' },\n    { code: 'ScrollLock', name: 'scrollLock' },\n    { code: 'Semicolon', name: 'semiColon' },\n    { code: 'Equal', name: 'equals' },\n    { code: 'Comma', name: 'comma' },\n    { code: 'Minus', name: 'dash' },\n    { code: 'Period', name: 'dot' },\n    { code: 'Slash', name: 'forewardSlash' },\n    { code: 'BracketLeft', name: 'openBracket' },\n    { code: 'IntlBackslash', name: 'backSlash' },\n    { code: 'BracketRight', name: 'closeBracket' },\n    { code: 'Quote', name: 'quote' }\n];\nexports[\"default\"] = allKeys;\n\n\n/***/ }),\n\n/***/ \"./src/input/mouse.ts\":\n/*!****************************!*\\\n  !*** ./src/input/mouse.ts ***!\n  \\****************************/\n/***/ (function(__unused_webpack_module, exports) {\n\n\nvar __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nfunction create(canvas) {\n    var defaultState = function () {\n        return {\n            position: { x: 0, y: 0 },\n            left: defaultButtonState(),\n            wheel: defaultWheelState(),\n            right: defaultButtonState()\n        };\n    };\n    var defaultButtonState = function () {\n        return {\n            pressed: false,\n            justPressed: false,\n            released: false,\n            justReleased: false\n        };\n    };\n    var defaultWheelState = function () {\n        var buttonState = defaultButtonState();\n        return __assign(__assign({}, buttonState), { moved: false, direction: 'up' });\n    };\n    var prevMouse = defaultState();\n    var mouse = defaultState();\n    var clone = function (state) {\n        return Object.assign({}, state);\n    };\n    var relative = function (event) {\n        var bounds = canvas.getBoundingClientRect();\n        return {\n            x: event.clientX - bounds.left,\n            y: event.clientY - bounds.top\n        };\n    };\n    var move = function (event) {\n        var newPos = relative(event);\n        mouse.position = newPos;\n    };\n    var down = function (event) {\n        switch (event.which) {\n            case 1:\n                if (!mouse.left.pressed) {\n                    mouse.left.justPressed = true;\n                }\n                mouse.left.pressed = true;\n                break;\n            case 2:\n                if (!mouse.wheel.pressed) {\n                    mouse.wheel.justPressed = true;\n                }\n                mouse.wheel.pressed = true;\n                break;\n            case 3:\n                if (!mouse.right.pressed) {\n                    mouse.right.justPressed = true;\n                }\n                mouse.right.pressed = true;\n                break;\n        }\n    };\n    var up = function (event) {\n        switch (event.which) {\n            case 1:\n                if (!mouse.left.released) {\n                    mouse.left.justReleased = true;\n                }\n                mouse.left.released = true;\n                mouse.left.pressed = false;\n                break;\n            case 2:\n                if (!mouse.wheel.released) {\n                    mouse.wheel.justReleased = true;\n                }\n                mouse.wheel.released = true;\n                mouse.wheel.pressed = false;\n                break;\n            case 3:\n                if (!mouse.right.released) {\n                    mouse.right.justReleased = true;\n                }\n                mouse.right.released = true;\n                mouse.right.pressed = false;\n                break;\n        }\n    };\n    var wheel = function (event) {\n        mouse.wheel.moved = event.deltaY === 0 ? false : true;\n        if (mouse.wheel.moved !== false) {\n            mouse.wheel.direction = event.deltaY < 0 ? 'up' : 'down';\n        }\n    };\n    var update = function () {\n        mouse.wheel.moved = false;\n        mouse.left.justPressed = false;\n        mouse.right.justPressed = false;\n        mouse.left.justReleased = false;\n        mouse.right.justReleased = false;\n        mouse.wheel.justPressed = false;\n        mouse.wheel.justReleased = false;\n        prevMouse = clone(mouse);\n    };\n    var start = function () {\n        // mouse events\n        canvas.addEventListener('mousemove', move);\n        canvas.addEventListener('mousedown', down);\n        canvas.addEventListener('mouseup', up);\n        canvas.addEventListener('wheel', wheel);\n        // default mouse position, center of screen\n        mouse.position.x = canvas.width / 2;\n        mouse.position.y = canvas.height / 2;\n    };\n    return {\n        getState: function () { return mouse; },\n        start: start,\n        update: update\n    };\n}\nexports[\"default\"] = { create: create };\n\n\n/***/ }),\n\n/***/ \"./src/sprite.ts\":\n/*!***********************!*\\\n  !*** ./src/sprite.ts ***!\n  \\***********************/\n/***/ ((__unused_webpack_module, exports) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nfunction create(position, size, rotation, texture, colour) {\n    if (rotation === void 0) { rotation = 0; }\n    if (colour === void 0) { colour = '#ffffff'; }\n    var frames = [];\n    return {\n        size: size,\n        texture: texture,\n        colour: colour,\n        frame: 0,\n        position: position,\n        setFrames: function (newFrames) {\n            frames = newFrames;\n        },\n        addFrame: function (frame) {\n            frames.push(frame);\n        },\n        get frames() {\n            return frames;\n        },\n        get rotation() {\n            return rotation;\n        },\n        set rotation(degrees) {\n            rotation = degrees >= 360 ? 360 - degrees : degrees;\n        }\n    };\n}\nexports[\"default\"] = {\n    create: create\n};\n\n\n/***/ }),\n\n/***/ \"./src/storage.ts\":\n/*!************************!*\\\n  !*** ./src/storage.ts ***!\n  \\************************/\n/***/ ((__unused_webpack_module, exports) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.clear = exports.remove = exports.load = exports.save = void 0;\nfunction save(key, value) {\n    localStorage.setItem(key, value);\n}\nexports.save = save;\nfunction load(key) {\n    return localStorage.getItem(key);\n}\nexports.load = load;\nfunction remove(key) {\n    localStorage.removeItem(key);\n}\nexports.remove = remove;\nfunction clear() {\n    localStorage.clear();\n}\nexports.clear = clear;\n\n\n/***/ }),\n\n/***/ \"./src/types.ts\":\n/*!**********************!*\\\n  !*** ./src/types.ts ***!\n  \\**********************/\n/***/ ((__unused_webpack_module, exports) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n\n\n/***/ }),\n\n/***/ \"./src/utils/number.ts\":\n/*!*****************************!*\\\n  !*** ./src/utils/number.ts ***!\n  \\*****************************/\n/***/ ((__unused_webpack_module, exports) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.clamp = exports.toDegrees = exports.toRadians = void 0;\nfunction toRadians(degrees) {\n    return degrees * (Math.PI / 180);\n}\nexports.toRadians = toRadians;\nfunction toDegrees(radians) {\n    return radians * (180 / Math.PI);\n}\nexports.toDegrees = toDegrees;\nfunction clamp(value, min, max) {\n    if (min > max) {\n        console.error(\"clamp: the minimum (\".concat(min, \") and maximum (\").concat(max, \") have been passed in the wrong order\"));\n        return value;\n    }\n    if (value < min) {\n        return min;\n    }\n    if (value > max) {\n        return max;\n    }\n    return value;\n}\nexports.clamp = clamp;\nexports[\"default\"] = {\n    toRadians: toRadians,\n    toDegrees: toDegrees\n};\n\n\n/***/ }),\n\n/***/ \"./src/utils/object.ts\":\n/*!*****************************!*\\\n  !*** ./src/utils/object.ts ***!\n  \\*****************************/\n/***/ (function(__unused_webpack_module, exports) {\n\n\nvar __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.merge = exports.clone = void 0;\n// TODO: Handle Arrays\nfunction deepClone(obj) {\n    var result = {};\n    Object.keys(obj).forEach(function (key) {\n        switch (typeof obj[key]) {\n            case 'object':\n                result[key] = deepClone(obj[key]);\n                break;\n            default:\n                result[key] = obj[key];\n        }\n    });\n    return result;\n}\nfunction shallowClone(obj) {\n    return __assign({}, obj);\n}\nfunction clone(obj, deep) {\n    if (deep === void 0) { deep = true; }\n    return deep === true ? deepClone(obj) : shallowClone(obj);\n}\nexports.clone = clone;\n// TODO: Handle Arrays\nfunction deepMerge(a, b) {\n    var result = {};\n    Object.keys(a).forEach(function (key) {\n        if (typeof a[key] === 'object') {\n            result[key] = b[key] === undefined ? a[key] : merge(a[key], b[key]);\n        }\n        else {\n            result[key] = b[key] === undefined ? a[key] : b[key];\n        }\n    });\n    // values that only exist on b need to be inserted afterwards\n    Object.keys(b).forEach(function (key) {\n        if (a[key] === undefined) {\n            result[key] = b[key];\n        }\n    });\n    return result;\n}\nfunction shallowMerge(a, b) {\n    return __assign(__assign({}, a), b);\n}\nfunction merge(a, b, deep) {\n    if (deep === void 0) { deep = true; }\n    return deep === true ? deepMerge(a, b) : shallowMerge(a, b);\n}\nexports.merge = merge;\nexports[\"default\"] = {\n    merge: merge,\n    clone: clone\n};\n\n\n/***/ }),\n\n/***/ \"./src/vec2.ts\":\n/*!*********************!*\\\n  !*** ./src/vec2.ts ***!\n  \\*********************/\n/***/ ((__unused_webpack_module, exports) => {\n\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nfunction create(_x, _y) {\n    var x = _x;\n    var y = _y;\n    var add = function (v) {\n        x += v.x;\n        y += v.y;\n    };\n    var addScalar = function (s) {\n        x += s;\n        y += s;\n    };\n    var divide = function (v) {\n        x /= v.x;\n        y /= v.y;\n    };\n    var divideScalar = function (s) {\n        x /= s;\n        y /= s;\n    };\n    var dot = function (v) {\n        return x * v.x + y * v.y;\n    };\n    var getLength = function () {\n        return Math.sqrt(x * x + y * y);\n    };\n    var getOpposite = function (v) {\n        return create(-v.x, -v.y);\n    };\n    var getPerp = function () {\n        return create(-y, x);\n    };\n    var isEqualTo = function (v) {\n        return x == v.x && y == v.y;\n    };\n    var multiply = function (v) {\n        x *= v.x;\n        y *= v.y;\n    };\n    var multiplyScalar = function (s) {\n        x *= s;\n        y *= s;\n    };\n    var normalise = function () {\n        var l = getLength();\n        x = x / l;\n        y = y / l;\n    };\n    var setLength = function (l) {\n        normalise();\n        multiplyScalar(l);\n    };\n    var subtract = function (v) {\n        x -= v.x;\n        y -= v.y;\n    };\n    var subtractScalar = function (s) {\n        x -= s;\n        y -= s;\n    };\n    return {\n        add: add,\n        addScalar: addScalar,\n        clone: clone,\n        divide: divide,\n        divideScalar: divideScalar,\n        dot: dot,\n        getLength: getLength,\n        getOpposite: getOpposite,\n        getPerp: getPerp,\n        isEqualTo: isEqualTo,\n        multiply: multiply,\n        multiplyScalar: multiplyScalar,\n        normalise: normalise,\n        setLength: setLength,\n        subtract: subtract,\n        subtractScalar: subtractScalar,\n        set x(_x) {\n            x = _x;\n        },\n        get x() {\n            return x;\n        },\n        set y(_y) {\n            y = _y;\n        },\n        get y() {\n            return y;\n        }\n    };\n}\nvar fromDegrees = function (degrees) {\n    var rad = degrees * (Math.PI / 180);\n    return create(Math.cos(rad), Math.sin(rad));\n};\nvar clone = function (v) {\n    return create(v.x, v.y);\n};\nexports[\"default\"] = {\n    clone: clone,\n    create: create,\n    fromDegrees: fromDegrees\n};\n\n\n/***/ })\n\n/******/ \t});\n/************************************************************************/\n/******/ \t// The module cache\n/******/ \tvar __webpack_module_cache__ = {};\n/******/ \t\n/******/ \t// The require function\n/******/ \tfunction __nested_webpack_require_57163__(moduleId) {\n/******/ \t\t// Check if module is in cache\n/******/ \t\tvar cachedModule = __webpack_module_cache__[moduleId];\n/******/ \t\tif (cachedModule !== undefined) {\n/******/ \t\t\treturn cachedModule.exports;\n/******/ \t\t}\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = __webpack_module_cache__[moduleId] = {\n/******/ \t\t\t// no module.id needed\n/******/ \t\t\t// no module.loaded needed\n/******/ \t\t\texports: {}\n/******/ \t\t};\n/******/ \t\n/******/ \t\t// Execute the module function\n/******/ \t\t__webpack_modules__[moduleId].call(module.exports, module, module.exports, __nested_webpack_require_57163__);\n/******/ \t\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n/******/ \t\n/************************************************************************/\n/******/ \t\n/******/ \t// startup\n/******/ \t// Load entry module and return exports\n/******/ \t// This entry module is referenced by other modules so it can't be inlined\n/******/ \tvar __nested_webpack_exports__ = __nested_webpack_require_57163__(\"./src/bramble.ts\");\n/******/ \t\n/******/ \treturn __nested_webpack_exports__;\n/******/ })()\n;\n});\n//# sourceMappingURL=bramble.js.map\n\n//# sourceURL=webpack://@erikwatson/snowfall/./node_modules/.pnpm/@erikwatson+bramble@0.6.0/node_modules/@erikwatson/bramble/dist/bramble.js?");
 
 /***/ }),
 
-/***/ "./src/snowfall.js":
+/***/ "./src/config.ts":
+/*!***********************!*\
+  !*** ./src/config.ts ***!
+  \***********************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.merge = void 0;\nconst DEFAULT_BACKGROUND = '#0d0014';\nconst DEFAULT_PRIMARY_COLOR = '#8d90b7';\nconst DEFAULT_SECONDARY_COLOR = '#ffffff';\nconst DEFAULT_DENSITY = 200;\nconst DEFAULT_FADE_IN = false;\nconst DEFAULT_SCROLL = false;\nconst DEFAULT_AMPLITUDE = 1.0;\nconst DEFAULT_FREQUENCY = 0.02;\nconst DEFAULT_GRAVITY_ANGLE = 90;\nconst DEFAULT_GRAVITY_STRENGTH = 0.7;\nconst DEFAULT_WIND_ANGLE = 0;\nconst DEFAULT_WIND_STRENGTH = 0;\nconst DEFAULT_CONFIG = {\n    attachTo: document.getElementById('snowfall'),\n    background: DEFAULT_BACKGROUND,\n    primary: DEFAULT_PRIMARY_COLOR,\n    secondary: DEFAULT_SECONDARY_COLOR,\n    density: DEFAULT_DENSITY,\n    fadeIn: DEFAULT_FADE_IN,\n    scroll: DEFAULT_SCROLL,\n    wave: { frequency: DEFAULT_FREQUENCY, amplitude: DEFAULT_AMPLITUDE },\n    gravity: { angle: DEFAULT_GRAVITY_ANGLE, strength: DEFAULT_GRAVITY_STRENGTH },\n    wind: { angle: DEFAULT_WIND_ANGLE, strength: DEFAULT_WIND_STRENGTH }\n};\nfunction merge(config) {\n    return Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG), config), { wave: Object.assign(Object.assign({}, DEFAULT_CONFIG.wave), config.wave), gravity: Object.assign(Object.assign({}, DEFAULT_CONFIG.gravity), config.gravity), wind: Object.assign(Object.assign({}, DEFAULT_CONFIG.wind), config.wind) });\n}\nexports.merge = merge;\n\n\n//# sourceURL=webpack://@erikwatson/snowfall/./src/config.ts?");
+
+/***/ }),
+
+/***/ "./src/math.ts":
+/*!*********************!*\
+  !*** ./src/math.ts ***!
+  \*********************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.random = exports.lerp = void 0;\nfunction lerp(start, end, alpha) {\n    return start * (1 - alpha) + end * alpha;\n}\nexports.lerp = lerp;\nfunction random(from, to) {\n    if (arguments.length === 1) {\n        to = from;\n        from = 0;\n    }\n    if (from === undefined && to === undefined) {\n        return Math.random();\n    }\n    if (from !== undefined && to !== undefined) {\n        return from + (Math.random() * (to - from));\n    }\n    // in practice, this return will never be reached  \n    return 0;\n}\nexports.random = random;\n\n\n//# sourceURL=webpack://@erikwatson/snowfall/./src/math.ts?");
+
+/***/ }),
+
+/***/ "./src/snowfall.ts":
 /*!*************************!*\
-  !*** ./src/snowfall.js ***!
+  !*** ./src/snowfall.ts ***!
   \*************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-/**
- * @module snowfall
- */
-
-const vec2 = __webpack_require__(/*! ./vec2 */ "./src/vec2.js")
-const { lerp } = __webpack_require__(/*! ./math */ "./src/math.js")
-
-const appContainer = document.querySelector('#snow-container')
-
-const canvas = document.createElement('canvas')
-const ctx = canvas.getContext('2d')
-
-let gravity = vec2.create(0, 0.7)
-let wind = vec2.create(0, 0)
-let density = 200
-
-let snowflakes = []
-
-let bg = '#0d0014'
-let primary = '#8d90b7'
-let secondary = '#ffffff'
-
-let amplitude = 1.0
-let frequency = 0.02
-
-let fadeIn = false
-let scroll = false
-
-/**
- * @param {Object} config - A config, possibly from the Visual Config Editor.
- * @param {string} [config.bg = '#0d0014'] - A hex string representing the Background Colour
- * of the canvas.
- * @param {string} [config.primary = '#8d90b7'] - A hex string representing the colour of the
- * snowflakes in the foreground.
- * @param {string} [config.secondary = '#ffffff'] - A hex string representing the colour of
- * the snowflakes in the background.
- * @param {number} [config.density = 200] - A number representing the required density
- * of snowflakes on screen. Note, this is not the actual number of snowflakes.
- * @param {Boolean} [config.fadeIn = false] - Should the snowflakes grow in size when the
- * app starts or should they begin at their full size?
- * @param {Boolean} [config.scroll = false] - Should the snowflakes scroll when the user
- * scrolls up and down the page?
- *
- * @param {Object} config.wave - Configure the wave motion of the snowflakes.
- * @param {number} [config.wave.frequency = 0.02] - The frequency of the wave the
- * snowflakes follow.
- * @param {number} [config.wave.amplitude = 1.0] - The amplitude of the wave the
- * snowflakes follow.
- *
- * @param {Object} config.gravity - Configure the gravity of the simulation.
- * @param {number} [config.gravity.angle = 90] - The angle of gravity, in degrees.
- * @param {number} [config.gravity.strength = 0.7] - The strength of gravity.
- *
- * @param {Object} config.wind - Configure the wind.
- * @param {number} [config.wind.angle = 0] - The angle of the wind, in degrees.
- * @param {number} [config.wind.strength = 0] - The strength of the wind.
- */
-function start(config = {}) {
-  if (config.bg !== undefined) {
-    bg = config.bg
-  }
-
-  if (config.primary !== undefined) {
-    primary = config.primary
-  }
-
-  if (config.secondary !== undefined) {
-    secondary = config.secondary
-  }
-
-  if (config.density !== undefined) {
-    density = config.density
-  }
-
-  if (config.fadeIn !== undefined) {
-    fadeIn = config.fadeIn
-  }
-
-  if (config.scroll !== undefined) {
-    scroll = config.scroll
-  }
-
-  if (config.wave !== undefined) {
-    if (config.wave.amplitude !== undefined) {
-      amplitude = config.wave.amplitude
-    }
-
-    if (config.wave.frequency !== undefined) {
-      frequency = config.wave.frequency
-    }
-  }
-
-  if (config.gravity !== undefined) {
-    if (
-      config.gravity.angle !== undefined &&
-      config.gravity.strength !== undefined
-    ) {
-      setGravity(config.gravity.angle, config.gravity.strength)
-    }
-
-    if (
-      config.gravity.angle !== undefined &&
-      config.gravity.strength === undefined
-    ) {
-      setGravity(config.gravity.angle, 0.7)
-    }
-
-    if (
-      config.gravity.angle === undefined &&
-      config.gravity.strength !== undefined
-    ) {
-      setGravity(90, config.gravity.strength)
-    }
-  }
-
-  if (config.wind !== undefined) {
-    if (config.wind.angle !== undefined && config.wind.strength !== undefined) {
-      setWind(config.wind.angle, config.wind.strength)
-    }
-
-    if (config.wind.angle !== undefined && config.wind.strength === undefined) {
-      setWind(config.wind.angle, 0.0)
-    }
-
-    if (config.wind.angle === undefined && config.wind.strength !== undefined) {
-      setWind(0.0, config.wind.strength)
-    }
-  }
-
-  canvas.width = appContainer.offsetWidth
-  canvas.height = appContainer.offsetHeight
-  appContainer.appendChild(canvas)
-
-  snowflakes = makeSnowflakes(requiredSnowflakes())
-
-  window.onresize = onResize
-  window.requestAnimationFrame(onEnterFrame)
-}
-
-/**
- * Set the background colour
- *
- * @param {string} colour - The background colour of the Canvas
- */
-function setBackground(col) {
-  bg = col
-}
-
-/**
- * Sets the colour of the Snowflakes in the foreground
- *
- * @param {string} colour - A Hex string representing the colour of the
- *                          foreground snow.
- */
-function setPrimary(col) {
-  primary = col
-}
-
-/**
- * Sets the colour of the Snowflakes in the background
- *
- * @param {string} colour - A Hex string representing the colour of the
- *                          background snow.
- */
-function setSecondary(col) {
-  secondary = col
-}
-
-/**
- * Set the density of the Snowflakes. This is the number of snowflakes on screen
- * at a resolution of 1280 x 1080, but this number is scaled up and down at
- * higher and lower resolutions respectively to give a consistent look when
- * resizing.
- *
- * Setting this restarts the simulation.
- *
- * @param {number} density - A number representing the density of snowflakes.
- */
-function setDensity(den) {
-  density = den
-  restart()
-}
-
-/**
- * Should the snowflakes grow in size from nothing until they reach their full
- * size? It happens pretty quickly.
- *
- * Setting this restarts the simulation.
- *
- * @param {Boolean} value - Yes or no?
- */
-function setFade(val) {
-  fadeIn = val
-  restart()
-}
-
-/**
- * Should the snowflakes scroll up and down the page as the User scrolls?
- * @param {Boolean} value - Yes or no?
- */
-function setScroll(val) {
-  scroll = val
-}
-
-/**
- * Set the Amplitude of the Wave motion of the Snowflakes
- *
- * @param {number} amplitude - The Amplitude to set
- */
-function setAmplitude(num) {
-  amplitude = num
-}
-
-/**
- * Set the Frequency of the Wave motion of the Snowflakes.
- *
- * @param {number} frequency - The frequency to set
- */
-function setFrequency(freq) {
-  frequency = freq
-}
-
-/**
- * Set the angle and strength of gravity in the simulation.
- *
- * @param {number} angle - The angle of gravity, in degrees
- * @param {number} strength - The strength of the gravity
- */
-function setGravity(degrees, strength) {
-  gravity = vec2.fromDegrees(degrees)
-  gravity.multiplyScalar(strength)
-}
-
-/**
- * Set the angle and strength of the wind in the simulation.
- *
- * @param {number} angle - The angle of the wind, in degrees
- * @param {number} strength - The strength of the wind
- */
-function setWind(degrees, strength) {
-  wind = vec2.fromDegrees(degrees)
-  wind.multiplyScalar(strength)
-}
-
-function onResize() {
-  canvas.width = appContainer.offsetWidth
-  canvas.height = appContainer.offsetHeight
-
-  snowflakes = makeSnowflakes(requiredSnowflakes())
-}
-
-function onEnterFrame() {
-  update()
-  render()
-
-  window.requestAnimationFrame(onEnterFrame)
-}
-
-let t = 0
-
-const w = vec2.create(0, 0)
-const g = vec2.create(0, 0)
-
-function update() {
-  snowflakes.forEach(snowflake => {
-    // add the wind
-    w.x = wind.x
-    w.y = wind.y
-
-    w.multiplyScalar(snowflake.size + snowflake.random)
-    snowflake.pos.add(w)
-
-    // add gravity
-    g.x = gravity.x
-    g.y = gravity.y
-
-    g.multiplyScalar(snowflake.size + snowflake.random)
-    snowflake.pos.add(g)
-
-    // add the wave motion
-    const phase = snowflake.noise
-    let sine = vec2.create(amplitude * Math.sin(frequency * t + phase), 0)
-
-    snowflake.pos.add(sine)
-
-    // wrap the snowflakes when they move off screen
-    if (snowflake.pos.x > canvas.width) {
-      snowflake.pos.x = 0
-    }
-
-    if (snowflake.pos.x < 0) {
-      snowflake.pos.x = canvas.width
-    }
-
-    if (snowflake.pos.y > canvas.height) {
-      snowflake.pos.y = snowflake.pos.y - canvas.height
-      snowflake.pos.x = Math.random() * canvas.width
-    }
-
-    if (snowflake.pos.y < 0) {
-      snowflake.pos.y = canvas.height - snowflake.pos.y
-      snowflake.pos.x = Math.random() * canvas.width
-    }
-
-    if (snowflake.renderedSize < snowflake.size) {
-      snowflake.renderedSize = lerp(
-        snowflake.renderedSize,
-        snowflake.size,
-        0.025
-      )
-    }
-  })
-
-  previousPageYOffset = window.pageYOffset
-  t += 1
-}
-
-function render() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-  if (bg) {
-    ctx.fillStyle = bg
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-  }
-
-  const bgSize = 7
-
-  const foreground = snowflakes.filter(x => x.size >= bgSize)
-  const background = snowflakes.filter(x => x.size < bgSize)
-
-  ctx.fillStyle = primary
-  background.forEach(snowflake => {
-    ctx.beginPath()
-    drawCircle(snowflake.pos, snowflake.renderedSize)
-    ctx.fill()
-  })
-
-  ctx.fillStyle = secondary
-  foreground.forEach(snowflake => {
-    ctx.beginPath()
-    drawCircle(snowflake.pos, snowflake.renderedSize)
-    ctx.fill()
-  })
-}
-
-function makeSnowflakes(num) {
-  let result = []
-
-  while (num--) {
-    const size = 3 + Math.random() * 5
-    const renderedSize = fadeIn === true ? 0 : size
-
-    result.push({
-      pos: vec2.create(
-        Math.random() * canvas.width,
-        Math.random() * canvas.height
-      ),
-      size,
-      renderedSize,
-      // Random value, just to add some uncertainty
-      noise: Math.random() * 10,
-      amplitude: Math.random() * 2,
-      frequency: Math.random() * 0.01,
-      random: Math.random()
-    })
-  }
-
-  return result
-}
-
-// This function figures out how many snowflakes we should use for our given
-// canvas size.
-//
-// Just setting a fixed number of snowflakes would give an uneven distribution
-// of snowflakes across different screen sizes, for example.
-function requiredSnowflakes() {
-  const tenEightyPee = 1920 * 1080
-  const thisScreen = canvas.width * canvas.height
-  const snowflakeCount = Math.round(density * (thisScreen / tenEightyPee))
-
-  return snowflakeCount
-}
-
-function drawCircle(position, radius) {
-  ctx.arc(position.x, position.y, radius, 0, 2 * Math.PI, false)
-}
-
-function restart() {
-  snowflakes = makeSnowflakes(requiredSnowflakes())
-}
-
-module.exports = {
-  setAmplitude,
-  setBackground,
-  setDensity,
-  setFade,
-  setScroll,
-  setFrequency,
-  setGravity,
-  setPrimary,
-  setSecondary,
-  setWind,
-  start
-}
-
-
-/***/ }),
-
-/***/ "./src/vec2.js":
-/*!*********************!*\
-  !*** ./src/vec2.js ***!
-  \*********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function create(_x, _y) {
-  let x = _x
-  let y = _y
-
-  const add = v => {
-    x += v.x
-    y += v.y
-  }
-
-  const addScalar = s => {
-    x += s
-    y += s
-  }
-
-  const divide = v => {
-    x /= v.x
-    y /= v.y
-  }
-
-  const divideScalar = s => {
-    x /= s
-    y /= s
-  }
-
-  const dot = v => {
-    return x * v.x + y * v.y
-  }
-
-  const getLength = () => {
-    return Math.sqrt(x * x + y * y)
-  }
-
-  const getOpposite = v => {
-    return create(-v.x, -v.y)
-  }
-
-  const getPerp = () => {
-    return create(-y, x)
-  }
-
-  const isEqualTo = v => {
-    return x == v.x && y == v.y
-  }
-
-  const multiply = v => {
-    x *= v.x
-    y *= v.y
-  }
-
-  const multiplyScalar = s => {
-    x *= s
-    y *= s
-  }
-
-  const normalise = () => {
-    let l = getLength()
-
-    x = x / l
-    y = y / l
-  }
-
-  const setLength = l => {
-    normalise()
-    multiplyScalar(l)
-  }
-
-  const subtract = v => {
-    x -= v.x
-    y -= v.y
-  }
-
-  const subtractScalar = s => {
-    x -= s
-    y -= s
-  }
-
-  return {
-    add,
-    addScalar,
-    clone,
-    divide,
-    divideScalar,
-    dot,
-    getLength,
-    getOpposite,
-    getPerp,
-    isEqualTo,
-    multiply,
-    multiplyScalar,
-    normalise,
-    setLength,
-    subtract,
-    subtractScalar,
-    set x(_x) {
-      x = _x
-    },
-    get x() {
-      return x
-    },
-    set y(_y) {
-      y = _y
-    },
-    get y() {
-      return y
-    }
-  }
-}
-
-const fromDegrees = degrees => {
-  const rad = degrees * (Math.PI / 180)
-  return create(Math.cos(rad), Math.sin(rad))
-}
-
-const clone = v => {
-  return create(v.x, v.y)
-}
-
-module.exports = {
-  clone,
-  create,
-  fromDegrees
-}
-
+"use strict";
+eval("\n/**\n * @module snowfall\n */\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst bramble_1 = __webpack_require__(/*! @erikwatson/bramble */ \"./node_modules/.pnpm/@erikwatson+bramble@0.6.0/node_modules/@erikwatson/bramble/dist/bramble.js\");\nconst math_1 = __webpack_require__(/*! ./math */ \"./src/math.ts\");\nconst config_1 = __webpack_require__(/*! ./config */ \"./src/config.ts\");\nlet snowflakes = [];\nlet paused = false;\nlet gravity;\nlet wind;\nlet snowfallConfig;\nconst brambleGame = bramble_1.game.create();\n/**\n * @param {Object} config - A config, possibly from the Visual Config Editor.\n * @param {Object} config.attachTo - A HTML element that you want to attach\n * snowfall to. If left blank, this defaults to #snowfall.\n * @param {string} [config.bg = '#0d0014'] - A hex string representing the\n * Background Colour of the canvas.\n * @param {string} [config.primary = '#8d90b7'] - A hex string representing the\n * colour of the snowflakes in the foreground.\n * @param {string} [config.secondary = '#ffffff'] - A hex string representing\n * the colour of the snowflakes in the background.\n * @param {number} [config.density = 200] - A number representing the required\n * density of snowflakes on screen. Note, this is not the actual number of\n * snowflakes.\n * @param {Boolean} [config.fadeIn = false] - Should the snowflakes grow in size\n * when the app starts or should they begin at their full size?\n * @param {Boolean} [config.scroll = false] - Should the snowflakes scroll when\n * the user scrolls up and down the page?\n *\n * @param {Object} config.wave - Configure the wave motion of the snowflakes.\n * @param {number} [config.wave.frequency = 0.02] - The frequency of the wave\n * the snowflakes follow.\n * @param {number} [config.wave.amplitude = 1.0] - The amplitude of the wave the\n * snowflakes follow.\n *\n * @param {Object} config.gravity - Configure the gravity of the simulation.\n * @param {number} [config.gravity.angle = 90] - The angle of gravity, in\n * degrees.\n * @param {number} [config.gravity.strength = 0.7] - The strength of gravity.\n *\n * @param {Object} config.wind - Configure the wind.\n * @param {number} [config.wind.angle = 0] - The angle of the wind, in degrees.\n * @param {number} [config.wind.strength = 0] - The strength of the wind.\n */\nfunction start(config = {}) {\n    config = (0, config_1.merge)(config);\n    snowfallConfig = config;\n    if (!config.attachTo) {\n        console.error('Unable to start the application, the specified container could not be found.');\n        return;\n    }\n    setWind(snowfallConfig.wind.angle, snowfallConfig.wind.strength);\n    setGravity(snowfallConfig.gravity.angle, snowfallConfig.gravity.strength);\n    snowflakes = makeSnowflakes(requiredSnowflakes());\n    window.onresize = onResize;\n    brambleGame.attachTo(config.attachTo);\n    brambleGame.setSize(config.attachTo.offsetWidth, config.attachTo.offsetHeight);\n    const w = bramble_1.vec2.create(0, 0);\n    const g = bramble_1.vec2.create(0, 0);\n    brambleGame.setUpdate(dt => {\n        snowflakes.forEach(snowflake => {\n            var _a, _b, _c, _d, _e, _f;\n            // add the wind\n            w.x = wind.x;\n            w.y = wind.y;\n            w.multiplyScalar(snowflake.size + snowflake.random);\n            snowflake.pos.add(w);\n            // add gravity\n            g.x = gravity.x;\n            g.y = gravity.y;\n            g.multiplyScalar(snowflake.size + snowflake.random);\n            snowflake.pos.add(g);\n            // add the wave motion\n            const phase = snowflake.noise;\n            const xPos = snowfallConfig.wave.amplitude *\n                Math.sin(snowfallConfig.wave.frequency * dt + phase);\n            let sine = bramble_1.vec2.create(xPos, 0);\n            snowflake.pos.add(sine);\n            // wrap the snowflakes when they move off screen\n            if (snowflake.pos.x - snowflake.renderedSize >\n                (((_a = snowfallConfig.attachTo) === null || _a === void 0 ? void 0 : _a.offsetWidth) || 0)) {\n                snowflake.pos.x = -snowflake.renderedSize;\n            }\n            if (snowflake.pos.x < -snowflake.renderedSize) {\n                snowflake.pos.x =\n                    (((_b = snowfallConfig.attachTo) === null || _b === void 0 ? void 0 : _b.offsetWidth) || 0) + snowflake.renderedSize;\n            }\n            if (snowflake.pos.y - snowflake.renderedSize >\n                (((_c = snowfallConfig.attachTo) === null || _c === void 0 ? void 0 : _c.offsetHeight) || 0)) {\n                snowflake.pos.y = snowflake.renderedSize;\n                snowflake.pos.x = (0, math_1.random)(((_d = snowfallConfig.attachTo) === null || _d === void 0 ? void 0 : _d.offsetWidth) || 0);\n            }\n            if (snowflake.pos.y < -snowflake.renderedSize) {\n                snowflake.pos.y =\n                    (((_e = snowfallConfig.attachTo) === null || _e === void 0 ? void 0 : _e.offsetHeight) || 0) + snowflake.renderedSize;\n                snowflake.pos.x = (0, math_1.random)(((_f = snowfallConfig.attachTo) === null || _f === void 0 ? void 0 : _f.offsetWidth) || 0);\n            }\n            if (snowflake.renderedSize < snowflake.size) {\n                snowflake.renderedSize = (0, math_1.lerp)(snowflake.renderedSize, snowflake.size, 0.025);\n            }\n        });\n    });\n    brambleGame.setRender(gfx => {\n        const bgSize = 7;\n        const foreground = snowflakes.filter(x => x.size >= bgSize);\n        const background = snowflakes.filter(x => x.size < bgSize);\n        gfx.clear(snowfallConfig.background);\n        background.forEach(snowflake => {\n            gfx.circle(snowflake.pos, snowflake.renderedSize, {\n                fill: {\n                    colour: snowfallConfig.primary\n                },\n                line: {\n                    width: 0\n                }\n            });\n        });\n        foreground.forEach(snowflake => {\n            gfx.circle(snowflake.pos, snowflake.renderedSize, {\n                fill: {\n                    colour: snowfallConfig.secondary\n                },\n                line: {\n                    width: 0\n                }\n            });\n        });\n    });\n    brambleGame.start();\n}\n/**\n * Set the background colour\n *\n * @param {string} colour - The background colour of the Canvas\n */\nfunction setBackground(col) {\n    snowfallConfig.background = col;\n}\n/**\n * Sets the colour of the Snowflakes in the foreground\n *\n * @param {string} colour - A Hex string representing the colour of the\n *                          foreground snow.\n */\nfunction setPrimary(col) {\n    snowfallConfig.primary = col;\n}\n/**\n * Sets the colour of the Snowflakes in the background\n *\n * @param {string} colour - A Hex string representing the colour of the\n *                          background snow.\n */\nfunction setSecondary(col) {\n    snowfallConfig.secondary = col;\n}\n/**\n * Set the density of the Snowflakes. This is the number of snowflakes on screen\n * at a resolution of 1280 x 1080, but this number is scaled up and down at\n * higher and lower resolutions respectively to give a consistent look when\n * resizing.\n *\n * Setting this restarts the simulation.\n *\n * @param {number} density - A number representing the density of snowflakes.\n */\nfunction setDensity(den) {\n    snowfallConfig.density = den;\n    restart();\n}\n/**\n * Should the snowflakes grow in size from nothing until they reach their full\n * size? It happens pretty quickly.\n *\n * Setting this restarts the simulation.\n *\n * @param {Boolean} value - Yes or no?\n */\nfunction setFade(val) {\n    snowfallConfig.fadeIn = val;\n    restart();\n}\n/**\n * Should the snowflakes scroll up and down the page as the User scrolls?\n * @param {Boolean} value - Yes or no?\n */\nfunction setScroll(val) {\n    snowfallConfig.scroll = val;\n}\n/**\n * Set the Amplitude of the Wave motion of the Snowflakes\n *\n * @param {number} amplitude - The Amplitude to set\n */\nfunction setAmplitude(num) {\n    snowfallConfig.wave.amplitude = num;\n}\n/**\n * Set the Frequency of the Wave motion of the Snowflakes.\n *\n * @param {number} frequency - The frequency to set\n */\nfunction setFrequency(freq) {\n    snowfallConfig.wave.frequency = freq;\n}\n/**\n * Set the angle and strength of gravity in the simulation.\n *\n * @param {number} angle - The angle of gravity, in degrees\n * @param {number} strength - The strength of the gravity\n */\nfunction setGravity(degrees, strength) {\n    console.log({ degrees, strength });\n    gravity = bramble_1.vec2.fromDegrees(degrees);\n    gravity.multiplyScalar(strength);\n}\n/**\n * Set the angle and strength of the wind in the simulation.\n *\n * @param {number} angle - The angle of the wind, in degrees\n * @param {number} strength - The strength of the wind\n */\nfunction setWind(degrees, strength) {\n    wind = bramble_1.vec2.fromDegrees(degrees);\n    wind.multiplyScalar(strength);\n}\n/**\n * Set this to true to prevent the update.\n * Set it to true to continue from where we left off.\n *\n * @param {boolean} pause - If the simulation should be halted or not\n */\nfunction setPaused(pause) {\n    paused = pause;\n}\n/**\n * Pause/unpause the snowfall update loop\n */\nfunction togglePaused() {\n    paused = !paused;\n}\nfunction onResize() {\n    brambleGame.setSize(snowfallConfig.attachTo.offsetWidth, snowfallConfig.attachTo.offsetHeight);\n    snowflakes = makeSnowflakes(requiredSnowflakes());\n}\nfunction makeSnowflakes(num) {\n    return Array.from({ length: num }, () => {\n        var _a, _b;\n        const size = 3 + (0, math_1.random)() * 5;\n        const renderedSize = snowfallConfig.fadeIn === true ? 0 : size;\n        return {\n            pos: bramble_1.vec2.create((0, math_1.random)(((_a = snowfallConfig.attachTo) === null || _a === void 0 ? void 0 : _a.offsetWidth) || 0), (0, math_1.random)(((_b = snowfallConfig.attachTo) === null || _b === void 0 ? void 0 : _b.offsetHeight) || 0)),\n            size,\n            renderedSize,\n            noise: (0, math_1.random)(10), // Random value, just to add some uncertainty\n            amplitude: (0, math_1.random)(snowfallConfig.wave.amplitude),\n            frequency: (0, math_1.random)(snowfallConfig.wave.frequency),\n            random: (0, math_1.random)()\n        };\n    });\n}\n// This function figures out how many snowflakes we should use for our given\n// canvas size.\n//\n// Just setting a fixed number of snowflakes would give an uneven distribution\n// of snowflakes across different screen sizes, for example.\nfunction requiredSnowflakes() {\n    var _a, _b;\n    const tenEightyPee = 1920 * 1080;\n    const thisScreen = (((_a = snowfallConfig.attachTo) === null || _a === void 0 ? void 0 : _a.offsetWidth) || 0) *\n        (((_b = snowfallConfig.attachTo) === null || _b === void 0 ? void 0 : _b.offsetHeight) || 0);\n    const snowflakeCount = Math.round(snowfallConfig.density * (thisScreen / tenEightyPee));\n    return snowflakeCount;\n}\nfunction restart() {\n    snowflakes = makeSnowflakes(requiredSnowflakes());\n}\n;\nwindow.snowfall = {\n    setAmplitude,\n    setBackground,\n    setDensity,\n    setFade,\n    setFrequency,\n    setGravity,\n    setPaused,\n    setPrimary,\n    setScroll,\n    setSecondary,\n    setWind,\n    start,\n    togglePaused\n};\n\n\n//# sourceURL=webpack://@erikwatson/snowfall/./src/snowfall.ts?");
 
 /***/ })
 
-/******/ });
-//# sourceMappingURL=snowfall.js.map
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/snowfall.ts");
+/******/ 	
+/******/ })()
+;

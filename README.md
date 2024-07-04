@@ -13,7 +13,6 @@ displayed over the top. [Check out this example](http://erikwatson.me/?snow).
 - Simple, but beautiful.
 - Multiple layers give the illusion of depth.
 - Density of snowflakes looks correct even when the window is resized.
-- Small, with no dependencies.
 
 ## Instructions - Package Manager
 
@@ -29,11 +28,11 @@ npm install @erikwatson/snowfall
 
 ### Use it
 
-Add a div with an ID of `snow-container` to your page. You will need to set the
+Add a div with an ID of `snowfall` to your page. You will need to set the
 width and height of this yourself using CSS.
 
 ```html
-<div id="snow-container"></div>
+<div id="snowfall"></div>
 ```
 
 Then, at the bottom of your page body add the following.
@@ -59,7 +58,7 @@ First, add a div with an ID of `snow-container` to your page. You will need to
 set the width and height of this yourself using CSS.
 
 ```html
-<div id="snow-container"></div>
+<div id="snowfall"></div>
 ```
 
 Then, at the bottom of your page body add the following.
