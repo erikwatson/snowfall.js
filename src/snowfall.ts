@@ -6,35 +6,23 @@ import { UserConfig } from './types'
 import * as Simulation from './simulation'
 
 /**
- * @param {Object} config - A config, possibly from the Visual Config Editor.
- * @param {Object} config.attachTo - A string that represents the ID of an
- * element you want to attach snowfall to. If blank, this defaults to #snowfall.
- * @param {string} [config.bg = '#0d0014'] - A hex string representing the
- * Background Colour of the canvas.
- * @param {string} [config.primary = '#8d90b7'] - A hex string representing the
- * colour of the snowflakes in the foreground.
- * @param {string} [config.secondary = '#ffffff'] - A hex string representing
- * the colour of the snowflakes in the background.
- * @param {number} [config.density = 200] - A number representing the required
- * density of snowflakes on screen. Note, this is not the actual number of
- * snowflakes.
- * @param {Boolean} [config.fadeIn = false] - Should the snowflakes grow in size
- * when the app starts or should they begin at their full size?
- * @param {Boolean} [config.scroll = false] - Should the snowflakes scroll when
- * the user scrolls up and down the page?
+ * Starts the Snowfall simulation.
  *
- * @param {Object} config.wave - Configure the wave motion of the snowflakes.
- * @param {number} [config.wave.frequency = 0.02] - The frequency of the wave
- * the snowflakes follow.
- * @param {number} [config.wave.amplitude = 1.0] - The amplitude of the wave the
- * snowflakes follow.
- *
- * @param {Object} config.gravity - Configure the gravity of the simulation.
- * @param {number} [config.gravity.angle = 90] - The angle of gravity, in
- * degrees.
+ * @param {UserConfig} [config] - A config, possibly from the Visual Config Editor.
+ * @param {string} [config.attachTo] - A string that represents the ID of an element you want to attach snowfall to. If blank, this defaults to #snowfall.
+ * @param {string} [config.bg = '#0d0014'] - A hex string representing the Background Colour of the canvas.
+ * @param {string} [config.primary = '#8d90b7'] - A hex string representing the colour of the snowflakes in the foreground.
+ * @param {string} [config.secondary = '#ffffff'] - A hex string representing the colour of the snowflakes in the background.
+ * @param {number} [config.density = 200] - A number representing the required density of snowflakes on screen. Note, this is not the actual number of snowflakes.
+ * @param {boolean} [config.fadeIn = false] - Should the snowflakes grow in size when the app starts or should they begin at their full size?
+ * @param {boolean} [config.scroll = false] - Should the snowflakes scroll when the user scrolls up and down the page?
+ * @param {Wave} [config.wave] - Configure the wave motion of the snowflakes.
+ * @param {number} [config.wave.frequency = 0.02] - The frequency of the wave the snowflakes follow.
+ * @param {number} [config.wave.amplitude = 1.0] - The amplitude of the wave the snowflakes follow.
+ * @param {Gravity} [config.gravity] - Configure the gravity of the simulation.
+ * @param {number} [config.gravity.angle = 90] - The angle of gravity, in degrees.
  * @param {number} [config.gravity.strength = 0.7] - The strength of gravity.
- *
- * @param {Object} config.wind - Configure the wind.
+ * @param {Wind} [config.wind] - Configure the wind.
  * @param {number} [config.wind.angle = 0] - The angle of the wind, in degrees.
  * @param {number} [config.wind.strength = 0] - The strength of the wind.
  */
@@ -58,8 +46,7 @@ function setBackground(col: string) {
 /**
  * Sets the colour of the Snowflakes in the foreground
  *
- * @param {string} colour - A Hex string representing the colour of the
- *                          foreground snow.
+ * @param {string} colour - A Hex string representing the colour of the foreground snow.
  */
 function setPrimary(col: string) {
   Simulation.setPrimary(col)
@@ -68,8 +55,7 @@ function setPrimary(col: string) {
 /**
  * Sets the colour of the Snowflakes in the background
  *
- * @param {string} colour - A Hex string representing the colour of the
- *                          background snow.
+ * @param {string} colour - A Hex string representing the colour of the background snow.
  */
 function setSecondary(col: string) {
   Simulation.setSecondary(col)
@@ -179,3 +165,5 @@ export function setGravity(degrees: number, strength: number) {
   start,
   togglePaused
 }
+
+start()
