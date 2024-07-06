@@ -2,22 +2,13 @@
  * @module snowfall
  */
 
-import { Vec2, game, vec2 } from '@erikwatson/bramble'
-import { lerp, random } from './math'
-import { Config, Snowflake, UserConfig } from './types'
-import { merge } from './config'
-
-let snowflakes: Snowflake[] = []
-let paused = false
-let gravity: Vec2
-let wind: Vec2
-let snowfallConfig: Config
-const brambleGame = game.create()
+import { UserConfig } from './types'
+import * as Simulation from './simulation'
 
 /**
  * @param {Object} config - A config, possibly from the Visual Config Editor.
- * @param {Object} config.attachTo - A HTML element that you want to attach
- * snowfall to. If left blank, this defaults to #snowfall.
+ * @param {Object} config.attachTo - A string that represents the ID of an
+ * element you want to attach snowfall to. If blank, this defaults to #snowfall.
  * @param {string} [config.bg = '#0d0014'] - A hex string representing the
  * Background Colour of the canvas.
  * @param {string} [config.primary = '#8d90b7'] - A hex string representing the
@@ -48,121 +39,11 @@ const brambleGame = game.create()
  * @param {number} [config.wind.strength = 0] - The strength of the wind.
  */
 function start(config: UserConfig = {}) {
-  config = merge(config)
-  snowfallConfig = config as Config
-
-  if (!config.attachTo) {
-    console.error(
-      'Unable to start the application, the specified container could not be found.'
-    )
-    return
+  try {
+    Simulation.start(config)
+  } catch (error) {
+    console.error(error)
   }
-
-  setWind(snowfallConfig.wind.angle, snowfallConfig.wind.strength)
-  setGravity(snowfallConfig.gravity.angle, snowfallConfig.gravity.strength)
-
-  snowflakes = makeSnowflakes(requiredSnowflakes())
-  window.onresize = onResize
-
-  brambleGame.attachTo(config.attachTo)
-  brambleGame.setSize(config.attachTo.offsetWidth, config.attachTo.offsetHeight)
-
-  const w = vec2.create(0, 0)
-  const g = vec2.create(0, 0)
-
-  brambleGame.setUpdate(dt => {
-    snowflakes.forEach(snowflake => {
-      // add the wind
-      w.x = wind.x
-      w.y = wind.y
-
-      w.multiplyScalar(snowflake.size + snowflake.random)
-      snowflake.pos.add(w)
-
-      // add gravity
-      g.x = gravity.x
-      g.y = gravity.y
-
-      g.multiplyScalar(snowflake.size + snowflake.random)
-      snowflake.pos.add(g)
-
-      // add the wave motion
-      const phase = snowflake.noise
-      const xPos =
-        snowfallConfig.wave.amplitude *
-        Math.sin(snowfallConfig.wave.frequency * dt + phase)
-
-      let sine = vec2.create(xPos, 0)
-      snowflake.pos.add(sine)
-
-      // wrap the snowflakes when they move off screen
-      if (
-        snowflake.pos.x - snowflake.renderedSize >
-        (snowfallConfig.attachTo?.offsetWidth || 0)
-      ) {
-        snowflake.pos.x = -snowflake.renderedSize
-      }
-
-      if (snowflake.pos.x < -snowflake.renderedSize) {
-        snowflake.pos.x =
-          (snowfallConfig.attachTo?.offsetWidth || 0) + snowflake.renderedSize
-      }
-
-      if (
-        snowflake.pos.y - snowflake.renderedSize >
-        (snowfallConfig.attachTo?.offsetHeight || 0)
-      ) {
-        snowflake.pos.y = snowflake.renderedSize
-        snowflake.pos.x = random(snowfallConfig.attachTo?.offsetWidth || 0)
-      }
-
-      if (snowflake.pos.y < -snowflake.renderedSize) {
-        snowflake.pos.y =
-          (snowfallConfig.attachTo?.offsetHeight || 0) + snowflake.renderedSize
-        snowflake.pos.x = random(snowfallConfig.attachTo?.offsetWidth || 0)
-      }
-
-      if (snowflake.renderedSize < snowflake.size) {
-        snowflake.renderedSize = lerp(
-          snowflake.renderedSize,
-          snowflake.size,
-          0.025
-        )
-      }
-    })
-  })
-
-  brambleGame.setRender(gfx => {
-    const bgSize = 7
-    const foreground = snowflakes.filter(x => x.size >= bgSize)
-    const background = snowflakes.filter(x => x.size < bgSize)
-
-    gfx.clear(snowfallConfig.background)
-
-    background.forEach(snowflake => {
-      gfx.circle(snowflake.pos, snowflake.renderedSize, {
-        fill: {
-          colour: snowfallConfig.primary
-        },
-        line: {
-          width: 0
-        }
-      })
-    })
-
-    foreground.forEach(snowflake => {
-      gfx.circle(snowflake.pos, snowflake.renderedSize, {
-        fill: {
-          colour: snowfallConfig.secondary
-        },
-        line: {
-          width: 0
-        }
-      })
-    })
-  })
-
-  brambleGame.start()
 }
 
 /**
@@ -171,7 +52,7 @@ function start(config: UserConfig = {}) {
  * @param {string} colour - The background colour of the Canvas
  */
 function setBackground(col: string) {
-  snowfallConfig.background = col
+  Simulation.setBackground(col)
 }
 
 /**
@@ -181,7 +62,7 @@ function setBackground(col: string) {
  *                          foreground snow.
  */
 function setPrimary(col: string) {
-  snowfallConfig.primary = col
+  Simulation.setPrimary(col)
 }
 
 /**
@@ -191,7 +72,7 @@ function setPrimary(col: string) {
  *                          background snow.
  */
 function setSecondary(col: string) {
-  snowfallConfig.secondary = col
+  Simulation.setSecondary(col)
 }
 
 /**
@@ -205,8 +86,7 @@ function setSecondary(col: string) {
  * @param {number} density - A number representing the density of snowflakes.
  */
 function setDensity(den: number) {
-  snowfallConfig.density = den
-  restart()
+  Simulation.setDensity(den)
 }
 
 /**
@@ -218,8 +98,7 @@ function setDensity(den: number) {
  * @param {Boolean} value - Yes or no?
  */
 function setFade(val: boolean) {
-  snowfallConfig.fadeIn = val
-  restart()
+  Simulation.setFade(val)
 }
 
 /**
@@ -227,7 +106,7 @@ function setFade(val: boolean) {
  * @param {Boolean} value - Yes or no?
  */
 function setScroll(val: boolean) {
-  snowfallConfig.scroll = val
+  Simulation.setScroll(val)
 }
 
 /**
@@ -236,7 +115,7 @@ function setScroll(val: boolean) {
  * @param {number} amplitude - The Amplitude to set
  */
 function setAmplitude(num: number) {
-  snowfallConfig.wave.amplitude = num
+  Simulation.setAmplitude(num)
 }
 
 /**
@@ -245,30 +124,7 @@ function setAmplitude(num: number) {
  * @param {number} frequency - The frequency to set
  */
 function setFrequency(freq: number) {
-  snowfallConfig.wave.frequency = freq
-}
-
-/**
- * Set the angle and strength of gravity in the simulation.
- *
- * @param {number} angle - The angle of gravity, in degrees
- * @param {number} strength - The strength of the gravity
- */
-function setGravity(degrees: number, strength: number) {
-  console.log({ degrees, strength })
-  gravity = vec2.fromDegrees(degrees)
-  gravity.multiplyScalar(strength)
-}
-
-/**
- * Set the angle and strength of the wind in the simulation.
- *
- * @param {number} angle - The angle of the wind, in degrees
- * @param {number} strength - The strength of the wind
- */
-function setWind(degrees: number, strength: number) {
-  wind = vec2.fromDegrees(degrees)
-  wind.multiplyScalar(strength)
+  Simulation.setFrequency(freq)
 }
 
 /**
@@ -278,63 +134,34 @@ function setWind(degrees: number, strength: number) {
  * @param {boolean} pause - If the simulation should be halted or not
  */
 function setPaused(pause: boolean) {
-  paused = pause
+  Simulation.setPaused(pause)
 }
 
 /**
  * Pause/unpause the snowfall update loop
  */
 function togglePaused() {
-  paused = !paused
+  Simulation.togglePaused()
 }
 
-function onResize() {
-  brambleGame.setSize(
-    snowfallConfig.attachTo!.offsetWidth,
-    snowfallConfig.attachTo!.offsetHeight
-  )
-  snowflakes = makeSnowflakes(requiredSnowflakes())
+/**
+ * Set the angle and strength of the wind in the simulation.
+ *
+ * @param {number} angle - The angle of the wind, in degrees
+ * @param {number} strength - The strength of the wind
+ */
+export function setWind(degrees: number, strength: number) {
+  Simulation.setWind(degrees, strength)
 }
 
-function makeSnowflakes(num: number): Snowflake[] {
-  return Array.from({ length: num }, () => {
-    const size = 3 + random() * 5
-    const renderedSize = snowfallConfig.fadeIn === true ? 0 : size
-
-    return {
-      pos: vec2.create(
-        random(snowfallConfig.attachTo?.offsetWidth || 0),
-        random(snowfallConfig.attachTo?.offsetHeight || 0)
-      ),
-      size,
-      renderedSize,
-      noise: random(10), // Random value, just to add some uncertainty
-      amplitude: random(snowfallConfig.wave.amplitude),
-      frequency: random(snowfallConfig.wave.frequency),
-      random: random()
-    }
-  })
-}
-
-// This function figures out how many snowflakes we should use for our given
-// canvas size.
-//
-// Just setting a fixed number of snowflakes would give an uneven distribution
-// of snowflakes across different screen sizes, for example.
-function requiredSnowflakes() {
-  const tenEightyPee = 1920 * 1080
-  const thisScreen =
-    (snowfallConfig.attachTo?.offsetWidth || 0) *
-    (snowfallConfig.attachTo?.offsetHeight || 0)
-  const snowflakeCount = Math.round(
-    snowfallConfig.density * (thisScreen / tenEightyPee)
-  )
-
-  return snowflakeCount
-}
-
-function restart() {
-  snowflakes = makeSnowflakes(requiredSnowflakes())
+/**
+ * Set the angle and strength of gravity in the simulation.
+ *
+ * @param {number} angle - The angle of gravity, in degrees
+ * @param {number} strength - The strength of the gravity
+ */
+export function setGravity(degrees: number, strength: number) {
+  Simulation.setGravity(degrees, strength)
 }
 
 ;(window as any).snowfall = {

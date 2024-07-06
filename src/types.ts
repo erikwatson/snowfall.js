@@ -10,26 +10,34 @@ export type Snowflake = {
   random: number
 }
 
+export type Wave = {
+  frequency: number
+  amplitude: number
+}
+
+export type Gravity = {
+  angle: number
+  strength: number
+}
+
+export type Wind = {
+  angle: number
+  strength: number
+}
+
 export type Config = {
-  attachTo: HTMLElement | null
+  attachTo: HTMLElement
   background: string
   primary: string
   secondary: string
   density: number
   fadeIn: boolean
   scroll: boolean
-  wave: {
-    frequency: number
-    amplitude: number
-  }
-  gravity: {
-    angle: number
-    strength: number
-  }
-  wind: {
-    angle: number
-    strength: number
-  }
+  wave: Wave
+  gravity: Gravity
+  wind: Wind
 }
 
-export type UserConfig = Partial<Config>
+export type UserConfig = Partial<Config> & {
+  attachTo?: string
+}
