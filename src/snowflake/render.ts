@@ -7,7 +7,7 @@ export function drawLayer(
   colour: string
 ) {
   snowflakes.forEach(snowflake => {
-    gfx.circle(snowflake.pos, snowflake.renderedSize, {
+    gfx.circle(snowflake.position, snowflake.renderedSize, {
       fill: { colour },
       line: { width: 0 }
     })

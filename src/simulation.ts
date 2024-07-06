@@ -40,13 +40,13 @@ export function start(userConfig: UserConfig = {}) {
 
   simulation.attachTo(attachTo)
   simulation.setSize(attachTo.offsetWidth, attachTo.offsetHeight)
-  simulation.setUpdate(update)
-  simulation.setRender(render)
+  simulation.setUpdate(dt => update(dt))
+  simulation.setRender(gfx => render(gfx))
   simulation.start()
 }
 
 export function update(dt: number) {
-  const { attachTo, wave, gravity } = config
+  const { attachTo, wave, gravity, wind } = config
 
   snowflakes.forEach(snowflake => {
     addWind(snowflake, wind)
@@ -61,6 +61,7 @@ export function render(gfx: Graphics) {
   const { background, primary, secondary } = config
 
   gfx.clear(background)
+
   drawLayer(gfx, backgroundLayer, primary)
   drawLayer(gfx, foregroundLayer, secondary)
 }
@@ -75,11 +76,12 @@ export function makeSnowflakes(num: number) {
     const size = 3 + random() * 5
     const renderedSize = config.fadeIn === true ? 0 : size
 
+    const posX = random(config.attachTo.offsetWidth)
+    const posY = random(config.attachTo.offsetHeight)
+    const position = vec2.create(posX, posY)
+
     return {
-      pos: vec2.create(
-        random(config.attachTo.offsetWidth),
-        random(config.attachTo.offsetHeight)
-      ),
+      position,
       size,
       renderedSize,
       noise: random(10), // Random value, just to add some uncertainty

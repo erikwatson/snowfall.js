@@ -1,25 +1,29 @@
 import { vec2 } from '@erikwatson/bramble'
 import { lerp, random } from '../math'
-import { Snowflake } from '../types'
+import { Gravity, Snowflake, Wind } from '../types'
 
-export function addWind(snowflake: Snowflake, wind: any) {
+export function addWind(snowflake: Snowflake, { angle, strength }: Wind) {
   const w = vec2.create(0, 0)
+  const windVec = vec2.fromDegrees(angle)
+  windVec.multiplyScalar(strength)
 
-  w.x = wind.x
-  w.y = wind.y
+  w.x = windVec.x
+  w.y = windVec.y
 
   w.multiplyScalar(snowflake.size + snowflake.random)
-  snowflake.pos.add(w)
+  snowflake.position.add(w)
 }
 
-export function addGravity(snowflake: Snowflake, gravity: any) {
+export function addGravity(snowflake: Snowflake, { angle, strength }: Gravity) {
   const g = vec2.create(0, 0)
+  const gravityVec = vec2.fromDegrees(angle)
+  gravityVec.multiplyScalar(strength)
 
-  g.x = gravity.x
-  g.y = gravity.y
+  g.x = gravityVec.x
+  g.y = gravityVec.y
 
   g.multiplyScalar(snowflake.size + snowflake.random)
-  snowflake.pos.add(g)
+  snowflake.position.add(g)
 }
 
 export function addWaveMotion(snowflake: Snowflake, wave: any, dt: number) {
@@ -27,7 +31,7 @@ export function addWaveMotion(snowflake: Snowflake, wave: any, dt: number) {
   const xPos = wave.amplitude * Math.sin(wave.frequency * dt + phase)
 
   let sine = vec2.create(xPos, 0)
-  snowflake.pos.add(sine)
+  snowflake.position.add(sine)
 }
 
 export function fadeIn(snowflake: Snowflake) {
@@ -41,21 +45,21 @@ export function screenWrap(
   width: number,
   height: number
 ) {
-  if (snowflake.pos.x - snowflake.renderedSize > width) {
-    snowflake.pos.x = -snowflake.renderedSize
+  if (snowflake.position.x - snowflake.renderedSize > width) {
+    snowflake.position.x = -snowflake.renderedSize
   }
 
-  if (snowflake.pos.x < -snowflake.renderedSize) {
-    snowflake.pos.x = width + snowflake.renderedSize
+  if (snowflake.position.x < -snowflake.renderedSize) {
+    snowflake.position.x = width + snowflake.renderedSize
   }
 
-  if (snowflake.pos.y - snowflake.renderedSize > height) {
-    snowflake.pos.y = -snowflake.renderedSize
-    snowflake.pos.x = random(width)
+  if (snowflake.position.y - snowflake.renderedSize > height) {
+    snowflake.position.y = -snowflake.renderedSize
+    snowflake.position.x = random(width)
   }
 
-  if (snowflake.pos.y < -snowflake.renderedSize) {
-    snowflake.pos.y = height + snowflake.renderedSize
-    snowflake.pos.x = random(width)
+  if (snowflake.position.y < -snowflake.renderedSize) {
+    snowflake.position.y = height + snowflake.renderedSize
+    snowflake.position.x = random(width)
   }
 }

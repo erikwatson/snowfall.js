@@ -33,7 +33,7 @@ export type Wind = {
 }
 
 export type Snowflake = {
-  pos: Vec2
+  position: Vec2
   size: number
   renderedSize: number
   noise: number
