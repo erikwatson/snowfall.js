@@ -2,8 +2,9 @@
  * @module snowfall
  */
 
-import { UserConfig } from './types'
+import { UserConfig, UserSchedule } from './types'
 import * as Simulation from './simulation'
+import { withinSchedule } from './utils'
 
 /**
  * Starts the Snowfall simulation.
@@ -15,6 +16,18 @@ export function start(config: UserConfig = {}) {
     Simulation.start(config)
   } catch (error) {
     console.error(error)
+  }
+}
+
+/**
+ * Starts the Snowfall simulation when today's date falls within the date range in the schedule.
+ *
+ * @param {UserSchedule} userSchedule - A schedule config, defining when the simulation should run from, and when the simulation should run to.
+ * @param {UserConfig} [config] - A config, possibly from the [Visual Config Editor](https://erikwatson.github.io/snowfall-editor/).
+ */
+export function schedule(userSchedule: UserSchedule, config: UserConfig = {}) {
+  if (withinSchedule(userSchedule)) {
+    start(config)
   }
 }
 
@@ -162,5 +175,5 @@ export function setGravityStrength(strength: number) {
   Simulation.setGravityStrength(strength)
 }
 
-// Exporting types for TSDoc
-export { UserConfig } from './types'
+// Exporting types for TypeDoc
+export { UserConfig, UserSchedule } from './types'

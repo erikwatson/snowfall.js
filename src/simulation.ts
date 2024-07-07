@@ -48,8 +48,6 @@ export function start(userConfig: UserConfig = {}) {
 export function update(dt: number) {
   const { attachTo, wave, gravity, wind } = config
 
-  // console.log(wind.angle, wind.strength)
-
   snowflakes.forEach(snowflake => {
     addWind(snowflake, wind.angle, wind.strength)
     addGravity(snowflake, gravity.angle, gravity.strength)
@@ -63,7 +61,6 @@ export function render(gfx: Graphics) {
   const { background, primary, secondary } = config
 
   gfx.clear(background)
-
   drawLayer(gfx, backgroundLayer, primary)
   drawLayer(gfx, foregroundLayer, secondary)
 }

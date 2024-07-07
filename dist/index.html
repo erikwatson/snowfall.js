@@ -11,7 +11,16 @@
         <div id="snowfall"></div>
         <script src="snowfall.js"></script>
         <script>
-            snowfall.start()
+            const schedule = {
+                from: { month: 7, day: 1 },
+                to: { month: 8, day: 1}
+            }
+
+            const config = {
+                fadeIn: true
+            }
+
+            snowfall.schedule(schedule, config)
         </script>
     </body>
 </html>

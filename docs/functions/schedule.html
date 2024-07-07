@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
-    <title>setPrimary | @erikwatson/snowfall</title>
+    <title>schedule | @erikwatson/snowfall</title>
     <meta name="description" content="Documentation for @erikwatson/snowfall" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../assets/style.css" />
@@ -59,22 +59,24 @@
         <div class="tsd-page-title">
           <ul class="tsd-breadcrumb">
             <li><a href="../modules.html">@erikwatson/snowfall</a></li>
-            <li><a href="setPrimary.html">setPrimary</a></li>
+            <li><a href="schedule.html">schedule</a></li>
           </ul>
-          <h1>Function setPrimary</h1>
+          <h1>Function schedule</h1>
         </div>
         <section class="tsd-panel">
           <ul class="tsd-signatures">
             <li class="tsd-signature tsd-anchor-link">
-              <a id="setPrimary" class="tsd-anchor"></a
-              ><span class="tsd-kind-call-signature">set<wbr />Primary</span
+              <a id="schedule" class="tsd-anchor"></a
+              ><span class="tsd-kind-call-signature">schedule</span
               ><span class="tsd-signature-symbol">(</span
-              ><span class="tsd-kind-parameter">colour</span
+              ><span class="tsd-kind-parameter">userSchedule</span>,
+              <span class="tsd-kind-parameter">config</span
+              ><span class="tsd-signature-symbol">?</span
               ><span class="tsd-signature-symbol">)</span
               ><span class="tsd-signature-symbol">: </span
               ><span class="tsd-signature-type">void</span
               ><a
-                href="#setPrimary"
+                href="#schedule"
                 aria-label="Permalink"
                 class="tsd-anchor-icon"
                 ><svg viewBox="0 0 24 24">
@@ -83,20 +85,47 @@
             </li>
             <li class="tsd-description">
               <div class="tsd-comment tsd-typography">
-                <p>Sets the colour of the Snowflakes in the foreground</p>
+                <p>
+                  Starts the Snowfall simulation when today's date falls within
+                  the date range in the schedule.
+                </p>
               </div>
               <div class="tsd-parameters">
                 <h4 class="tsd-parameters-title">Parameters</h4>
                 <ul class="tsd-parameter-list">
                   <li>
                     <span
-                      ><span class="tsd-kind-parameter">colour</span>:
-                      <span class="tsd-signature-type">string</span></span
+                      ><span class="tsd-kind-parameter">userSchedule</span>:
+                      <a
+                        href="../interfaces/UserSchedule.html"
+                        class="tsd-signature-type tsd-kind-interface"
+                        >UserSchedule</a
+                      ></span
                     >
                     <div class="tsd-comment tsd-typography">
                       <p>
-                        A Hex string representing the colour of the foreground
-                        snow.
+                        A schedule config, defining when the simulation should
+                        run from, and when the simulation should run to.
+                      </p>
+                    </div>
+                    <div class="tsd-comment tsd-typography"></div>
+                  </li>
+                  <li>
+                    <span
+                      ><code class="tsd-tag">Optional</code
+                      ><span class="tsd-kind-parameter">config</span>:
+                      <a
+                        href="../interfaces/UserConfig.html"
+                        class="tsd-signature-type tsd-kind-interface"
+                        >UserConfig</a
+                      ><span class="tsd-signature-symbol"> = {}</span></span
+                    >
+                    <div class="tsd-comment tsd-typography">
+                      <p>
+                        A config, possibly from the
+                        <a href="https://erikwatson.github.io/snowfall-editor/"
+                          >Visual Config Editor</a
+                        >.
                       </p>
                     </div>
                     <div class="tsd-comment tsd-typography"></div>
@@ -112,8 +141,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/erikwatson/snowfall.js/blob/d0ba757e2e29d59ad627e83ecb25ce26d872173f/src/snowfall.ts#L48"
-                      >snowfall.ts:48</a
+                      href="https://github.com/erikwatson/snowfall.js/blob/d0ba757e2e29d59ad627e83ecb25ce26d872173f/src/snowfall.ts#L28"
+                      >snowfall.ts:28</a
                     >
                   </li>
                 </ul>

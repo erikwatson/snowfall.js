@@ -83,6 +83,26 @@ export interface UserConfig extends Partial<Omit<Config, 'attachTo'>> {
   attachTo?: string
 }
 
+export interface UserSchedule {
+  /** The date from which to start the simulation */
+  from: {
+    /** The day of the month, starting at 1 */
+    day: number
+
+    /** The month of the year, starting at 1 */
+    month: number
+  }
+
+  /** The date on which to end the simulation */
+  to: {
+    /** The day of the month, starting at 1 */
+    day: number
+
+    /** The month of the year, starting at 1 */
+    month: number
+  }
+}
+
 export type Snowflake = {
   position: Vec2
   size: number
