@@ -48,6 +48,8 @@ export function start(userConfig: UserConfig = {}) {
 export function update(dt: number) {
   const { attachTo, wave, gravity, wind } = config
 
+  // console.log(wind.angle, wind.strength)
+
   snowflakes.forEach(snowflake => {
     addWind(snowflake, wind.angle, wind.strength)
     addGravity(snowflake, gravity.angle, gravity.strength)
@@ -154,37 +156,49 @@ export function togglePaused() {
 }
 
 export function setWind(degrees: number, strength: number) {
+  config.wind.angle = degrees
+  config.wind.strength = strength
+
   wind = vec2.fromDegrees(degrees)
   wind.multiplyScalar(strength)
 }
 
 export function setWindAngle(degrees: number) {
+  config.wind.angle = degrees
+
   const strength = wind.getLength()
   wind = vec2.fromDegrees(degrees)
   wind.multiplyScalar(strength)
 }
 
 export function setWindStrength(strength: number) {
-  const degrees = getDegreesFromVec2(wind)
+  config.wind.strength = strength
 
+  const degrees = getDegreesFromVec2(wind)
   wind = vec2.fromDegrees(degrees)
   wind.multiplyScalar(strength)
 }
 
 export function setGravity(degrees: number, strength: number) {
+  config.gravity.angle = degrees
+  config.gravity.strength = strength
+
   gravity = vec2.fromDegrees(degrees)
   gravity.multiplyScalar(strength)
 }
 
 export function setGravityAngle(degrees: number) {
+  config.gravity.angle = degrees
+
   const strength = gravity.getLength()
   gravity = vec2.fromDegrees(degrees)
   gravity.multiplyScalar(strength)
 }
 
 export function setGravityStrength(strength: number) {
-  const degrees = getDegreesFromVec2(gravity)
+  config.gravity.strength = strength
 
+  const degrees = getDegreesFromVec2(gravity)
   gravity = vec2.fromDegrees(degrees)
   gravity.multiplyScalar(strength)
 }
