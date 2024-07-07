@@ -13,6 +13,7 @@ displayed over the top. [Check out this example](http://erikwatson.me/?snow).
 - Simple, but beautiful.
 - Multiple layers give the illusion of depth.
 - Density of snowflakes looks correct even when the window is resized.
+- Scheduling, so you can start snowfall only between certain dates.
 
 ## Instructions - Package Manager
 
@@ -45,7 +46,17 @@ Then, at the bottom of your page body add the following.
 <script>
   // You can change the defaults by passing in a config object here
   // Use the Visual Config Editor to create one
+  // Start snowfall right now
   snowfall.start()
+
+  // Alternatively you can schedule snowfall to start between certain dates
+  // This can take a config from the Visual Config Editor as a second argument.
+  // e.g.
+  // Start snowfall only between the start of December and the end of February.
+  snowfall.schedule({
+    from: { month: 12, day: 1 },
+    to: { month: 28, day: 2 }
+  })
 </script>
 ```
 
