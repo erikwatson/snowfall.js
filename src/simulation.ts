@@ -49,8 +49,8 @@ export function update(dt: number) {
   const { attachTo, wave, gravity, wind } = config
 
   snowflakes.forEach(snowflake => {
-    addWind(snowflake, wind)
-    addGravity(snowflake, gravity)
+    addWind(snowflake, wind.angle, wind.strength)
+    addGravity(snowflake, gravity.angle, gravity.strength)
     addWaveMotion(snowflake, wave, dt)
     screenWrap(snowflake, attachTo.offsetWidth, attachTo.offsetHeight)
     fadeIn(snowflake)
@@ -135,10 +135,6 @@ export function setDensity(den: number) {
 export function setFade(val: boolean) {
   config.fadeIn = val
   restart()
-}
-
-export function setScroll(val: boolean) {
-  config.scroll = val
 }
 
 export function setAmplitude(num: number) {

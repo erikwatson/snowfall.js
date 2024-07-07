@@ -1,8 +1,8 @@
 import { vec2 } from '@erikwatson/bramble'
 import { lerp, random } from '../math'
-import { Gravity, Snowflake, Wind } from '../types'
+import { Snowflake } from '../types'
 
-export function addWind(snowflake: Snowflake, { angle, strength }: Wind) {
+export function addWind(snowflake: Snowflake, angle: number, strength: number) {
   const w = vec2.create(0, 0)
   const windVec = vec2.fromDegrees(angle)
   windVec.multiplyScalar(strength)
@@ -14,7 +14,11 @@ export function addWind(snowflake: Snowflake, { angle, strength }: Wind) {
   snowflake.position.add(w)
 }
 
-export function addGravity(snowflake: Snowflake, { angle, strength }: Gravity) {
+export function addGravity(
+  snowflake: Snowflake,
+  angle: number,
+  strength: number
+) {
   const g = vec2.create(0, 0)
   const gravityVec = vec2.fromDegrees(angle)
   gravityVec.multiplyScalar(strength)

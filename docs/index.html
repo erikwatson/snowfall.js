@@ -1,38 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="default" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>JSDoc: Home</title>
-
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="styles/prettify-tomorrow.css"
-    />
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <title>@erikwatson/snowfall</title>
+    <meta name="description" content="Documentation for @erikwatson/snowfall" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/highlight.css" />
+    <script defer src="assets/main.js"></script>
+    <script async src="assets/icons.js" id="tsd-icons-script"></script>
+    <script async src="assets/search.js" id="tsd-search-script"></script>
+    <script async src="assets/navigation.js" id="tsd-nav-script"></script>
   </head>
-
   <body>
-    <div id="main">
-      <h1 class="page-title">Home</h1>
-
-      <h3></h3>
-
-      <section>
-        <article>
-          <h1>snowfall.js</h1>
+    <script>
+      document.documentElement.dataset.theme =
+        localStorage.getItem('tsd-theme') || 'os'
+      document.body.style.display = 'none'
+      setTimeout(
+        () =>
+          app ? app.showPage() : document.body.style.removeProperty('display'),
+        500
+      )
+    </script>
+    <header class="tsd-page-toolbar">
+      <div class="tsd-toolbar-contents container">
+        <div class="table-cell" id="tsd-search" data-base=".">
+          <div class="field">
+            <label
+              for="tsd-search-field"
+              class="tsd-widget tsd-toolbar-icon search no-caption"
+              ><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <use href="assets/icons.svg#icon-search"></use></svg></label
+            ><input type="text" id="tsd-search-field" aria-label="Search" />
+          </div>
+          <div class="field"><div id="tsd-toolbar-links"></div></div>
+          <ul class="results">
+            <li class="state loading">Preparing search index...</li>
+            <li class="state failure">The search index is not available</li>
+          </ul>
+          <a href="index.html" class="title">@erikwatson/snowfall</a>
+        </div>
+        <div class="table-cell" id="tsd-widgets">
+          <a
+            href="#"
+            class="tsd-widget tsd-toolbar-icon menu no-caption"
+            data-toggle="menu"
+            aria-label="Menu"
+            ><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <use href="assets/icons.svg#icon-menu"></use></svg
+          ></a>
+        </div>
+      </div>
+    </header>
+    <div class="container container-main">
+      <div class="col-content">
+        <div class="tsd-page-title"><h2>@erikwatson/snowfall</h2></div>
+        <div class="tsd-panel tsd-typography">
+          <a id="md:snowfalljs" class="tsd-anchor"></a>
+          <h1 class="tsd-anchor-link">
+            snowfall.js<a
+              href="#md:snowfalljs"
+              aria-label="Permalink"
+              class="tsd-anchor-icon"
+              ><svg viewBox="0 0 24 24">
+                <use href="assets/icons.svg#icon-anchor"></use></svg
+            ></a>
+          </h1>
           <p>The perfect snow effect for your Winter themed website!</p>
           <p>
             Suggested use: attach it as a fixed background to your page with the
             content displayed over the top.
             <a href="http://erikwatson.me/?snow">Check out this example</a>.
           </p>
-          <h2>Features</h2>
+          <a id="md:features" class="tsd-anchor"></a>
+          <h2 class="tsd-anchor-link">
+            Features<a
+              href="#md:features"
+              aria-label="Permalink"
+              class="tsd-anchor-icon"
+              ><svg viewBox="0 0 24 24">
+                <use href="assets/icons.svg#icon-anchor"></use></svg
+            ></a>
+          </h2>
           <ul>
             <li>
               <a href="https://erikwatson.github.io/snowfall-editor/"
@@ -51,65 +102,88 @@
               Density of snowflakes looks correct even when the window is
               resized.
             </li>
-            <li>Small, with no dependencies.</li>
           </ul>
-          <h2>Instructions - Package Manager</h2>
-          <h3>Install it</h3>
-          <pre
-            class="prettyprint source lang-sh"
-          ><code># if you're using yarn install with
-yarn add @erikwatson/snowfall
+          <a id="md:instructions---package-manager" class="tsd-anchor"></a>
+          <h2 class="tsd-anchor-link">
+            Instructions - Package Manager<a
+              href="#md:instructions---package-manager"
+              aria-label="Permalink"
+              class="tsd-anchor-icon"
+              ><svg viewBox="0 0 24 24">
+                <use href="assets/icons.svg#icon-anchor"></use></svg
+            ></a>
+          </h2>
+          <a id="md:install-it" class="tsd-anchor"></a>
+          <h3 class="tsd-anchor-link">
+            Install it<a
+              href="#md:install-it"
+              aria-label="Permalink"
+              class="tsd-anchor-icon"
+              ><svg viewBox="0 0 24 24">
+                <use href="assets/icons.svg#icon-anchor"></use></svg
+            ></a>
+          </h3>
+          <pre><code class="sh"><span class="hl-0"># if you&#39;re using yarn install with</span><br/><span class="hl-1">yarn</span><span class="hl-2"> </span><span class="hl-3">add</span><span class="hl-2"> </span><span class="hl-3">@erikwatson/snowfall</span><br/><br/><span class="hl-0"># if you&#39;re using npm install with</span><br/><span class="hl-1">npm</span><span class="hl-2"> </span><span class="hl-3">install</span><span class="hl-2"> </span><span class="hl-3">@erikwatson/snowfall</span>
+</code><button type="button">Copy</button></pre>
 
-# if you're using npm install with
-npm install @erikwatson/snowfall
-</code></pre>
-          <h3>Use it</h3>
+          <a id="md:use-it" class="tsd-anchor"></a>
+          <h3 class="tsd-anchor-link">
+            Use it<a
+              href="#md:use-it"
+              aria-label="Permalink"
+              class="tsd-anchor-icon"
+              ><svg viewBox="0 0 24 24">
+                <use href="assets/icons.svg#icon-anchor"></use></svg
+            ></a>
+          </h3>
           <p>
-            Add a div with an ID of <code>snow-container</code> to your page.
-            You will need to set the width and height of this yourself using
-            CSS.
+            Add a div with an ID of <code>snowfall</code> to your page. You will
+            need to set the width and height of this yourself using CSS.
           </p>
-          <pre
-            class="prettyprint source lang-html"
-          ><code>&lt;div id=&quot;snow-container&quot;>&lt;/div>
-</code></pre>
+          <pre><code class="html"><span class="hl-4">&lt;</span><span class="hl-5">div</span><span class="hl-2"> </span><span class="hl-6">id</span><span class="hl-2">=</span><span class="hl-7">&quot;snowfall&quot;</span><span class="hl-4">&gt;&lt;/</span><span class="hl-5">div</span><span class="hl-4">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
           <p>Then, at the bottom of your page body add the following.</p>
-          <pre class="prettyprint source lang-html"><code>&lt;script
-  type=&quot;text/javascript&quot;
-  src=&quot;./node_modules/@erikwatson/snowfall/dist/snowfall.min.js&quot;
->&lt;/script>
-&lt;script>
-  // You can change the defaults by passing in a config object here
-  // Use the Visual Config Editor to create one
-  snowfall.start()
-&lt;/script>
-</code></pre>
+          <pre><code class="html"><span class="hl-4">&lt;</span><span class="hl-5">script</span><br/><span class="hl-8">  </span><span class="hl-6">type</span><span class="hl-8">=</span><span class="hl-7">&quot;text/javascript&quot;</span><br/><span class="hl-8">  </span><span class="hl-6">src</span><span class="hl-8">=</span><span class="hl-7">&quot;./node_modules/@erikwatson/snowfall/dist/snowfall.min.js&quot;</span><br/><span class="hl-4">&gt;&lt;/</span><span class="hl-5">script</span><span class="hl-4">&gt;</span><br/><span class="hl-4">&lt;</span><span class="hl-5">script</span><span class="hl-4">&gt;</span><br/><span class="hl-8">  </span><span class="hl-0">// You can change the defaults by passing in a config object here</span><br/><span class="hl-8">  </span><span class="hl-0">// Use the Visual Config Editor to create one</span><br/><span class="hl-8">  </span><span class="hl-9">snowfall</span><span class="hl-8">.</span><span class="hl-1">start</span><span class="hl-8">()</span><br/><span class="hl-4">&lt;/</span><span class="hl-5">script</span><span class="hl-4">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
           <p>
             <strong>WARNING:</strong> You should symlink to the .js file rather
             than have a publicly accessible node_modules folder. It is this way
             here just to keep example simple.
           </p>
-          <h2>Instructions - CDN</h2>
+          <a id="md:instructions---cdn" class="tsd-anchor"></a>
+          <h2 class="tsd-anchor-link">
+            Instructions - CDN<a
+              href="#md:instructions---cdn"
+              aria-label="Permalink"
+              class="tsd-anchor-icon"
+              ><svg viewBox="0 0 24 24">
+                <use href="assets/icons.svg#icon-anchor"></use></svg
+            ></a>
+          </h2>
           <p>
             First, add a div with an ID of <code>snow-container</code> to your
             page. You will need to set the width and height of this yourself
             using CSS.
           </p>
-          <pre
-            class="prettyprint source lang-html"
-          ><code>&lt;div id=&quot;snow-container&quot;>&lt;/div>
-</code></pre>
+          <pre><code class="html"><span class="hl-4">&lt;</span><span class="hl-5">div</span><span class="hl-2"> </span><span class="hl-6">id</span><span class="hl-2">=</span><span class="hl-7">&quot;snowfall&quot;</span><span class="hl-4">&gt;&lt;/</span><span class="hl-5">div</span><span class="hl-4">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
           <p>Then, at the bottom of your page body add the following.</p>
-          <pre
-            class="prettyprint source lang-html"
-          ><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/@erikwatson/snowfall/dist/snowfall.min.js&quot;>&lt;/script>
-&lt;script>
-  // You can change the defaults by passing in a config object here
-  // Use the Visual Config Editor to create one
-  snowfall.start()
-&lt;/script>
-</code></pre>
-          <h3>Specify Version</h3>
+          <pre><code class="html"><span class="hl-4">&lt;</span><span class="hl-5">script</span><span class="hl-8"> </span><span class="hl-6">src</span><span class="hl-8">=</span><span class="hl-7">&quot;https://cdn.jsdelivr.net/npm/@erikwatson/snowfall/dist/snowfall.min.js&quot;</span><span class="hl-4">&gt;&lt;/</span><span class="hl-5">script</span><span class="hl-4">&gt;</span><br/><span class="hl-4">&lt;</span><span class="hl-5">script</span><span class="hl-4">&gt;</span><br/><span class="hl-8">  </span><span class="hl-0">// You can change the defaults by passing in a config object here</span><br/><span class="hl-8">  </span><span class="hl-0">// Use the Visual Config Editor to create one</span><br/><span class="hl-8">  </span><span class="hl-9">snowfall</span><span class="hl-8">.</span><span class="hl-1">start</span><span class="hl-8">()</span><br/><span class="hl-4">&lt;/</span><span class="hl-5">script</span><span class="hl-4">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+          <a id="md:specify-version" class="tsd-anchor"></a>
+          <h3 class="tsd-anchor-link">
+            Specify Version<a
+              href="#md:specify-version"
+              aria-label="Permalink"
+              class="tsd-anchor-icon"
+              ><svg viewBox="0 0 24 24">
+                <use href="assets/icons.svg#icon-anchor"></use></svg
+            ></a>
+          </h3>
           <p>
             It is not recommended to always use the latest version, especially
             in production. You can change the CDN url to specify control over
@@ -118,48 +192,249 @@ npm install @erikwatson/snowfall
           <ul>
             <li>
               <strong>latest release</strong>:
-              https://cdn.jsdelivr.net/npm/@erikwatson/snowfall/dist/snowfall.min.js
+              <a
+                href="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall/dist/snowfall.min.js"
+                >https://cdn.jsdelivr.net/npm/@erikwatson/snowfall/dist/snowfall.min.js</a
+              >
             </li>
             <li>
               <strong>major release</strong>:
-              https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3/dist/snowfall.min.js
+              <a
+                href="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3/dist/snowfall.min.js"
+                >https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3/dist/snowfall.min.js</a
+              >
             </li>
             <li>
               <strong>minor release</strong>:
-              https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3.1/dist/snowfall.min.js
+              <a
+                href="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3.1/dist/snowfall.min.js"
+                >https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3.1/dist/snowfall.min.js</a
+              >
             </li>
             <li>
               <strong>patch release</strong>:
-              https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3.0.1/dist/snowfall.min.js
+              <a
+                href="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3.0.1/dist/snowfall.min.js"
+                >https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3.0.1/dist/snowfall.min.js</a
+              >
             </li>
           </ul>
-          <h2>Author</h2>
+          <a id="md:author" class="tsd-anchor"></a>
+          <h2 class="tsd-anchor-link">
+            Author<a
+              href="#md:author"
+              aria-label="Permalink"
+              class="tsd-anchor-icon"
+              ><svg viewBox="0 0 24 24">
+                <use href="assets/icons.svg#icon-anchor"></use></svg
+            ></a>
+          </h2>
           <ul>
             <li><a href="http://erikwatson.me">Erik Watson</a></li>
           </ul>
-        </article>
-      </section>
+        </div>
+      </div>
+      <div class="col-sidebar">
+        <div class="page-menu">
+          <div class="tsd-navigation settings">
+            <details class="tsd-accordion">
+              <summary class="tsd-accordion-summary">
+                <h3>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <use href="assets/icons.svg#icon-chevronDown"></use></svg
+                  >Settings
+                </h3>
+              </summary>
+              <div class="tsd-accordion-details">
+                <div class="tsd-filter-visibility">
+                  <span class="settings-label">Member Visibility</span>
+                  <ul id="tsd-filter-options">
+                    <li class="tsd-filter-item">
+                      <label class="tsd-filter-input"
+                        ><input
+                          type="checkbox"
+                          id="tsd-filter-protected"
+                          name="protected"
+                        /><svg
+                          width="32"
+                          height="32"
+                          viewBox="0 0 32 32"
+                          aria-hidden="true"
+                        >
+                          <rect
+                            class="tsd-checkbox-background"
+                            width="30"
+                            height="30"
+                            x="1"
+                            y="1"
+                            rx="6"
+                            fill="none"
+                          ></rect>
+                          <path
+                            class="tsd-checkbox-checkmark"
+                            d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25"
+                            stroke="none"
+                            stroke-width="3.5"
+                            stroke-linejoin="round"
+                            fill="none"
+                          ></path></svg
+                        ><span>Protected</span></label
+                      >
+                    </li>
+                    <li class="tsd-filter-item">
+                      <label class="tsd-filter-input"
+                        ><input
+                          type="checkbox"
+                          id="tsd-filter-inherited"
+                          name="inherited"
+                          checked
+                        /><svg
+                          width="32"
+                          height="32"
+                          viewBox="0 0 32 32"
+                          aria-hidden="true"
+                        >
+                          <rect
+                            class="tsd-checkbox-background"
+                            width="30"
+                            height="30"
+                            x="1"
+                            y="1"
+                            rx="6"
+                            fill="none"
+                          ></rect>
+                          <path
+                            class="tsd-checkbox-checkmark"
+                            d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25"
+                            stroke="none"
+                            stroke-width="3.5"
+                            stroke-linejoin="round"
+                            fill="none"
+                          ></path></svg
+                        ><span>Inherited</span></label
+                      >
+                    </li>
+                    <li class="tsd-filter-item">
+                      <label class="tsd-filter-input"
+                        ><input
+                          type="checkbox"
+                          id="tsd-filter-external"
+                          name="external"
+                        /><svg
+                          width="32"
+                          height="32"
+                          viewBox="0 0 32 32"
+                          aria-hidden="true"
+                        >
+                          <rect
+                            class="tsd-checkbox-background"
+                            width="30"
+                            height="30"
+                            x="1"
+                            y="1"
+                            rx="6"
+                            fill="none"
+                          ></rect>
+                          <path
+                            class="tsd-checkbox-checkmark"
+                            d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25"
+                            stroke="none"
+                            stroke-width="3.5"
+                            stroke-linejoin="round"
+                            fill="none"
+                          ></path></svg
+                        ><span>External</span></label
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="tsd-theme-toggle">
+                  <label class="settings-label" for="tsd-theme">Theme</label
+                  ><select id="tsd-theme">
+                    <option value="os">OS</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                  </select>
+                </div>
+              </div>
+            </details>
+          </div>
+          <details open class="tsd-accordion tsd-page-navigation">
+            <summary class="tsd-accordion-summary">
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <use href="assets/icons.svg#icon-chevronDown"></use></svg
+                >On This Page
+              </h3>
+            </summary>
+            <div class="tsd-accordion-details">
+              <a href="#md:snowfalljs"><span>snowfall.js</span></a>
+              <ul>
+                <li>
+                  <a href="#md:features"><span>Features</span></a>
+                </li>
+                <li>
+                  <a href="#md:instructions---package-manager"
+                    ><span
+                      >Instructions -<wbr /> <wbr />Package <wbr />Manager</span
+                    ></a
+                  >
+                </li>
+                <li>
+                  <ul>
+                    <li>
+                      <a href="#md:install-it"><span>Install it</span></a>
+                    </li>
+                    <li>
+                      <a href="#md:use-it"><span>Use it</span></a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#md:instructions---cdn"
+                    ><span>Instructions -<wbr /> CDN</span></a
+                  >
+                </li>
+                <li>
+                  <ul>
+                    <li>
+                      <a href="#md:specify-version"
+                        ><span>Specify <wbr />Version</span></a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#md:author"><span>Author</span></a>
+                </li>
+              </ul>
+            </div>
+          </details>
+        </div>
+        <div class="site-menu">
+          <nav class="tsd-navigation">
+            <a href="modules.html" class="current"
+              ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                <use href="assets/icons.svg#icon-1"></use></svg
+              ><span>@erikwatson/snowfall</span></a
+            >
+            <ul
+              class="tsd-small-nested-navigation"
+              id="tsd-nav-container"
+              data-base="."
+            >
+              <li>Loading...</li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
-
-    <nav>
-      <h2><a href="index.html">Home</a></h2>
-      <h3>Modules</h3>
-      <ul>
-        <li><a href="module-snowfall.html">snowfall</a></li>
-      </ul>
-    </nav>
-
-    <br class="clear" />
-
     <footer>
-      Documentation generated by
-      <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Wed Mar 16
-      2022 17:13:20 GMT+0000 (Greenwich Mean Time)
+      <p class="tsd-generator">
+        Generated using
+        <a href="https://typedoc.org/" target="_blank">TypeDoc</a>
+      </p>
     </footer>
-
-    <script>
-      prettyPrint()
-    </script>
-    <script src="scripts/linenumber.js"></script>
+    <div class="overlay"></div>
   </body>
 </html>

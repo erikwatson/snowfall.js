@@ -16,7 +16,7 @@
     "build": "pnpm exec webpack --config ./webpack.config.js",
     "build:production": "pnpm exec webpack --config ./webpack.config.js",
     "build:all": "pnpm run build && npm run build:production",
-    "build:docs": "pnpm exec jsdoc src/snowfall.js -d ./docs README.md",
+    "build:docs": "pnpm exec typedoc --out docs src/snowfall.ts --readme README.md",
     "watch": "pnpm exec webpack --config ./webpack.config.js --watch",
     "pub": "pnpm run build:all && npm publish",
     "prepare": "husky"
@@ -30,6 +30,7 @@
     "prettier": "^3.2.5",
     "pretty-quick": "^4.0.0",
     "ts-loader": "^9.5.1",
+    "typedoc": "^0.26.3",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",

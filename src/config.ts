@@ -7,7 +7,6 @@ const DEFAULT_PRIMARY_COLOR = '#8d90b7'
 const DEFAULT_SECONDARY_COLOR = '#ffffff'
 const DEFAULT_DENSITY = 200
 const DEFAULT_FADE_IN = false
-const DEFAULT_SCROLL = false
 
 const DEFAULT_AMPLITUDE = 1.0
 const DEFAULT_FREQUENCY = 0.02
@@ -37,16 +36,17 @@ const DEFAULT_CONFIG: Config = {
   secondary: DEFAULT_SECONDARY_COLOR,
   density: DEFAULT_DENSITY,
   fadeIn: DEFAULT_FADE_IN,
-  scroll: DEFAULT_SCROLL,
   wave: DEFAULT_WAVE,
   gravity: DEFAULT_GRAVITY,
   wind: DEFAULT_WIND
 }
 
 export function merge(config: UserConfig): Config {
+  const { attachTo, ...configWithoutAttachTo } = config
+
   const result: Config = {
     ...DEFAULT_CONFIG,
-    ...config,
+    ...configWithoutAttachTo,
     wave: { ...DEFAULT_WAVE, ...config.wave },
     gravity: { ...DEFAULT_GRAVITY, ...config.gravity },
     wind: { ...DEFAULT_WIND, ...config.wind }
