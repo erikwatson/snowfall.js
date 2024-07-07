@@ -1,3 +1,5 @@
+import { Vec2 } from '@erikwatson/bramble'
+
 export function lerp(start: number, end: number, alpha: number) {
   return start * (1 - alpha) + end * alpha
 }
@@ -22,4 +24,11 @@ export function random(from?: number, to?: number) {
 
   // in practice, this return will never be reached
   return 0
+}
+
+export function getDegreesFromVec2(vec: Vec2) {
+  const radians = Math.atan2(vec.x, vec.y)
+  const degrees = radians * (180 / Math.PI)
+
+  return degrees
 }

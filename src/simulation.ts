@@ -1,5 +1,5 @@
 import { Graphics, Vec2, game, vec2 } from '@erikwatson/bramble'
-import { random } from './math'
+import { getDegreesFromVec2, random } from './math'
 import {
   addWind,
   addGravity,
@@ -158,7 +158,33 @@ export function setWind(degrees: number, strength: number) {
   wind.multiplyScalar(strength)
 }
 
+export function setWindAngle(degrees: number) {
+  const strength = wind.getLength()
+  wind = vec2.fromDegrees(degrees)
+  wind.multiplyScalar(strength)
+}
+
+export function setWindStrength(strength: number) {
+  const degrees = getDegreesFromVec2(wind)
+
+  wind = vec2.fromDegrees(degrees)
+  wind.multiplyScalar(strength)
+}
+
 export function setGravity(degrees: number, strength: number) {
+  gravity = vec2.fromDegrees(degrees)
+  gravity.multiplyScalar(strength)
+}
+
+export function setGravityAngle(degrees: number) {
+  const strength = gravity.getLength()
+  gravity = vec2.fromDegrees(degrees)
+  gravity.multiplyScalar(strength)
+}
+
+export function setGravityStrength(strength: number) {
+  const degrees = getDegreesFromVec2(gravity)
+
   gravity = vec2.fromDegrees(degrees)
   gravity.multiplyScalar(strength)
 }

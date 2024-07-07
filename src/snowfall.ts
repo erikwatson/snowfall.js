@@ -109,7 +109,7 @@ export function togglePaused() {
 /**
  * Set the angle and strength of the wind in the simulation.
  *
- * @param {number} angle    - The angle of the wind, in degrees
+ * @param {number} angle - The angle of the wind, in degrees
  * @param {number} strength - The strength of the wind
  */
 export function setWind(angle: number, strength: number) {
@@ -117,13 +117,49 @@ export function setWind(angle: number, strength: number) {
 }
 
 /**
+ * Set the angle of the wind in the simulation.
+ *
+ * @param {number} angle - The angle of the wind, in degrees
+ */
+export function setWindAngle(angle: number) {
+  Simulation.setWindAngle(angle)
+}
+
+/**
+ * Set the strength of the wind in the simulation.
+ *
+ * @param {number} strength - The strength of the wind
+ */
+export function setWindStrength(strength: number) {
+  Simulation.setWindStrength(strength)
+}
+
+/**
  * Set the angle and strength of gravity in the simulation.
  *
- * @param {number} angle    - The angle of gravity, in degrees
+ * @param {number} angle - The angle of gravity, in degrees
  * @param {number} strength - The strength of the gravity
  */
 export function setGravity(angle: number, strength: number) {
   Simulation.setGravity(angle, strength)
+}
+
+/**
+ * Set the angle of gravity in the simulation.
+ *
+ * @param {number} angle - The angle of gravity, in degrees
+ */
+export function setGravityAngle(angle: number) {
+  Simulation.setGravityAngle(angle)
+}
+
+/**
+ * Set the strength of gravity in the simulation.
+ *
+ * @param {number} strength - The strength of the gravity
+ */
+export function setGravityStrength(strength: number) {
+  Simulation.setGravityStrength(strength)
 }
 
 // Exporting types for TSDoc
