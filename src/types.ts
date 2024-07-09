@@ -112,3 +112,22 @@ export type Snowflake = {
   frequency: number
   random: number
 }
+
+export type Simulation = {
+  start: (config: UserConfig) => void
+  setAmplitude: (num: number) => void
+  setBackground: (col: string) => void
+  setDensity: (den: number) => void
+  setFade: (val: boolean) => void
+  setFrequency: (freq: number) => void
+  setGravity: (degrees: number, strength: number) => void
+  setGravityAngle: (degrees: number) => void
+  setGravityStrength: (strength: number) => void
+  setPaused: (pause: boolean) => void
+  setPrimary: (col: string) => void
+  setSecondary: (col: string) => void
+  setWind: (degrees: number, strength: number) => void
+  setWindAngle: (degrees: number) => void
+  setWindStrength: (strength: number) => void
+  togglePaused: () => void
+}

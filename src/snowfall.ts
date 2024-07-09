@@ -2,9 +2,11 @@
  * @module snowfall
  */
 
-import { UserConfig, UserSchedule } from './types'
-import * as Simulation from './simulation'
+import { UserConfig, UserSchedule, Simulation } from './types'
+import * as Sim from './simulation'
 import { withinSchedule } from './utils'
+
+let simulation: Simulation
 
 /**
  * Starts the Snowfall simulation.
@@ -12,8 +14,10 @@ import { withinSchedule } from './utils'
  * @param {UserConfig} [config] - A config, possibly from the [Visual Config Editor](https://erikwatson.github.io/snowfall-editor/).
  */
 export function start(config: UserConfig = {}) {
+  simulation = Sim.create()
+
   try {
-    Simulation.start(config)
+    simulation.start(config)
   } catch (error) {
     console.error(error)
   }
@@ -37,7 +41,7 @@ export function schedule(userSchedule: UserSchedule, config: UserConfig = {}) {
  * @param {string} colour - The background colour of the Canvas
  */
 export function setBackground(colour: string) {
-  Simulation.setBackground(colour)
+  simulation.setBackground(colour)
 }
 
 /**
@@ -46,7 +50,7 @@ export function setBackground(colour: string) {
  * @param {string} colour - A Hex string representing the colour of the foreground snow.
  */
 export function setPrimary(colour: string) {
-  Simulation.setPrimary(colour)
+  simulation.setPrimary(colour)
 }
 
 /**
@@ -55,7 +59,7 @@ export function setPrimary(colour: string) {
  * @param {string} colour - A Hex string representing the colour of the background snow.
  */
 export function setSecondary(colour: string) {
-  Simulation.setSecondary(colour)
+  simulation.setSecondary(colour)
 }
 
 /**
@@ -69,7 +73,7 @@ export function setSecondary(colour: string) {
  * @param {number} density - A number representing the density of snowflakes.
  */
 export function setDensity(density: number) {
-  Simulation.setDensity(density)
+  simulation.setDensity(density)
 }
 
 /**
@@ -81,7 +85,7 @@ export function setDensity(density: number) {
  * @param {Boolean} value - Yes or no?
  */
 export function setFade(value: boolean) {
-  Simulation.setFade(value)
+  simulation.setFade(value)
 }
 
 /**
@@ -90,7 +94,7 @@ export function setFade(value: boolean) {
  * @param {number} amplitude - The Amplitude to set
  */
 export function setAmplitude(amplitude: number) {
-  Simulation.setAmplitude(amplitude)
+  simulation.setAmplitude(amplitude)
 }
 
 /**
@@ -99,7 +103,7 @@ export function setAmplitude(amplitude: number) {
  * @param {number} frequency - The frequency to set
  */
 export function setFrequency(frequency: number) {
-  Simulation.setFrequency(frequency)
+  simulation.setFrequency(frequency)
 }
 
 /**
@@ -109,14 +113,14 @@ export function setFrequency(frequency: number) {
  * @param {boolean} pause - If the simulation should be halted or not
  */
 export function setPaused(pause: boolean) {
-  Simulation.setPaused(pause)
+  simulation.setPaused(pause)
 }
 
 /**
  * Pause/unpause the snowfall update loop
  */
 export function togglePaused() {
-  Simulation.togglePaused()
+  simulation.togglePaused()
 }
 
 /**
@@ -126,7 +130,7 @@ export function togglePaused() {
  * @param {number} strength - The strength of the wind
  */
 export function setWind(angle: number, strength: number) {
-  Simulation.setWind(angle, strength)
+  simulation.setWind(angle, strength)
 }
 
 /**
@@ -135,7 +139,7 @@ export function setWind(angle: number, strength: number) {
  * @param {number} angle - The angle of the wind, in degrees
  */
 export function setWindAngle(angle: number) {
-  Simulation.setWindAngle(angle)
+  simulation.setWindAngle(angle)
 }
 
 /**
@@ -144,7 +148,7 @@ export function setWindAngle(angle: number) {
  * @param {number} strength - The strength of the wind
  */
 export function setWindStrength(strength: number) {
-  Simulation.setWindStrength(strength)
+  simulation.setWindStrength(strength)
 }
 
 /**
@@ -154,7 +158,7 @@ export function setWindStrength(strength: number) {
  * @param {number} strength - The strength of the gravity
  */
 export function setGravity(angle: number, strength: number) {
-  Simulation.setGravity(angle, strength)
+  simulation.setGravity(angle, strength)
 }
 
 /**
@@ -163,7 +167,7 @@ export function setGravity(angle: number, strength: number) {
  * @param {number} angle - The angle of gravity, in degrees
  */
 export function setGravityAngle(angle: number) {
-  Simulation.setGravityAngle(angle)
+  simulation.setGravityAngle(angle)
 }
 
 /**
@@ -172,7 +176,7 @@ export function setGravityAngle(angle: number) {
  * @param {number} strength - The strength of the gravity
  */
 export function setGravityStrength(strength: number) {
-  Simulation.setGravityStrength(strength)
+  simulation.setGravityStrength(strength)
 }
 
 // Exporting types for TypeDoc

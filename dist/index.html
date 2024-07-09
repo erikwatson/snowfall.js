@@ -1,14 +1,19 @@
 <html>
     <head>
         <style>
-            #snowfall {
-                width: 800px;
-                height: 800px;
+            div {
+                width: 250px;
+                height: 250px;
+                display: inline-block;
+                padding: 10px;
             }
         </style>
     </head>
     <body>
         <div id="snowfall"></div>
+        <div id="not-snowfall"></div>
+        <div id="not-snowfall-2"></div>
+        <div id="not-snowfall-3"></div>
         <script src="snowfall.js"></script>
         <script>
             const schedule = {
@@ -21,6 +26,9 @@
             }
 
             snowfall.schedule(schedule, config)
+            snowfall.start({ attachTo: 'not-snowfall' })
+            snowfall.start({ attachTo: 'not-snowfall-2' })
+            snowfall.start({ attachTo: 'not-snowfall-3' })
         </script>
     </body>
 </html>
