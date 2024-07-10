@@ -58,6 +58,13 @@ export type Config = {
      * @default 0.7
      */
     strength: number
+
+    /**
+     * Should gravity respect device orientation?
+     * This takes precedence over the angle settings.
+     * @default false
+     */
+    respectOrientation: boolean
   }
 
   wind: {
