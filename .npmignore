@@ -1,16 +1,20 @@
-docs/
-src/
-.babelrc
-.huskyrc.js
-.prettierignore
-.prettierrc.js
-webpack.common.js
-webpack.development.js
-webpack.production.js
-yarn-error.log
-yarn.lock
+# folders
+.vscode/
+.husky/
 dist/snowfall.js.map
 dist/snowfall.js
 docs/
+src/
+
+# files
+.babelrc
+.nvmrc
+.prettierignore
+.prettierrc.js
+pnpm-lock.yaml
+tsconfig.json
+webpack.config.js
+
+# misc 
 *.map
 *.swp
