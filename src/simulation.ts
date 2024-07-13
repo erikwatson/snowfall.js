@@ -33,10 +33,6 @@ export function create(): Simulation {
       return
     }
 
-    if (config.gravity.respectOrientation) {
-      window.addEventListener('deviceorientation', handleOrientation)
-    }
-
     setWind(wind.angle, wind.strength)
     setGravity(gravity.angle, gravity.strength)
     makeSnowflakes(requiredSnowflakes())
@@ -67,8 +63,8 @@ export function create(): Simulation {
 
     gfx.clear(background)
 
-    drawLayer(gfx, backgroundLayer, primary, config)
-    drawLayer(gfx, foregroundLayer, secondary, config)
+    drawLayer(gfx, backgroundLayer, primary)
+    drawLayer(gfx, foregroundLayer, secondary)
   }
 
   function onResize() {
@@ -77,11 +73,6 @@ export function create(): Simulation {
       config.attachTo.offsetHeight
     )
     makeSnowflakes(requiredSnowflakes())
-  }
-
-  function handleOrientation(event: DeviceOrientationEvent) {
-    const beta = event.beta || 0
-    setGravity(beta, config.gravity.strength)
   }
 
   function makeSnowflakes(num: number) {

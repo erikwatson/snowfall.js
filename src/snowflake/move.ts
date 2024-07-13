@@ -1,4 +1,4 @@
-import { vec2 } from '@erikwatson/bramble'
+import { Vec2, vec2 } from '@erikwatson/bramble'
 import { lerp, random } from '../math'
 import { Snowflake } from '../types'
 
@@ -30,12 +30,40 @@ export function addGravity(
   snowflake.position.add(g)
 }
 
-export function addWaveMotion(snowflake: Snowflake, wave: any, dt: number) {
+export function addWaveMotion(
+  snowflake: Snowflake,
+  gravity: { angle: number; strength: number },
+  wave: { frequency: number; amplitude: number },
+  dt: number
+) {
+  // Calculate the wave motion perpendicular to the gravity vector
   const phase = snowflake.noise
   const xPos = wave.amplitude * Math.sin(wave.frequency * dt + phase)
 
+  // Create the gravity vector
+  const g = vec2.create(1, 0) // Assuming gravity direction starts along the x-axis
+  rotate(g, gravity.angle)
+
+  // Rotate the sine wave vector by the perpendicular vector's angle
   let sine = vec2.create(xPos, 0)
+  rotate(sine, gravity.angle + 90) // Rotate by gravity angle + 90 degrees
+
   snowflake.position.add(sine)
+}
+
+// TODO: Move this to Vec2 in Bramble
+function rotate(vec: Vec2, angleDegrees: number): Vec2 {
+  const angleRadians = angleDegrees * (Math.PI / 180)
+  const cos = Math.cos(angleRadians)
+  const sin = Math.sin(angleRadians)
+
+  const newX = vec.x * cos - vec.y * sin
+  const newY = vec.x * sin + vec.y * cos
+
+  vec.x = newX
+  vec.y = newY
+
+  return vec
 }
 
 export function fadeIn(snowflake: Snowflake) {
