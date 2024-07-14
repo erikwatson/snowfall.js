@@ -1,34 +1,34 @@
 <html>
     <head>
         <style>
-            div {
-                width: 250px;
-                height: 250px;
+            #snowfall {
+                width: 768px;
+                height: 432px;
                 display: inline-block;
-                padding: 10px;
             }
         </style>
     </head>
     <body>
         <div id="snowfall"></div>
-        <div id="not-snowfall"></div>
-        <div id="not-snowfall-2"></div>
-        <div id="not-snowfall-3"></div>
         <script src="snowfall.js"></script>
         <script>
-            const schedule = {
-                from: { month: 7, day: 1 },
-                to: { month: 8, day: 1}
-            }
+            snowfall.start({
+                wind: {
+                    gusts: true,
 
-            const config = {
-                fadeIn: true
-            }
+                    in: {
+                        additionalStrength: { min: 1, max: 3 },
+                        duration: { min: 1000, max: 3000 },
+                        delay: { min: 1000, max: 10000 }
+                    },
 
-            snowfall.schedule(schedule, config)
-            snowfall.start({ attachTo: 'not-snowfall' })
-            snowfall.start({ attachTo: 'not-snowfall-2' })
-            snowfall.start({ attachTo: 'not-snowfall-3' })
+                    out: {
+                        duration: { min: 5000, max: 10000 },
+                        delay: { min: 1000, max: 10000 },
+                        changeChange: 0.75
+                    },
+                }   
+            })
         </script>
     </body>
 </html>
