@@ -10,6 +10,8 @@ import {
 } from './snowflake'
 import { Config, Simulation, Snowflake, UserConfig } from './types'
 import { merge } from './config'
+import { requiredSnowflakes } from './utils'
+import * as TWEEN from '@tweenjs/tween.js'
 
 export function create(): Simulation {
   const simulation = game.create()
@@ -21,10 +23,14 @@ export function create(): Simulation {
   let gravity: Vec2
   let wind: Vec2
   let config: Config
+  let fadeWindIn: TWEEN.Tween<Config>
+  let fadeWindOut: TWEEN.Tween<Config>
 
   function start(userConfig: UserConfig = {}) {
     config = merge(userConfig)
     const { wind, gravity, attachTo } = config
+
+    const originalWindStrength = wind.strength
 
     if (!attachTo) {
       console.error(
@@ -35,9 +41,52 @@ export function create(): Simulation {
 
     setWind(wind.angle, wind.strength)
     setGravity(gravity.angle, gravity.strength)
-    makeSnowflakes(requiredSnowflakes())
+    makeSnowflakes(
+      requiredSnowflakes(
+        config.attachTo.offsetWidth,
+        config.attachTo.offsetHeight,
+        config.density
+      )
+    )
 
     window.onresize = onResize
+
+    // set up wind gusts
+    fadeWindIn = new TWEEN.Tween(config)
+      .to(
+        {
+          wind: {
+            strength: random(
+              originalWindStrength + config.wind.in.additionalStrength.min,
+              originalWindStrength + config.wind.in.additionalStrength.max
+            )
+          }
+        },
+        random(config.wind.in.delay.min, config.wind.in.delay.max)
+      )
+      .easing(TWEEN.Easing.Quadratic.InOut)
+      .delay(random(config.wind.in.delay.min, config.wind.in.delay.max))
+      .onUpdate(() => {
+        setWind(config.wind.angle, config.wind.strength)
+      })
+
+    fadeWindOut = new TWEEN.Tween(config)
+      .to(
+        { wind: { strength: originalWindStrength } },
+        random(config.wind.out.duration.min, config.wind.out.duration.max)
+      )
+      .easing(TWEEN.Easing.Quadratic.Out)
+      .delay(random(config.wind.out.delay.min, config.wind.out.delay.max))
+      .onUpdate(() => {
+        setWind(config.wind.angle, config.wind.strength)
+      })
+
+    if (config.wind.gusts) {
+      fadeWindIn.chain(fadeWindOut)
+      fadeWindOut.chain(fadeWindIn)
+
+      fadeWindIn.start()
+    }
 
     simulation.attachTo(attachTo)
     simulation.setSize(attachTo.offsetWidth, attachTo.offsetHeight)
@@ -47,6 +96,8 @@ export function create(): Simulation {
   }
 
   function update(dt: number) {
+    TWEEN.update()
+
     const { attachTo, wave, gravity, wind } = config
 
     snowflakes.forEach(snowflake => {
@@ -72,7 +123,13 @@ export function create(): Simulation {
       config.attachTo.offsetWidth,
       config.attachTo.offsetHeight
     )
-    makeSnowflakes(requiredSnowflakes())
+    makeSnowflakes(
+      requiredSnowflakes(
+        config.attachTo.offsetWidth,
+        config.attachTo.offsetHeight,
+        config.density
+      )
+    )
   }
 
   function makeSnowflakes(num: number) {
@@ -100,24 +157,14 @@ export function create(): Simulation {
     backgroundLayer = snowflakes.filter(x => x.size < bgSize)
   }
 
-  // This function figures out how many snowflakes we should use for our given
-  // canvas size.
-  //
-  // Just setting a fixed number of snowflakes would give an uneven distribution
-  // of snowflakes across different screen sizes, for example.
-  function requiredSnowflakes() {
-    const tenEightyPee = 1920 * 1080
-    const thisScreen =
-      config.attachTo.offsetWidth * config.attachTo.offsetHeight
-    const snowflakeCount = Math.round(
-      config.density * (thisScreen / tenEightyPee)
-    )
-
-    return snowflakeCount
-  }
-
   function restart() {
-    makeSnowflakes(requiredSnowflakes())
+    makeSnowflakes(
+      requiredSnowflakes(
+        config.attachTo.offsetWidth,
+        config.attachTo.offsetHeight,
+        config.density
+      )
+    )
   }
 
   function setBackground(col: string) {

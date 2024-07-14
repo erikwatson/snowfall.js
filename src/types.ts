@@ -79,6 +79,46 @@ export type Config = {
      * @default 0
      */
     strength: number
+
+    /**
+     * Should the wind gust?
+     * @default true
+     */
+    gusts: boolean
+
+    in: {
+      /**
+       * The minimum and maximum strength to add to the wind gusts.
+       * @default { min: 1, max: 3 }
+       */
+      additionalStrength: { min: number; max: number }
+
+      /**
+       * The minimum and maximum duration of the wind gusts.
+       * @default { min: 1000, max: 3000 }
+       */
+      duration: { min: number; max: number }
+
+      /**
+       * The minimum and maximum delay before the wind eases off.
+       * @default { min: 5000, max: 10000 }
+       */
+      delay: { min: number; max: number }
+    }
+
+    out: {
+      /**
+       * The minimum and maximum duration of the wind gusts.
+       * @default { min: 5000, max: 10000 }
+       */
+      duration: { min: number; max: number }
+
+      /**
+       * The minimum and maximum delay before the wind eases off.
+       * @default { min: 1000, max: 10000 }
+       */
+      delay: { min: number; max: number }
+    }
   }
 }
 
