@@ -118,6 +118,12 @@ export type Config = {
        * @default { min: 1000, max: 10000 }
        */
       delay: { min: number; max: number }
+
+      /**
+       * The likelihood of the wind changing direction after a gust. 0.0 is never, 1.0 is always.
+       * @default 0.75
+       */
+      changeChance: number
     }
   }
 }

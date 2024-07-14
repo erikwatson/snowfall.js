@@ -20,8 +20,8 @@ export function create(): Simulation {
   let foregroundLayer: Snowflake[]
   let backgroundLayer: Snowflake[]
   let paused = false
-  let gravity: Vec2
-  let wind: Vec2
+  let gravityVector: Vec2
+  let windVector: Vec2
   let config: Config
   let fadeWindIn: TWEEN.Tween<Config>
   let fadeWindOut: TWEEN.Tween<Config>
@@ -79,6 +79,12 @@ export function create(): Simulation {
       .delay(random(config.wind.out.delay.min, config.wind.out.delay.max))
       .onUpdate(() => {
         setWind(config.wind.angle, config.wind.strength)
+      })
+      .onComplete(() => {
+        if (random() < config.wind.out.changeChance) {
+          const angle = getDegreesFromVec2(windVector.getOpposite(windVector)) // TODO: this needs fixing in Bramble
+          setWindAngle(angle)
+        }
       })
 
     if (config.wind.gusts) {
@@ -209,48 +215,48 @@ export function create(): Simulation {
     config.wind.angle = degrees
     config.wind.strength = strength
 
-    wind = vec2.fromDegrees(degrees)
-    wind.multiplyScalar(strength)
+    windVector = vec2.fromDegrees(degrees)
+    windVector.multiplyScalar(strength)
   }
 
   function setWindAngle(degrees: number) {
     config.wind.angle = degrees
 
-    const strength = wind.getLength()
-    wind = vec2.fromDegrees(degrees)
-    wind.multiplyScalar(strength)
+    const strength = windVector.getLength()
+    windVector = vec2.fromDegrees(degrees)
+    windVector.multiplyScalar(strength)
   }
 
   function setWindStrength(strength: number) {
     config.wind.strength = strength
 
-    const degrees = getDegreesFromVec2(wind)
-    wind = vec2.fromDegrees(degrees)
-    wind.multiplyScalar(strength)
+    const degrees = getDegreesFromVec2(windVector)
+    windVector = vec2.fromDegrees(degrees)
+    windVector.multiplyScalar(strength)
   }
 
   function setGravity(degrees: number, strength: number) {
     config.gravity.angle = degrees
     config.gravity.strength = strength
 
-    gravity = vec2.fromDegrees(degrees)
-    gravity.multiplyScalar(strength)
+    gravityVector = vec2.fromDegrees(degrees)
+    gravityVector.multiplyScalar(strength)
   }
 
   function setGravityAngle(degrees: number) {
     config.gravity.angle = degrees
 
-    const strength = gravity.getLength()
-    gravity = vec2.fromDegrees(degrees)
-    gravity.multiplyScalar(strength)
+    const strength = gravityVector.getLength()
+    gravityVector = vec2.fromDegrees(degrees)
+    gravityVector.multiplyScalar(strength)
   }
 
   function setGravityStrength(strength: number) {
     config.gravity.strength = strength
 
-    const degrees = getDegreesFromVec2(gravity)
-    gravity = vec2.fromDegrees(degrees)
-    gravity.multiplyScalar(strength)
+    const degrees = getDegreesFromVec2(gravityVector)
+    gravityVector = vec2.fromDegrees(degrees)
+    gravityVector.multiplyScalar(strength)
   }
 
   return {
