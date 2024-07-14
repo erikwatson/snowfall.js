@@ -121,7 +121,7 @@ export type Config = {
 
       /**
        * The likelihood of the wind changing direction after a gust. 0.0 is never, 1.0 is always.
-       * @default 0.75
+       * @default 0.25
        */
       changeChance: number
     }
