@@ -1,5 +1,7 @@
 # snowfall.js
 
+![snowfall](./assets/snowfall.gif)
+
 The perfect snow effect for your Winter themed website!
 
 Suggested use: attach it as a fixed background to your page with the content
@@ -13,7 +15,9 @@ displayed over the top. [Check out this example](http://erikwatson.me/?snow).
 - Simple, but beautiful.
 - Multiple layers give the illusion of depth.
 - Density of snowflakes looks correct even when the window is resized.
-- Scheduling, so you can start snowfall only between certain dates.
+- Scheduling, so you can start Snowfall only between certain dates.
+- Motion sensitive, snow fall towards the ground when you tilt your phone.
+- Gusts of wind, for variety.
 
 ## Instructions - Package Manager
 
@@ -90,9 +94,9 @@ production. You can change the CDN url to specify control over the version using
 the `@version` syntax like so.
 
 - **latest release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall/dist/snowfall.min.js
-- **major release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3/dist/snowfall.min.js
-- **minor release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3.1/dist/snowfall.min.js
-- **patch release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@3.0.1/dist/snowfall.min.js
+- **major release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/snowfall.min.js
+- **minor release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.1/dist/snowfall.min.js
+- **patch release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.0.1/dist/snowfall.min.js
 
 ## Author
 
