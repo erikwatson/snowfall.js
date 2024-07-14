@@ -10,6 +10,9 @@ importers:
       '@erikwatson/bramble':
         specifier: ^0.6.0
         version: 0.6.0
+      '@tweenjs/tween.js':
+        specifier: ^23.1.2
+        version: 23.1.2
     devDependencies:
       '@babel/core':
         specifier: ^7.24.6
@@ -1031,6 +1034,12 @@ packages:
     resolution:
       {
         integrity: sha512-qdiJS5a/QGCff7VUFIqd0hDdWly9rDp8lhVmXVrS11aazX8LOTRLHAXkkEeONNsS43EcCd7gax9LLoOz4vlFQA==
+      }
+
+  '@tweenjs/tween.js@23.1.2':
+    resolution:
+      {
+        integrity: sha512-kMCNaZCJugWI86xiEHaY338CU5JpD0B97p1j1IKNn/Zto8PgACjQx0UxbHjmOcLl/dDOBnItwD07KmCs75pxtQ==
       }
 
   '@types/eslint-scope@3.7.7':
@@ -3320,6 +3329,8 @@ snapshots:
       lodash: 4.17.21
 
   '@shikijs/core@1.10.1': {}
+
+  '@tweenjs/tween.js@23.1.2': {}
 
   '@types/eslint-scope@3.7.7':
     dependencies:
