@@ -1,8 +1,9 @@
 {
   "name": "@erikwatson/snowfall",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Nice snow in a JS Canvas.",
-  "main": "dist/snowfall.min.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:erikwatson/snowfall.js.git",
   "author": "Erik Watson <erik@erikwatson.me>",
   "license": "MIT",
@@ -32,9 +33,9 @@
     "ts-loader": "^9.5.1",
     "typedoc": "^0.26.3",
     "typescript": "^5.4.5",
-    "webpack": "^5.91.0",
+    "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4",
-    "webpack-merge": "^5.10.0"
+    "webpack-merge": "^6.0.1"
   },
   "dependencies": {
     "@erikwatson/bramble": "^0.6.0",

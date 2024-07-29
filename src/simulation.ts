@@ -10,7 +10,7 @@ import {
 } from './snowflake'
 import { Config, Simulation, Snowflake, UserConfig } from './types'
 import { merge } from './config'
-import { requiredSnowflakes } from './utils'
+import { clone, requiredSnowflakes } from './utils'
 import * as TWEEN from '@tweenjs/tween.js'
 
 export function create(): Simulation {
@@ -23,11 +23,13 @@ export function create(): Simulation {
   let gravityVector: Vec2
   let windVector: Vec2
   let config: Config
+  let originalConfig: Config
   let fadeWindIn: TWEEN.Tween<Config>
   let fadeWindOut: TWEEN.Tween<Config>
 
   function start(userConfig: UserConfig = {}) {
     config = merge(userConfig)
+    originalConfig = clone(config)
     const { wind, gravity, attachTo } = config
 
     const originalWindStrength = wind.strength
@@ -78,12 +80,12 @@ export function create(): Simulation {
       .easing(TWEEN.Easing.Quadratic.Out)
       .delay(random(config.wind.out.delay.min, config.wind.out.delay.max))
       .onUpdate(() => {
-        setWind(config.wind.angle, config.wind.strength)
+        // setWind(config.wind.angle, config.wind.strength)
       })
       .onComplete(() => {
         if (random() < config.wind.out.changeChance) {
           const angle = getDegreesFromVec2(windVector.getOpposite(windVector)) // TODO: this needs fixing in Bramble
-          setWindAngle(angle)
+          // setWindAngle(angle)
         }
       })
 
@@ -164,6 +166,16 @@ export function create(): Simulation {
   }
 
   function restart() {
+    fadeWindIn.stopChainedTweens()
+    fadeWindOut.stopChainedTweens()
+
+    console.log('???', originalConfig.wind.angle, originalConfig.wind.strength)
+    setWind(originalConfig.wind.angle, originalConfig.wind.strength)
+
+    if (config.wind.gusts) {
+      fadeWindIn.start()
+    }
+
     makeSnowflakes(
       requiredSnowflakes(
         config.attachTo.offsetWidth,
@@ -175,32 +187,44 @@ export function create(): Simulation {
 
   function setBackground(col: string) {
     config.background = col
+    originalConfig = clone(config)
   }
 
   function setPrimary(col: string) {
     config.primary = col
+    originalConfig = clone(config)
   }
 
   function setSecondary(col: string) {
     config.secondary = col
+    originalConfig = clone(config)
   }
 
   function setDensity(den: number) {
     config.density = den
+    originalConfig = clone(config)
     restart()
+  }
+
+  function setRespectOrientation(val: boolean) {
+    config.fadeIn = val
+    originalConfig = clone(config)
   }
 
   function setFade(val: boolean) {
     config.fadeIn = val
+    originalConfig = clone(config)
     restart()
   }
 
   function setAmplitude(num: number) {
     config.wave.amplitude = num
+    originalConfig = clone(config)
   }
 
   function setFrequency(freq: number) {
     config.wave.frequency = freq
+    originalConfig = clone(config)
   }
 
   function setPaused(pause: boolean) {
@@ -215,12 +239,15 @@ export function create(): Simulation {
     config.wind.angle = degrees
     config.wind.strength = strength
 
+    originalConfig = clone(config)
+
     windVector = vec2.fromDegrees(degrees)
     windVector.multiplyScalar(strength)
   }
 
   function setWindAngle(degrees: number) {
     config.wind.angle = degrees
+    originalConfig = clone(config)
 
     const strength = windVector.getLength()
     windVector = vec2.fromDegrees(degrees)
@@ -229,15 +256,23 @@ export function create(): Simulation {
 
   function setWindStrength(strength: number) {
     config.wind.strength = strength
+    originalConfig = clone(config)
 
     const degrees = getDegreesFromVec2(windVector)
     windVector = vec2.fromDegrees(degrees)
     windVector.multiplyScalar(strength)
   }
 
+  function setGusts(shouldGust: boolean) {
+    config.wind.gusts = shouldGust
+    originalConfig = clone(config)
+    restart()
+  }
+
   function setGravity(degrees: number, strength: number) {
     config.gravity.angle = degrees
     config.gravity.strength = strength
+    originalConfig = clone(config)
 
     gravityVector = vec2.fromDegrees(degrees)
     gravityVector.multiplyScalar(strength)
@@ -245,6 +280,7 @@ export function create(): Simulation {
 
   function setGravityAngle(degrees: number) {
     config.gravity.angle = degrees
+    originalConfig = clone(config)
 
     const strength = gravityVector.getLength()
     gravityVector = vec2.fromDegrees(degrees)
@@ -253,10 +289,68 @@ export function create(): Simulation {
 
   function setGravityStrength(strength: number) {
     config.gravity.strength = strength
+    originalConfig = clone(config)
 
     const degrees = getDegreesFromVec2(gravityVector)
     gravityVector = vec2.fromDegrees(degrees)
     gravityVector.multiplyScalar(strength)
+  }
+
+  function setWindInAdditionalStrengthMin(min: number) {
+    config.wind.in.additionalStrength.min = min
+    originalConfig = clone(config)
+  }
+
+  function setWindInAdditionalStrengthMax(max: number) {
+    config.wind.in.additionalStrength.max = max
+    originalConfig = clone(config)
+  }
+
+  function setWindInDurationMin(min: number) {
+    config.wind.in.duration.min = min
+    originalConfig = clone(config)
+  }
+
+  function setWindInDurationMax(max: number) {
+    config.wind.in.duration.max = max
+    originalConfig = clone(config)
+  }
+
+  function setWindInDelayMin(min: number) {
+    config.wind.in.delay.min = min
+    originalConfig = clone(config)
+  }
+
+  function setWindInDelayMax(max: number) {
+    config.wind.in.delay.max = max
+    originalConfig = clone(config)
+  }
+
+  function setWindOutDurationMin(min: number) {
+    config.wind.out.duration.min = min
+    originalConfig = clone(config)
+  }
+
+  function setWindOutDurationMax(max: number) {
+    config.wind.out.duration.max = max
+    originalConfig = clone(config)
+  }
+
+  function setWindOutDelayMin(min: number) {
+    config.wind.out.delay.min = min
+    originalConfig = clone(config)
+  }
+
+  function setWindOutDelayMax(max: number) {
+    config.wind.out.delay.max = max
+    originalConfig = clone(config)
+  }
+
+  function setWindOutChangeChance(chance: number) {
+    config.wind.out.changeChance = chance
+    originalConfig = clone(config)
+
+    console.log(config)
   }
 
   return {
@@ -264,6 +358,7 @@ export function create(): Simulation {
     setAmplitude,
     setBackground,
     setDensity,
+    setRespectOrientation,
     setFade,
     setFrequency,
     setGravity,
@@ -275,6 +370,18 @@ export function create(): Simulation {
     setWind,
     setWindAngle,
     setWindStrength,
-    togglePaused
+    setGusts,
+    togglePaused,
+    setWindInAdditionalStrengthMin,
+    setWindInAdditionalStrengthMax,
+    setWindInDurationMin,
+    setWindInDurationMax,
+    setWindInDelayMin,
+    setWindInDelayMax,
+    setWindOutDurationMin,
+    setWindOutDurationMax,
+    setWindOutDelayMin,
+    setWindOutDelayMax,
+    setWindOutChangeChance
   }
 }

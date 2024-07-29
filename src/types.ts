@@ -28,7 +28,7 @@ export type Config = {
 
   /**
    * Should the snowflakes grow in size when the app starts or should they begin at their full size?
-   * @default false
+   * @default true
    */
   fadeIn: boolean
 
@@ -176,11 +176,24 @@ export type Simulation = {
   setGravity: (degrees: number, strength: number) => void
   setGravityAngle: (degrees: number) => void
   setGravityStrength: (strength: number) => void
+  setRespectOrientation: (val: boolean) => void
   setPaused: (pause: boolean) => void
   setPrimary: (col: string) => void
   setSecondary: (col: string) => void
   setWind: (degrees: number, strength: number) => void
   setWindAngle: (degrees: number) => void
   setWindStrength: (strength: number) => void
+  setGusts: (gusts: boolean) => void
   togglePaused: () => void
+  setWindInAdditionalStrengthMin: (min: number) => void
+  setWindInAdditionalStrengthMax: (max: number) => void
+  setWindInDurationMin: (min: number) => void
+  setWindInDurationMax: (max: number) => void
+  setWindInDelayMin: (min: number) => void
+  setWindInDelayMax: (max: number) => void
+  setWindOutDurationMin: (min: number) => void
+  setWindOutDurationMax: (max: number) => void
+  setWindOutDelayMin: (min: number) => void
+  setWindOutDelayMax: (max: number) => void
+  setWindOutChangeChance: (chance: number) => void
 }

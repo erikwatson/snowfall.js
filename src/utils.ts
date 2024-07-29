@@ -44,3 +44,7 @@ export function requiredSnowflakes(
 
   return snowflakeCount
 }
+
+export function clone(obj: any) {
+  return JSON.parse(JSON.stringify(obj))
+}

@@ -3,10 +3,20 @@ const path = require('path')
 module.exports = {
   mode: 'development',
   entry: './src/index.ts',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js',
+    library: {
+      name: 'snowfall',
+      type: 'umd'
+      // export: 'default' // this breaks imports for some reason?
+    },
+    globalObject: 'this'
+  },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts?$/,
         use: 'ts-loader',
         exclude: /node_modules/
       }
@@ -14,9 +24,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts']
-  },
-  output: {
-    filename: 'snowfall.js',
-    path: path.resolve(__dirname, 'dist')
   }
 }

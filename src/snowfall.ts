@@ -80,9 +80,19 @@ export function setDensity(density: number) {
  * Should the snowflakes grow in size from nothing until they reach their full
  * size? It happens pretty quickly.
  *
+ * @param {boolean} value - Yes or no?
+ */
+export function setRespectOrientation(value: boolean) {
+  simulation.setRespectOrientation(value)
+}
+
+/**
+ * Should the snowflakes grow in size from nothing until they reach their full
+ * size? It happens pretty quickly.
+ *
  * Setting this restarts the simulation.
  *
- * @param {Boolean} value - Yes or no?
+ * @param {boolean} value - Yes or no?
  */
 export function setFade(value: boolean) {
   simulation.setFade(value)
@@ -152,6 +162,16 @@ export function setWindStrength(strength: number) {
 }
 
 /**
+ * Set the wind gusts in the simulation.
+ * This restarts the simulation.
+ *
+ * @param {boolean} gusts - Should there be gusts in the wind?
+ */
+export function setGusts(gusts: boolean) {
+  simulation.setGusts(gusts)
+}
+
+/**
  * Set the angle and strength of gravity in the simulation.
  *
  * @param {number} angle - The angle of gravity, in degrees
@@ -179,5 +199,129 @@ export function setGravityStrength(strength: number) {
   simulation.setGravityStrength(strength)
 }
 
+/*
+setInAdditionalStrengthMin,
+    setInAdditionalStrengthMax,
+    setInDurationMin,
+    setInDurationMax,
+    setInDelayMin,
+    setInDelayMax,
+    setOutDurationMin,
+    setOutDurationMax,
+    setOutDelayMin,
+    setOutDelayMax,
+    setOutChangeChance
+    */
+
+/**
+ * Set the minimum additional strength of the wind when it's coming in.
+ *
+ * @param {number} min - The minimum additional strength of the wind when it's coming in.
+ * @returns {void}
+ */
+export function setWindInAdditionalStrengthMin(min: number) {
+  simulation.setWindInAdditionalStrengthMin(min)
+}
+
+/**
+ * Set the maximum additional strength of the wind when it's coming in.
+ *
+ * @param {number} max - The maximum additional strength of the wind when it's coming in.
+ * @returns {void}
+ */
+export function setWindInAdditionalStrengthMax(max: number) {
+  simulation.setWindInAdditionalStrengthMax(max)
+}
+
+/**
+ * Set the minimum duration of the wind when it's coming in.
+ *
+ * @param {number} min - The minimum duration of the wind when it's coming in.
+ * @returns {void}
+ */
+export function setWindInDurationMin(min: number) {
+  simulation.setWindInDurationMin(min)
+}
+
+/**
+ * Set the maximum duration of the wind when it's coming in.
+ *
+ * @param {number} max - The maximum duration of the wind when it's coming in.
+ * @returns {void}
+ */
+export function setWindInDurationMax(max: number) {
+  simulation.setWindInDurationMax(max)
+}
+
+/**
+ * Set the minimum delay of the wind when it's coming in.
+ *
+ * @param {number} min - The minimum delay of the wind when it's coming in.
+ * @returns {void}
+ */
+export function setWindInDelayMin(min: number) {
+  simulation.setWindInDelayMin(min)
+}
+
+/**
+ * Set the maximum delay of the wind when it's coming in.
+ *
+ * @param {number} max - The maximum delay of the wind when it's coming in.
+ * @returns {void}
+ */
+export function setWindInDelayMax(max: number) {
+  simulation.setWindInDelayMax(max)
+}
+
+/**
+ * Set the minimum duration of the wind when it's going out.
+ *
+ * @param {number} min - The minimum duration of the wind when it's going out.
+ * @returns {void}
+ */
+export function setWindOutDurationMin(min: number) {
+  simulation.setWindOutDurationMin(min)
+}
+
+/**
+ * Set the maximum duration of the wind when it's going out.
+ *
+ * @param {number} max - The maximum duration of the wind when it's going out.
+ * @returns {void}
+ */
+export function setWindOutDurationMax(max: number) {
+  simulation.setWindOutDurationMax(max)
+}
+
+/**
+ * Set the minimum delay of the wind when it's going out.
+ *
+ * @param {number} min - The minimum delay of the wind when it's going out.
+ * @returns {void}
+ */
+export function setWindOutDelayMin(min: number) {
+  simulation.setWindOutDelayMin(min)
+}
+
+/**
+ * Set the maximum delay of the wind when it's going out.
+ *
+ * @param {number} max - The maximum delay of the wind when it's going out.
+ * @returns {void}
+ */
+export function setWindOutDelayMax(max: number) {
+  simulation.setWindOutDelayMax(max)
+}
+
+/**
+ * Set the chance of the wind changing direction after a gust.
+ *
+ * @param {number} chance - The chance of the wind changing direction after a gust.
+ * @returns {void}
+ */
+export function setWindOutChangeChance(chance: number) {
+  simulation.setWindOutChangeChance(chance)
+}
+
 // Exporting types for TypeDoc
-export { UserConfig, UserSchedule } from './types'
+export type { UserConfig, UserSchedule } from './types'

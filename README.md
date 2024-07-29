@@ -9,7 +9,7 @@ displayed over the top. [Check out this example](http://erikwatson.me/?snow).
 
 ## Features
 
-- [Visual config editor](https://erikwatson.github.io/snowfall-editor/)
+- [Visual config editor](https://erikwatson.github.io/snowfall-editor/) ([Repo](https://github.com/erikwatson/snowfall-editor))
 - [API Reference](https://erikwatson.github.io/snowfall.js/)
 - Easy to use.
 - Simple, but beautiful.
@@ -26,6 +26,9 @@ displayed over the top. [Check out this example](http://erikwatson.me/?snow).
 ```sh
 # if you're using yarn install with
 yarn add @erikwatson/snowfall
+
+# if you're using pnpm install with
+pnpm install @erikwatson/snowfall
 
 # if you're using npm install with
 npm install @erikwatson/snowfall
@@ -50,17 +53,7 @@ Then, at the bottom of your page body add the following.
 <script>
   // You can change the defaults by passing in a config object here
   // Use the Visual Config Editor to create one
-  // Start snowfall right now
   snowfall.start()
-
-  // Alternatively you can schedule snowfall to start between certain dates
-  // This can take a config from the Visual Config Editor as a second argument.
-  // e.g.
-  // Start snowfall only between the start of December and the end of February.
-  snowfall.schedule({
-    from: { month: 12, day: 1 },
-    to: { month: 28, day: 2 }
-  })
 </script>
 ```
 
@@ -69,8 +62,8 @@ accessible node_modules folder. It is this way here just to keep example simple.
 
 ## Instructions - CDN
 
-First, add a div with an ID of `snow-container` to your page. You will need to
-set the width and height of this yourself using CSS.
+First, add a div with an ID of `snowfall` to your page. You will need to set the
+width and height of this yourself using CSS.
 
 ```html
 <div id="snowfall"></div>
@@ -79,7 +72,7 @@ set the width and height of this yourself using CSS.
 Then, at the bottom of your page body add the following.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall/dist/snowfall.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/snowfall.min.js"></script>
 <script>
   // You can change the defaults by passing in a config object here
   // Use the Visual Config Editor to create one
