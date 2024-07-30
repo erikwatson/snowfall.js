@@ -325,3 +325,37 @@ export function setWindOutChangeChance(chance: number) {
 
 // Exporting types for TypeDoc
 export type { UserConfig, UserSchedule } from './types'
+
+// export everything as default
+// export default {
+//   start,
+//   schedule,
+//   setBackground,
+//   setPrimary,
+//   setSecondary,
+//   setDensity,
+//   setRespectOrientation,
+//   setFade,
+//   setAmplitude,
+//   setFrequency,
+//   setPaused,
+//   togglePaused,
+//   setWind,
+//   setWindAngle,
+//   setWindStrength,
+//   setGusts,
+//   setGravity,
+//   setGravityAngle,
+//   setGravityStrength,
+//   setWindInAdditionalStrengthMin,
+//   setWindInAdditionalStrengthMax,
+//   setWindInDurationMin,
+//   setWindInDurationMax,
+//   setWindInDelayMin,
+//   setWindInDelayMax,
+//   setWindOutDurationMin,
+//   setWindOutDurationMax,
+//   setWindOutDelayMin,
+//   setWindOutDelayMax,
+//   setWindOutChangeChance
+// }
