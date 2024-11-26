@@ -1,4 +1,5 @@
 import { Vec2 } from '@erikwatson/bramble'
+import seedrandom from 'seedrandom'
 
 export function lerp(start: number, end: number, alpha: number) {
   return start * (1 - alpha) + end * alpha
@@ -23,6 +24,23 @@ export function random(from?: number, to?: number) {
   }
 
   // in practice, this return will never be reached
+  return 0
+}
+
+export function seededRandom(): number
+export function seededRandom(to: number): number
+export function seededRandom(from: number, to: number): number
+export function seededRandom(from?: number, to?: number) {
+  const rng = seedrandom('layer')
+
+  if (from === undefined && to === undefined) {
+    return rng()
+  }
+
+  if (from !== undefined && to !== undefined) {
+    return from + rng() * (to - from)
+  }
+
   return 0
 }
 

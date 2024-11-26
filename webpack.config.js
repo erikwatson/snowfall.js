@@ -16,13 +16,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts?$/,
+        // test: ts and js files
+        test: /\.(ts|js)$/,
         use: 'ts-loader',
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: ['.ts']
+    extensions: ['.ts', '.js']
   }
 }

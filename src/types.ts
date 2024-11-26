@@ -1,24 +1,11 @@
-import { Vec2 } from '@erikwatson/bramble'
+import { Graphics, Vec2 } from '@erikwatson/bramble'
 
-export type Config = {
-  attachTo: HTMLElement
-  /**
-   * A hex string representing the Background Colour of the canvas.
-   * @default '#0d0014'
-   */
-  background: string
-
+export type ConfigLayer = {
   /**
    * A hex string representing the colour of the snowflakes in the foreground.
    * @default '#8d90b7'
    */
-  primary: string
-
-  /**
-   * A hex string representing the colour of the snowflakes in the background.
-   * @default '#ffffff'
-   */
-  secondary: string
+  colour: string
 
   /**
    * A number representing the required density of snowflakes on screen. Note, this is not the actual number of snowflakes.
@@ -128,7 +115,30 @@ export type Config = {
   }
 }
 
-export interface UserConfig extends Partial<Omit<Config, 'attachTo'>> {
+export interface BaseConfig {
+  [key: string]: any
+
+  /**
+   * A hex string representing the Background Colour of the canvas.
+   * @default '#0d0014'
+   */
+  background: string
+
+  /**
+   * An array of uniquely configured snowflake layers.
+   */
+  layers: ConfigLayer[]
+}
+
+export interface Config extends BaseConfig {
+  /**
+   * The element to attach the simulation to.
+   * @default '#snowfall'
+   */
+  attachTo: HTMLElement
+}
+
+export interface UserConfig extends Partial<BaseConfig> {
   /**
    * A string that represents the ID of an element you want to attach snowfall to.
    * @default '#snowfall'
@@ -161,39 +171,78 @@ export type Snowflake = {
   size: number
   renderedSize: number
   noise: number
+  time: number
   amplitude: number
   frequency: number
   random: number
+  colour: string
 }
 
-export type Simulation = {
+export interface Simulation {
   start: (config: UserConfig) => void
-  setAmplitude: (num: number) => void
+  setAmplitude: (num: number, layer: number) => void
   setBackground: (col: string) => void
-  setDensity: (den: number) => void
-  setFade: (val: boolean) => void
-  setFrequency: (freq: number) => void
-  setGravity: (degrees: number, strength: number) => void
-  setGravityAngle: (degrees: number) => void
-  setGravityStrength: (strength: number) => void
-  setRespectOrientation: (val: boolean) => void
-  setPaused: (pause: boolean) => void
-  setPrimary: (col: string) => void
-  setSecondary: (col: string) => void
-  setWind: (degrees: number, strength: number) => void
-  setWindAngle: (degrees: number) => void
-  setWindStrength: (strength: number) => void
-  setGusts: (gusts: boolean) => void
-  togglePaused: () => void
-  setWindInAdditionalStrengthMin: (min: number) => void
-  setWindInAdditionalStrengthMax: (max: number) => void
-  setWindInDurationMin: (min: number) => void
-  setWindInDurationMax: (max: number) => void
-  setWindInDelayMin: (min: number) => void
-  setWindInDelayMax: (max: number) => void
-  setWindOutDurationMin: (min: number) => void
-  setWindOutDurationMax: (max: number) => void
-  setWindOutDelayMin: (min: number) => void
-  setWindOutDelayMax: (max: number) => void
-  setWindOutChangeChance: (chance: number) => void
+  setDensity: (den: number, layer: number) => void
+  setFade: (val: boolean, layer: number) => void
+  setFrequency: (freq: number, layer: number) => void
+  setGravity: (degrees: number, strength: number, layer: number) => void
+  setGravityAngle: (degrees: number, layer: number) => void
+  setGravityStrength: (strength: number, layer: number) => void
+  setRespectOrientation: (val: boolean, layer: number) => void
+  setPaused: (pause: boolean, layer: number) => void
+  setWind: (degrees: number, strength: number, layer: number) => void
+  setWindAngle: (degrees: number, layer: number) => void
+  setWindStrength: (strength: number, layer: number) => void
+  setGusts: (gusts: boolean, layer: number) => void
+  togglePaused: (layer: number) => void
+  setWindInAdditionalStrengthMin: (min: number, layer: number) => void
+  setWindInAdditionalStrengthMax: (max: number, layer: number) => void
+  setWindInDurationMin: (min: number, layer: number) => void
+  setWindInDurationMax: (max: number, layer: number) => void
+  setWindInDelayMin: (min: number, layer: number) => void
+  setWindInDelayMax: (max: number, layer: number) => void
+  setWindOutDurationMin: (min: number, layer: number) => void
+  setWindOutDurationMax: (max: number, layer: number) => void
+  setWindOutDelayMin: (min: number, layer: number) => void
+  setWindOutDelayMax: (max: number, layer: number) => void
+  setWindOutChangeChance: (chance: number, layer: number) => void
+  setColour: (colour: string, layer: number) => void
+}
+
+export interface SnowfallLayer {
+  config: ConfigLayer
+  start(): void
+  pause(): void
+  resume(): void
+  restart(): void
+  update(dt: number): void
+  render(gfx: Graphics): void
+  setDensity(density: number): void
+  setColour(colour: string): void
+  setAmplitude(num: number): void
+  setDensity(den: number): void
+  setFade(val: boolean): void
+  setFrequency(freq: number): void
+  setGravity(degrees: number, strength: number): void
+  setGravityAngle(degrees: number): void
+  setGravityStrength(strength: number): void
+  setRespectOrientation(val: boolean): void
+  setPaused(pause: boolean): void
+  setWind(degrees: number, strength: number): void
+  setWindAngle(degrees: number): void
+  setWindStrength(strength: number): void
+  setGusts(gusts: boolean): void
+  togglePaused(): void
+  setWindInAdditionalStrengthMin(min: number): void
+  setWindInAdditionalStrengthMax(max: number): void
+  setWindInDurationMin(min: number): void
+  setWindInDurationMax(max: number): void
+  setWindInDelayMin(min: number): void
+  setWindInDelayMax(max: number): void
+  setWindOutDurationMin(min: number): void
+  setWindOutDurationMax(max: number): void
+  setWindOutDelayMin(min: number): void
+  setWindOutDelayMax(max: number): void
+  setWindOutChangeChance(chance: number): void
+  setColour(colour: string): void
 }

@@ -1,4 +1,6 @@
-import { UserSchedule } from './types'
+import { vec2 } from '@erikwatson/bramble'
+import { random } from './math'
+import { ConfigLayer, UserSchedule } from './types'
 
 export function getElementOrThrow(id: string): HTMLElement {
   const result = document.getElementById(id)
@@ -47,4 +49,34 @@ export function requiredSnowflakes(
 
 export function clone(obj: any) {
   return JSON.parse(JSON.stringify(obj))
+}
+
+export function makeSnowflakes(
+  num: number,
+  config: ConfigLayer,
+  width: number,
+  height: number
+) {
+  const result = Array.from({ length: num }, () => {
+    const size = 3 + random() * 5
+    const renderedSize = config.fadeIn === true ? 0 : size
+
+    const posX = random(width)
+    const posY = random(height)
+    const position = vec2.create(posX, posY)
+
+    return {
+      position,
+      size,
+      renderedSize,
+      noise: random(10), // Random value, just to add some uncertainty
+      amplitude: random(config.wave.amplitude),
+      frequency: random(config.wave.frequency),
+      random: random(),
+      time: 0,
+      colour: 'white'
+    }
+  })
+
+  return result
 }

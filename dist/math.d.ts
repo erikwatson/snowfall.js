@@ -1,0 +1,10 @@
+import { Vec2 } from '@erikwatson/bramble';
+export declare function lerp(start: number, end: number, alpha: number): number;
+export declare function random(): number;
+export declare function random(to: number): number;
+export declare function random(from: number, to: number): number;
+export declare function seededRandom(): number;
+export declare function seededRandom(to: number): number;
+export declare function seededRandom(from: number, to: number): number;
+export declare function getDegreesFromVec2(vec: Vec2): number;
+export declare function rotate(vec: Vec2, angleDegrees: number): Vec2;

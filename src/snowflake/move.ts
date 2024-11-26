@@ -37,7 +37,7 @@ export function addWaveMotion(
   dt: number
 ) {
   // Calculate the wave motion perpendicular to the gravity vector
-  const phase = snowflake.noise
+  const phase = snowflake.time + snowflake.noise
   const xPos = wave.amplitude * Math.sin(wave.frequency * dt + phase)
 
   // Assuming gravity direction starts along the x-axis
@@ -60,23 +60,56 @@ export function fadeIn(snowflake: Snowflake) {
 export function screenWrap(
   snowflake: Snowflake,
   width: number,
-  height: number
+  height: number,
+  gravity: {
+    angle: number
+    strength: number
+    respectOrientation: boolean
+  }
 ) {
+  const prevPos = vec2.clone(snowflake.position)
+  const gravityDir = vec2.fromDegrees(gravity.angle)
+  const upDir = vec2.create(-gravityDir.x, -gravityDir.y)
+
+  let moved = false
+
   if (snowflake.position.x - snowflake.renderedSize > width) {
     snowflake.position.x = -snowflake.renderedSize
+    moved = true
   }
 
   if (snowflake.position.x < -snowflake.renderedSize) {
     snowflake.position.x = width + snowflake.renderedSize
+    moved = true
   }
 
   if (snowflake.position.y - snowflake.renderedSize > height) {
     snowflake.position.y = -snowflake.renderedSize
     snowflake.position.x = random(width)
+    moved = true
   }
 
   if (snowflake.position.y < -snowflake.renderedSize) {
     snowflake.position.y = height + snowflake.renderedSize
     snowflake.position.x = random(width)
+    moved = true
+  }
+
+  if (moved) {
+    const currentPos = vec2.clone(snowflake.position)
+    currentPos.subtract(prevPos)
+
+    const dotProduct = currentPos.dot(upDir)
+
+    if (dotProduct > 0) {
+      // increase the size of the snowflake
+      snowflake.renderedSize = lerp(
+        snowflake.renderedSize,
+        snowflake.size,
+        0.25
+      )
+
+      snowflake.colour = 'red'
+    }
   }
 }
