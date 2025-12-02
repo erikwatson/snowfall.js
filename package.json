@@ -66,9 +66,5 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     }
-  },
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/erikwatson"
   }
 }
