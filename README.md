@@ -39,7 +39,9 @@ Then, at the bottom of your page body add the following, this will run snowfall 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/index.min.js"></script>
 <script>
-  snowfall.start()
+  snowfall.start({
+    layers: [{}]
+  })
 </script>
 ```
 
@@ -51,7 +53,7 @@ Same as above but we pass a config object. Your config overrides the default set
 snowfall.start({
   layers: [
     {
-      colour: '#ff0000'
+      colour: '#8d90b7'
     }
   ]
 })
@@ -69,7 +71,7 @@ const userSchedule = {
 snowfall.schedule(userSchedule, {
   layers: [
     {
-      colour: '#ff0000'
+      colour: '#8d90b7'
     }
   ]
 })
