@@ -1,30 +1,31 @@
-import { Graphics, Vec2, vec2 } from '@erikwatson/bramble'
-import { ConfigLayer, SnowfallLayer, Snowflake } from './types'
+import { Graphics, Vec2, vec2, Sprite, sprite } from '@erikwatson/bramble'
+import { BaseLayerConfig, IBaseLayer, Snowflake } from '../types'
 import {
   addWind,
   addGravity,
-  addWaveMotion,
+  addSwayMotion,
   screenWrap,
+  addRotation,
   fadeIn
-} from './snowflake'
-import { getDegreesFromVec2, lerp } from './math'
-import { clone, makeSnowflakes, requiredSnowflakes } from './utils'
+} from '../snowflake'
+import { getDegreesFromVec2 } from '../math'
+import { clone, makeSnowflakes, requiredSnowflakes } from '../utils'
 import * as TWEEN from '@tweenjs/tween.js'
 
-export class Layer implements SnowfallLayer {
-  originalConfig: ConfigLayer
-  config: ConfigLayer
+export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
+  originalConfig: T
+  config: T
   snowflakes: Snowflake[] = []
   width: number
   height: number
   paused: boolean = false
   windVector: Vec2
   gravityVector: Vec2
-  fadeWindIn: TWEEN.Tween<ConfigLayer>
-  fadeWindOut: TWEEN.Tween<ConfigLayer>
+  fadeWindIn?: TWEEN.Tween<T>
+  fadeWindOut?: TWEEN.Tween<T>
 
   constructor(
-    config: ConfigLayer,
+    config: T,
     width: number,
     height: number,
     strength: number,
@@ -41,48 +42,42 @@ export class Layer implements SnowfallLayer {
     this.windVector = vec2.create(0, 0)
     this.gravityVector = vec2.create(0, 0)
 
-    // TODO: Get rid of this, it's just for testing
-    this.config.wind.out.changeChance = 1
-
     const originalWindStrength = this.config.wind.strength
 
-    this.fadeWindIn = new TWEEN.Tween(config)
-      .to({ wind: { strength } }, durationIn)
-      .easing(TWEEN.Easing.Quadratic.InOut)
-      .delay(windDelayIn)
-      .onUpdate(() => {
-        this.setWind(this.config.wind.angle, this.config.wind.strength)
-      })
+    if (this.config.wind.gusts.active) {
+      this.fadeWindIn = new TWEEN.Tween(config)
+        .to({ wind: { strength } }, durationIn)
+        .easing(TWEEN.Easing.Quadratic.InOut)
+        .delay(windDelayIn)
+        .onUpdate(() => {
+          this.setWind(this.config.wind.angle, this.config.wind.strength)
+        })
 
-    this.fadeWindOut = new TWEEN.Tween(config)
-      .to({ wind: { strength: originalWindStrength } }, durationOut)
-      .easing(TWEEN.Easing.Quadratic.Out)
-      .delay(windDelayOut)
-      .onUpdate(() => {
-        this.setWind(this.config.wind.angle, this.config.wind.strength)
-      })
-      .onComplete(() => {
-        if (changeChance < this.config.wind.out.changeChance) {
-          const angle = getDegreesFromVec2(
-            this.windVector.getOpposite(this.windVector)
-          )
+      this.fadeWindOut = new TWEEN.Tween(config)
+        .to({ wind: { strength: originalWindStrength } }, durationOut)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .delay(windDelayOut)
+        .onUpdate(() => {
+          this.setWind(this.config.wind.angle, this.config.wind.strength)
+        })
+        .onComplete(() => {
+          if (changeChance < this.config.wind.gusts.changeChance) {
+            const angle = getDegreesFromVec2(
+              this.windVector.getOpposite(this.windVector)
+            )
 
-          this.setWindAngle(angle)
-        }
-      })
+            this.setWindAngle(angle)
+          }
+        })
+    }
   }
 
   setAmplitude(num: number): void {
-    this.config.wave.amplitude = num
-  }
-
-  setFade(val: boolean): void {
-    this.config.fadeIn = val
-    this.restart()
+    this.config.sway.amplitude = num
   }
 
   setFrequency(freq: number): void {
-    this.config.wave.frequency = freq
+    this.config.sway.frequency = freq
   }
 
   setGravity(degrees: number, strength: number): void {
@@ -112,10 +107,6 @@ export class Layer implements SnowfallLayer {
 
     this.gravityVector = vec2.fromDegrees(degrees)
     this.gravityVector.multiplyScalar(strength)
-  }
-
-  setRespectOrientation(val: boolean): void {
-    this.config.gravity.respectOrientation = val
   }
 
   setPaused(pause: boolean): void {
@@ -151,7 +142,7 @@ export class Layer implements SnowfallLayer {
   }
 
   setGusts(gusts: boolean): void {
-    this.config.wind.gusts = gusts
+    this.config.wind.gusts.active = gusts
     this.originalConfig = clone(this.config)
     this.restart()
   }
@@ -161,80 +152,80 @@ export class Layer implements SnowfallLayer {
   }
 
   setWindInAdditionalStrengthMin(min: number): void {
-    this.config.wind.in.additionalStrength.min = min
+    this.config.wind.gusts.in.additionalStrength.min = min
     this.originalConfig = clone(this.config)
   }
 
   setWindInAdditionalStrengthMax(max: number): void {
-    this.config.wind.in.additionalStrength.max = max
+    this.config.wind.gusts.in.additionalStrength.max = max
     this.originalConfig = clone(this.config)
   }
 
   setWindInDurationMin(min: number): void {
-    this.config.wind.in.duration.min = min
+    this.config.wind.gusts.in.duration.min = min
     this.originalConfig = clone(this.config)
   }
 
   setWindInDurationMax(max: number): void {
-    this.config.wind.in.duration.max = max
+    this.config.wind.gusts.in.duration.max = max
     this.originalConfig = clone(this.config)
   }
 
   setWindInDelayMin(min: number): void {
-    this.config.wind.in.delay.min = min
+    this.config.wind.gusts.in.delay.min = min
     this.originalConfig = clone(this.config)
   }
 
   setWindInDelayMax(max: number): void {
-    this.config.wind.in.delay.max = max
+    this.config.wind.gusts.in.delay.max = max
     this.originalConfig = clone(this.config)
   }
 
   setWindOutDurationMin(min: number): void {
-    this.config.wind.out.duration.min = min
+    this.config.wind.gusts.out.duration.min = min
     this.originalConfig = clone(this.config)
   }
 
   setWindOutDurationMax(max: number): void {
-    this.config.wind.out.duration.max = max
+    this.config.wind.gusts.out.duration.max = max
     this.originalConfig = clone(this.config)
   }
 
   setWindOutDelayMin(min: number): void {
-    this.config.wind.out.delay.min = min
+    this.config.wind.gusts.out.delay.min = min
     this.originalConfig = clone(this.config)
   }
 
   setWindOutDelayMax(max: number): void {
-    this.config.wind.out.delay.max = max
+    this.config.wind.gusts.out.delay.max = max
     this.originalConfig = clone(this.config)
   }
 
   setWindOutChangeChance(chance: number): void {
-    this.config.wind.out.changeChance = chance
+    this.config.wind.gusts.changeChance = chance
     this.originalConfig = clone(this.config)
   }
 
   update(dt: number): void {
-    const { wave, gravity, wind } = this.config
+    if (this.paused) {
+      return
+    }
+
+    const { sway, gravity, wind } = this.config
 
     this.snowflakes.forEach(snowflake => {
       snowflake.time += dt
 
       addWind(snowflake, wind.angle, wind.strength)
+      addRotation(snowflake)
       addGravity(snowflake, gravity.angle, gravity.strength)
-      addWaveMotion(snowflake, gravity, wave, dt)
+      addSwayMotion(snowflake, gravity, sway)
       screenWrap(snowflake, this.width, this.height, gravity)
     })
   }
 
   render(gfx: Graphics): void {
-    this.snowflakes.forEach(snowflake => {
-      gfx.circle(snowflake.position, snowflake.renderedSize, {
-        fill: { colour: snowflake.colour },
-        line: { width: 0 }
-      })
-    })
+    // Nothing to render
   }
 
   start(): void {
@@ -249,10 +240,12 @@ export class Layer implements SnowfallLayer {
     this.setGravity(this.config.gravity.angle, this.config.gravity.strength)
 
     // set up wind gusts
-    if (this.config.wind.gusts) {
-      this.fadeWindIn.chain(this.fadeWindOut)
-      this.fadeWindOut.chain(this.fadeWindIn)
-      this.fadeWindIn.start()
+    if (this.config.wind.gusts.active) {
+      if (this.fadeWindIn && this.fadeWindOut) {
+        this.fadeWindIn.chain(this.fadeWindOut)
+        this.fadeWindOut.chain(this.fadeWindIn)
+        this.fadeWindIn.start()
+      }
     }
   }
 
@@ -265,16 +258,16 @@ export class Layer implements SnowfallLayer {
   }
 
   restart(): void {
-    this.fadeWindIn.stopChainedTweens()
-    this.fadeWindOut.stopChainedTweens()
+    this.fadeWindIn?.stopChainedTweens()
+    this.fadeWindOut?.stopChainedTweens()
 
     this.setWind(
       this.originalConfig.wind.angle,
       this.originalConfig.wind.strength
     )
 
-    if (this.config.wind.gusts) {
-      this.fadeWindIn.start()
+    if (this.config.wind.gusts.active) {
+      this.fadeWindIn?.start()
     }
 
     this.snowflakes = makeSnowflakes(
@@ -290,7 +283,23 @@ export class Layer implements SnowfallLayer {
     this.restart()
   }
 
-  setColour(colour: string): void {
-    this.config.colour = colour
+  setMassMin(min: number): void {
+    this.config.mass.min = min
+    this.restart()
+  }
+
+  setMassMax(max: number): void {
+    this.config.mass.max = max
+    this.restart()
+  }
+
+  setSizeMin(min: number): void {
+    this.config.size.min = min
+    this.restart()
+  }
+
+  setSizeMax(max: number): void {
+    this.config.size.max = max
+    this.restart()
   }
 }

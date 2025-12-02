@@ -1,22 +1,15 @@
 const path = require('path')
 
 module.exports = {
-  mode: 'development',
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
-    library: {
-      name: 'snowfall',
-      type: 'umd'
-      // export: 'default' // this breaks imports for some reason?
-    },
+    library: { name: 'snowfall', type: 'umd' },
     globalObject: 'this'
   },
   module: {
     rules: [
       {
-        // test: ts and js files
         test: /\.(ts|js)$/,
         use: 'ts-loader',
         exclude: /node_modules/

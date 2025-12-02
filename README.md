@@ -1,96 +1,93 @@
-# snowfall.js
-
-![snowfall](./assets/snowfall.gif)
+# Snowfall :: Stay cool
 
 The perfect snow effect for your Winter themed website!
 
 Suggested use: attach it as a fixed background to your page with the content
-displayed over the top. [Check out this example](http://erikwatson.me/?snow).
+displayed over the top. [Check out this example](demo).
 
 ## Features
 
-- [Visual config editor](https://erikwatson.github.io/snowfall-editor/) ([Repo](https://github.com/erikwatson/snowfall-editor))
-- [API Reference](https://erikwatson.github.io/snowfall.js/)
-- Easy to use.
-- Simple, but beautiful.
-- Multiple layers give the illusion of depth.
-- Density of snowflakes looks correct even when the window is resized.
-- Scheduling, so you can start Snowfall only between certain dates.
-- Motion sensitive, snow fall towards the ground when you tilt your phone.
-- Gusts of wind, for variety.
+- Easy to use
+- Beautiful
+- Highly configurable | [API docs](api-docs) | [Config editor](editor)
+- Consistent density of snowflakes, regardless of screen size
+- Scheduling, so you can set it and forget it
 
-## Instructions - Package Manager
+## Instructions
 
-### Install it
-
-```sh
-# if you're using yarn install with
-yarn add @erikwatson/snowfall
-
-# if you're using pnpm install with
-pnpm install @erikwatson/snowfall
-
-# if you're using npm install with
-npm install @erikwatson/snowfall
-```
-
-### Use it
-
-Add a div with an ID of `snowfall` to your page. You will need to set the
-width and height of this yourself using CSS.
+First, add a div with an ID of `snowfall` to your page.
 
 ```html
 <div id="snowfall"></div>
 ```
 
-Then, at the bottom of your page body add the following.
+It's recommended that you make it full screen and attach it to the background, something like this.
 
 ```html
-<script
-  type="text/javascript"
-  src="./node_modules/@erikwatson/snowfall/dist/snowfall.min.js"
-></script>
+<style>
+  #snowfall {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+</style>
+```
+
+Then, at the bottom of your page body add the following, this will run snowfall with the default settings.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/index.min.js"></script>
 <script>
-  // You can change the defaults by passing in a config object here
-  // Use the Visual Config Editor to create one
   snowfall.start()
 </script>
 ```
 
-**WARNING:** You should symlink to the .js file rather than have a publicly
-accessible node_modules folder. It is this way here just to keep example simple.
+### Custom configs
 
-## Instructions - CDN
+Same as above but we pass a config object. Your config overrides the default settings.
 
-First, add a div with an ID of `snowfall` to your page. You will need to set the
-width and height of this yourself using CSS.
-
-```html
-<div id="snowfall"></div>
+```js
+snowfall.start({
+  layers: [
+    {
+      colour: '#ff0000'
+    }
+  ]
+})
 ```
 
-Then, at the bottom of your page body add the following.
+### Scheduling
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/snowfall.min.js"></script>
-<script>
-  // You can change the defaults by passing in a config object here
-  // Use the Visual Config Editor to create one
-  snowfall.start()
-</script>
+Same as the above, but we pass a schedule config and the optional snowfall config to the `.schedule(user_schedule, user_config)` function.
+
+```js
+const userSchedule = {
+  from: { month: 12, day: 1 },
+  to: { month: 12, day: 31 }
+}
+snowfall.schedule(userSchedule, {
+  layers: [
+    {
+      colour: '#ff0000'
+    }
+  ]
+})
 ```
 
-### Specify Version
+### CDN Links
 
-It is not recommended to always use the latest version, especially in
-production. You can change the CDN url to specify control over the version using
-the `@version` syntax like so.
-
-- **latest release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall/dist/snowfall.min.js
-- **major release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/snowfall.min.js
-- **minor release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.1/dist/snowfall.min.js
-- **patch release**: https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.0.1/dist/snowfall.min.js
+- Latest 4.x (minified): `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/index.min.js`
+- Latest 4.x (unminified): `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/index.js`
+- Specific version: `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.0.0/dist/index.min.js`
 
 ## Author
 
-- [Erik Watson](http://erikwatson.me)
+- [Erik Watson](erik)
+
+[erik]: http://erikwatson.me
+[user-schedule]: https://erikwatson.github.io/snowfall-docs/interfaces/UserSchedule.html
+[user-config]: https://erikwatson.github.io/snowfall-docs/interfaces/UserConfig.html
+[api-docs]: https://erikwatson.github.io/snowfall-docs/
+[editor]: https://erikwatson.github.io/snowfall-editor/
+[demo]: http://erikwatson.me/?snow

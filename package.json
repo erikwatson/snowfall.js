@@ -1,46 +1,74 @@
 {
   "name": "@erikwatson/snowfall",
-  "version": "3.1.2",
-  "description": "Nice snow in a JS Canvas.",
+  "version": "4.0.0",
+  "description": "A beautiful and highly configurable snow effect for your winter themed project",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
   "repository": "git@github.com:erikwatson/snowfall.js.git",
   "author": "Erik Watson <erik@erikwatson.me>",
   "license": "MIT",
-  "keywords": [
-    "winter",
-    "snow",
-    "christmas",
-    "effect"
-  ],
   "scripts": {
-    "build": "pnpm exec webpack --config ./webpack.config.js",
-    "build:production": "pnpm exec webpack --config ./webpack.config.js",
-    "build:all": "pnpm run build && npm run build:production",
-    "build:docs": "pnpm exec typedoc --out docs src/snowfall.ts --readme README.md",
-    "watch": "pnpm exec webpack --config ./webpack.config.js --watch",
-    "pub": "pnpm run build:all && npm publish",
+    "build": "pnpm exec webpack --config webpack.dev.js",
+    "build:production": "pnpm exec webpack --config webpack.prod.js",
+    "build:all": "pnpm run build && pnpm run build:production",
+    "build:docs": "pnpm exec typedoc --out ../snowfall-docs src/snowfall.ts --readme README.md",
+    "watch": "pnpm exec webpack --config webpack.dev.js --watch",
+    "pub": "pnpm run build:all && npm publish --access public",
     "prepare": "husky"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@babel/plugin-external-helpers": "^7.24.7",
     "@babel/preset-env": "^7.25.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.2",
     "@types/seedrandom": "^3.0.8",
     "husky": "^9.0.11",
-    "jsdoc": "^4.0.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.2.5",
     "pretty-quick": "^4.0.0",
+    "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.1",
     "typedoc": "^0.26.3",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.4",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4",
     "webpack-merge": "^6.0.1"
   },
   "dependencies": {
-    "@erikwatson/bramble": "^0.6.0",
+    "@erikwatson/bramble": "^0.8.0",
     "@tweenjs/tween.js": "^23.1.2",
     "seedrandom": "^3.0.5"
+  },
+  "packageManager": "pnpm@10.11.1+sha512.e519b9f7639869dc8d5c3c5dfef73b3f091094b0a006d7317353c72b124e80e1afd429732e28705ad6bfa1ee879c1fce46c128ccebd3192101f43dd67c667912",
+  "keywords": [
+    "snow",
+    "snowfall",
+    "christmas",
+    "winter",
+    "canvas",
+    "particles",
+    "holiday",
+    "seasonal"
+  ],
+  "homepage": "https://github.com/erikwatson/snowfall.js",
+  "bugs": {
+    "url": "https://github.com/erikwatson/snowfall.js/issues"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/erikwatson"
   }
 }

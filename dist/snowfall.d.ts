@@ -1,5 +1,10 @@
 /**
  * @module snowfall
+ *
+ * Lightweight, high-performance snowfall effect for the web.
+ * Fully configurable, supports multiple layers, wind, gusts, and scheduled activation.
+ *
+ * Stay cool ☃️
  */
 import { UserConfig, UserSchedule } from './types';
 /**
@@ -8,6 +13,8 @@ import { UserConfig, UserSchedule } from './types';
  * @param {UserConfig} [config] - A config, possibly from the [Visual Config Editor](https://erikwatson.github.io/snowfall-editor/).
  */
 export declare function start(config?: UserConfig): void;
+export declare function restart(config?: UserConfig): void;
+export declare function stop(): void;
 /**
  * Starts the Snowfall simulation when today's date falls within the date range in the schedule.
  *
@@ -15,12 +22,6 @@ export declare function start(config?: UserConfig): void;
  * @param {UserConfig} [config] - A config, possibly from the [Visual Config Editor](https://erikwatson.github.io/snowfall-editor/).
  */
 export declare function schedule(userSchedule: UserSchedule, config?: UserConfig): void;
-/**
- * Set the background colour
- *
- * @param {string} colour - The background colour of the Canvas
- */
-export declare function setBackground(colour: string): void;
 /**
  * Set the colour of the Snowflakes
  * @param {string} colour - The colour to set
@@ -40,47 +41,30 @@ export declare function setColour(colour: string, layer: number): void;
  */
 export declare function setDensity(density: number, layer: number): void;
 /**
- * Should the snowflakes grow in size from nothing until they reach their full
- * size? It happens pretty quickly.
- *
- * @param {boolean} value - Yes or no?
- * @param {number} layer - The layer to set the fade for
- */
-export declare function setRespectOrientation(value: boolean, layer: number): void;
-/**
- * Should the snowflakes grow in size from nothing until they reach their full
- * size? It happens pretty quickly.
- *
- * Setting this restarts the simulation.
- *
- * @param {boolean} value - Yes or no?
- * @param {number} layer - The layer to set the fade for
- */
-export declare function setFade(value: boolean, layer: number): void;
-/**
- * Set the Amplitude of the Wave motion of the Snowflakes
+ * Set the Amplitude of the sway of the Snowflakes
  *
  * @param {number} amplitude - The Amplitude to set
  * @param {number} layer - The layer to set the amplitude for
  */
 export declare function setAmplitude(amplitude: number, layer: number): void;
 /**
- * Set the Frequency of the Wave motion of the Snowflakes.
+ * Set the Frequency of the sway of the Snowflakes.
  *
  * @param {number} frequency - The frequency to set
  * @param {number} layer - The layer to set the frequency for
  */
 export declare function setFrequency(frequency: number, layer: number): void;
 /**
- * Set this to true to prevent the update.
- * Set it to true to continue from where we left off.
+ * Pauses or resumes a specific layer.
  *
- * @param {boolean} pause - If the simulation should be halted or not
- * @param {number} layer - The layer to set the paused state for
+ * @param {boolean} pause - Pass true to pause the layer, false to resume
+ * @param {number} layer - The layer index
  */
 export declare function setPaused(pause: boolean, layer: number): void;
 /**
- * Pause/unpause the snowfall update loop
+ * Pause/unpause the snowfall update loop for a specific layer.
+ *
+ * @param layer - The layer index to toggle
  */
 export declare function togglePaused(layer: number): void;
 /**
@@ -102,6 +86,7 @@ export declare function setWindAngle(angle: number, layer: number): void;
  * Set the strength of the wind in the simulation.
  *
  * @param {number} strength - The strength of the wind
+ * @param {number} layer    - The layer to apply the wind strength to
  */
 export declare function setWindStrength(strength: number, layer: number): void;
 /**
@@ -222,6 +207,36 @@ export declare function setWindOutDelayMax(max: number, layer: number): void;
  * @returns {void}
  */
 export declare function setWindOutChangeChance(chance: number, layer: number): void;
-export type { UserConfig, UserSchedule } from './types';
+/**
+ * Set the minimum mass of the snowflakes.
+ *
+ * @param {number} min - The minimum mass of the snowflakes.
+ * @param {number} layer - The layer to set the mass min for
+ */
+export declare function setMassMin(min: number, layer: number): void;
+/**
+ * Set the maximum mass of the snowflakes.
+ *
+ * @param {number} max - The maximum mass of the snowflakes.
+ * @param {number} layer - The layer to set the mass max for
+ */
+export declare function setMassMax(max: number, layer: number): void;
+/**
+ * Set the minimum size of the snowflakes.
+ *
+ * @param {number} min - The minimum rendered size of the snowflakes.
+ * @param {number} layer - The layer to set the rendered size min for
+ */
+export declare function setSizeMin(min: number, layer: number): void;
+/**
+ * Set the maximum size of the snowflakes.
+ *
+ * @param {number} max - The maximum rendered size of the snowflakes.
+ * @param {number} layer - The layer to set the rendered size max for
+ */
+export declare function setSizeMax(max: number, layer: number): void;
 export { diff } from './config';
 export * from './defaults';
+export { clone } from './utils';
+export { isSimpleLayer } from './utils';
+export { UserSchedule, UserConfig, SimpleLayerConfig, ImageLayerConfig, CompleteUserConfig, BaseConfig, ConfigLayer, Gravity, SizeBounds, Sway, Wind, Gusts, In, Out } from './types';

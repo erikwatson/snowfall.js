@@ -1,5 +1,10 @@
 /**
  * @module snowfall
+ *
+ * Lightweight, high-performance snowfall effect for the web.
+ * Fully configurable, supports multiple layers, wind, gusts, and scheduled activation.
+ *
+ * Stay cool ☃️
  */
 
 import { UserConfig, UserSchedule, Simulation } from './types'
@@ -8,19 +13,38 @@ import { withinSchedule } from './utils'
 
 let simulation: Simulation
 
+function ensureRunning() {
+  if (!simulation) {
+    throw new Error(
+      'Snowfall simulation not started. Call snowfall.start() first.'
+    )
+  }
+}
+
 /**
  * Starts the Snowfall simulation.
  *
  * @param {UserConfig} [config] - A config, possibly from the [Visual Config Editor](https://erikwatson.github.io/snowfall-editor/).
  */
 export function start(config: UserConfig = {}) {
-  simulation = Sim.create()
-
   try {
+    if (!simulation) {
+      simulation = Sim.create()
+    }
     simulation.start(config)
   } catch (error) {
     console.error(error)
   }
+}
+
+export function restart(config: UserConfig = {}) {
+  stop()
+  start(config)
+}
+
+export function stop() {
+  simulation?.stop()
+  simulation = undefined as any
 }
 
 /**
@@ -31,17 +55,9 @@ export function start(config: UserConfig = {}) {
  */
 export function schedule(userSchedule: UserSchedule, config: UserConfig = {}) {
   if (withinSchedule(userSchedule)) {
+    stop()
     start(config)
   }
-}
-
-/**
- * Set the background colour
- *
- * @param {string} colour - The background colour of the Canvas
- */
-export function setBackground(colour: string) {
-  simulation.setBackground(colour)
 }
 
 /**
@@ -50,6 +66,7 @@ export function setBackground(colour: string) {
  * @param {number} layer - The layer to set the colour for
  */
 export function setColour(colour: string, layer: number) {
+  ensureRunning()
   simulation.setColour(colour, layer)
 }
 
@@ -65,68 +82,50 @@ export function setColour(colour: string, layer: number) {
  * @param {number} layer - The layer to set the density for
  */
 export function setDensity(density: number, layer: number) {
+  ensureRunning()
   simulation.setDensity(density, layer)
 }
 
 /**
- * Should the snowflakes grow in size from nothing until they reach their full
- * size? It happens pretty quickly.
- *
- * @param {boolean} value - Yes or no?
- * @param {number} layer - The layer to set the fade for
- */
-export function setRespectOrientation(value: boolean, layer: number) {
-  simulation.setRespectOrientation(value, layer)
-}
-
-/**
- * Should the snowflakes grow in size from nothing until they reach their full
- * size? It happens pretty quickly.
- *
- * Setting this restarts the simulation.
- *
- * @param {boolean} value - Yes or no?
- * @param {number} layer - The layer to set the fade for
- */
-export function setFade(value: boolean, layer: number) {
-  simulation.setFade(value, layer)
-}
-
-/**
- * Set the Amplitude of the Wave motion of the Snowflakes
+ * Set the Amplitude of the sway of the Snowflakes
  *
  * @param {number} amplitude - The Amplitude to set
  * @param {number} layer - The layer to set the amplitude for
  */
 export function setAmplitude(amplitude: number, layer: number) {
+  ensureRunning()
   simulation.setAmplitude(amplitude, layer)
 }
 
 /**
- * Set the Frequency of the Wave motion of the Snowflakes.
+ * Set the Frequency of the sway of the Snowflakes.
  *
  * @param {number} frequency - The frequency to set
  * @param {number} layer - The layer to set the frequency for
  */
 export function setFrequency(frequency: number, layer: number) {
+  ensureRunning()
   simulation.setFrequency(frequency, layer)
 }
 
 /**
- * Set this to true to prevent the update.
- * Set it to true to continue from where we left off.
+ * Pauses or resumes a specific layer.
  *
- * @param {boolean} pause - If the simulation should be halted or not
- * @param {number} layer - The layer to set the paused state for
+ * @param {boolean} pause - Pass true to pause the layer, false to resume
+ * @param {number} layer - The layer index
  */
 export function setPaused(pause: boolean, layer: number) {
+  ensureRunning()
   simulation.setPaused(pause, layer)
 }
 
 /**
- * Pause/unpause the snowfall update loop
+ * Pause/unpause the snowfall update loop for a specific layer.
+ *
+ * @param layer - The layer index to toggle
  */
 export function togglePaused(layer: number) {
+  ensureRunning()
   simulation.togglePaused(layer)
 }
 
@@ -138,6 +137,7 @@ export function togglePaused(layer: number) {
  * @param {number} layer - The layer to set the wind for
  */
 export function setWind(angle: number, strength: number, layer: number) {
+  ensureRunning()
   simulation.setWind(angle, strength, layer)
 }
 
@@ -148,6 +148,7 @@ export function setWind(angle: number, strength: number, layer: number) {
  * @param {number} layer - The layer to set the wind angle for
  */
 export function setWindAngle(angle: number, layer: number) {
+  ensureRunning()
   simulation.setWindAngle(angle, layer)
 }
 
@@ -155,8 +156,10 @@ export function setWindAngle(angle: number, layer: number) {
  * Set the strength of the wind in the simulation.
  *
  * @param {number} strength - The strength of the wind
+ * @param {number} layer    - The layer to apply the wind strength to
  */
 export function setWindStrength(strength: number, layer: number) {
+  ensureRunning()
   simulation.setWindStrength(strength, layer)
 }
 
@@ -168,6 +171,7 @@ export function setWindStrength(strength: number, layer: number) {
  * @param {number} layer - The layer to set the gusts for
  */
 export function setGusts(gusts: boolean, layer: number) {
+  ensureRunning()
   simulation.setGusts(gusts, layer)
 }
 
@@ -179,6 +183,7 @@ export function setGusts(gusts: boolean, layer: number) {
  * @param {number} layer - The layer to set the gravity for
  */
 export function setGravity(angle: number, strength: number, layer: number) {
+  ensureRunning()
   simulation.setGravity(angle, strength, layer)
 }
 
@@ -189,6 +194,7 @@ export function setGravity(angle: number, strength: number, layer: number) {
  * @param {number} layer - The layer to set the gravity angle for
  */
 export function setGravityAngle(angle: number, layer: number) {
+  ensureRunning()
   simulation.setGravityAngle(angle, layer)
 }
 
@@ -199,6 +205,7 @@ export function setGravityAngle(angle: number, layer: number) {
  * @param {number} layer - The layer to set the gravity strength for
  */
 export function setGravityStrength(strength: number, layer: number) {
+  ensureRunning()
   simulation.setGravityStrength(strength, layer)
 }
 
@@ -210,6 +217,7 @@ export function setGravityStrength(strength: number, layer: number) {
  * @returns {void}
  */
 export function setWindInAdditionalStrengthMin(min: number, layer: number) {
+  ensureRunning()
   simulation.setWindInAdditionalStrengthMin(min, layer)
 }
 
@@ -221,6 +229,7 @@ export function setWindInAdditionalStrengthMin(min: number, layer: number) {
  * @returns {void}
  */
 export function setWindInAdditionalStrengthMax(max: number, layer: number) {
+  ensureRunning()
   simulation.setWindInAdditionalStrengthMax(max, layer)
 }
 
@@ -232,6 +241,7 @@ export function setWindInAdditionalStrengthMax(max: number, layer: number) {
  * @returns {void}
  */
 export function setWindInDurationMin(min: number, layer: number) {
+  ensureRunning()
   simulation.setWindInDurationMin(min, layer)
 }
 
@@ -243,6 +253,7 @@ export function setWindInDurationMin(min: number, layer: number) {
  * @returns {void}
  */
 export function setWindInDurationMax(max: number, layer: number) {
+  ensureRunning()
   simulation.setWindInDurationMax(max, layer)
 }
 
@@ -254,6 +265,7 @@ export function setWindInDurationMax(max: number, layer: number) {
  * @returns {void}
  */
 export function setWindInDelayMin(min: number, layer: number) {
+  ensureRunning()
   simulation.setWindInDelayMin(min, layer)
 }
 
@@ -265,6 +277,7 @@ export function setWindInDelayMin(min: number, layer: number) {
  * @returns {void}
  */
 export function setWindInDelayMax(max: number, layer: number) {
+  ensureRunning()
   simulation.setWindInDelayMax(max, layer)
 }
 
@@ -276,6 +289,7 @@ export function setWindInDelayMax(max: number, layer: number) {
  * @returns {void}
  */
 export function setWindOutDurationMin(min: number, layer: number) {
+  ensureRunning()
   simulation.setWindOutDurationMin(min, layer)
 }
 
@@ -287,6 +301,7 @@ export function setWindOutDurationMin(min: number, layer: number) {
  * @returns {void}
  */
 export function setWindOutDurationMax(max: number, layer: number) {
+  ensureRunning()
   simulation.setWindOutDurationMax(max, layer)
 }
 
@@ -298,6 +313,7 @@ export function setWindOutDurationMax(max: number, layer: number) {
  * @returns {void}
  */
 export function setWindOutDelayMin(min: number, layer: number) {
+  ensureRunning()
   simulation.setWindOutDelayMin(min, layer)
 }
 
@@ -309,6 +325,7 @@ export function setWindOutDelayMin(min: number, layer: number) {
  * @returns {void}
  */
 export function setWindOutDelayMax(max: number, layer: number) {
+  ensureRunning()
   simulation.setWindOutDelayMax(max, layer)
 }
 
@@ -320,12 +337,71 @@ export function setWindOutDelayMax(max: number, layer: number) {
  * @returns {void}
  */
 export function setWindOutChangeChance(chance: number, layer: number) {
+  ensureRunning()
   simulation.setWindOutChangeChance(chance, layer)
 }
 
-// Exporting types for TypeDoc
-export type { UserConfig, UserSchedule } from './types'
+/**
+ * Set the minimum mass of the snowflakes.
+ *
+ * @param {number} min - The minimum mass of the snowflakes.
+ * @param {number} layer - The layer to set the mass min for
+ */
+export function setMassMin(min: number, layer: number) {
+  ensureRunning()
+  simulation.setMassMin(min, layer)
+}
 
-// exporting the diff function for the editor
+/**
+ * Set the maximum mass of the snowflakes.
+ *
+ * @param {number} max - The maximum mass of the snowflakes.
+ * @param {number} layer - The layer to set the mass max for
+ */
+export function setMassMax(max: number, layer: number) {
+  ensureRunning()
+  simulation.setMassMax(max, layer)
+}
+
+/**
+ * Set the minimum size of the snowflakes.
+ *
+ * @param {number} min - The minimum rendered size of the snowflakes.
+ * @param {number} layer - The layer to set the rendered size min for
+ */
+export function setSizeMin(min: number, layer: number) {
+  ensureRunning()
+  simulation.setSizeMin(min, layer)
+}
+
+/**
+ * Set the maximum size of the snowflakes.
+ *
+ * @param {number} max - The maximum rendered size of the snowflakes.
+ * @param {number} layer - The layer to set the rendered size max for
+ */
+export function setSizeMax(max: number, layer: number) {
+  ensureRunning()
+  simulation.setSizeMax(max, layer)
+}
+
 export { diff } from './config'
 export * from './defaults'
+export { clone } from './utils'
+export { isSimpleLayer } from './utils'
+export {
+  UserSchedule,
+  UserConfig,
+  SimpleLayerConfig,
+  ImageLayerConfig,
+  CompleteUserConfig,
+  BaseConfig,
+  ConfigLayer,
+  Gravity,
+  SizeBounds,
+  Sway,
+  Wind,
+  Gusts,
+  In,
+  Out
+} from './types'
