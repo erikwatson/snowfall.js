@@ -105,8 +105,8 @@ export function create(): Simulation {
       config.attachTo.offsetWidth,
       config.attachTo.offsetHeight
     )
-    simulation.setUpdate(dt => update(dt))
-    simulation.setRender(gfx => render(gfx))
+    simulation.setUpdate(options => update(options.dt))
+    simulation.setRender(options => render(options.gfx))
     simulation.start()
   }
 
@@ -302,7 +302,7 @@ export function create(): Simulation {
     stop: () => {
       config = merge(DEFAULT_USER_CONFIG) // prbably best to wipe the user settings here
       layers = []
-      // simulation.stop()
+      simulation.stop()
       simulation.canvas.remove()
     }
   }

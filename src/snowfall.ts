@@ -30,8 +30,10 @@ export function start(config: UserConfig = {}) {
   try {
     if (!simulation) {
       simulation = Sim.create()
+      simulation.start(config)
+    } else {
+      simulation.restart()
     }
-    simulation.start(config)
   } catch (error) {
     console.error(error)
   }
