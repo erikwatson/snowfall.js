@@ -41,7 +41,11 @@ const simpleLayerConfig = (
     index < DEFAULT_LAYERS.length ? DEFAULT_LAYERS[index] : DEFAULT_SIMPLE_LAYER
   return {
     colour: layer.colour || defaultLayer.colour || DEFAULT_SNOW_COLOR,
-    opacity: layer.opacity || defaultLayer.opacity || DEFAULT_OPACITY,
+    opacity: {
+      ...DEFAULT_OPACITY,
+      ...defaultLayer.opacity,
+      ...layer?.opacity
+    },
     density: layer.density || defaultLayer.density || DEFAULT_DENSITY,
     mode: 'simple',
     mass: { ...DEFAULT_MASS, ...defaultLayer.mass, ...layer.mass },
