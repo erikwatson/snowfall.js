@@ -11,7 +11,9 @@ displayed over the top. [Check out this example](http://erikwatson.me/?snow).
 - Beautiful
 - Highly configurable | [API docs](https://erikwatson.github.io/snowfall-docs/) | [Config editor](https://erikwatson.github.io/snowfall-editor/)
 - Consistent density of snowflakes, regardless of screen size
+- No bunching on resize
 - Scheduling, so you can set it and forget it
+- [React wrapper](https://www.npmjs.com/package/@erikwatson/react-snowfall)
 
 ## Instructions
 
