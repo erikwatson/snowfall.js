@@ -36,10 +36,10 @@ It's recommended that you make it full screen and attach it to the background, s
 </style>
 ```
 
-Then, at the bottom of your page body add the following, this will run snowfall with the default settings.
+If you're using a CDN, add the following
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.1/dist/index.min.js"></script>
 <script>
   snowfall.start({
     layers: [{}]
@@ -47,36 +47,63 @@ Then, at the bottom of your page body add the following, this will run snowfall 
 </script>
 ```
 
+Otherwise, install it with your favourite package manager and include it in your projects build step.
+
+```sh
+npm install @erikwatson/snowfall
+```
+
+```ts
+import snowfall from '@erikwatson/snowfall'
+
+snowfall.start({
+  layers: [{}]
+})
+```
+
 ### Custom configs
 
 Same as above but we pass a config object. Your config overrides the default settings.
 
-```js
-snowfall.start({
+If you're using TypeScript, import the UserConfig type too.
+
+```ts
+import snowfall, { UserConfig } from '@erikwatson/snowfall'
+
+const config: UserConfig = {
   layers: [
     {
       colour: '#8d90b7'
     }
   ]
-})
+}
+
+snowfall.start(config)
 ```
 
 ### Scheduling
 
 Same as the above, but we pass a schedule config and the optional snowfall config to the `.schedule(user_schedule, user_config)` function.
 
-```js
-const userSchedule = {
+If you're using TypeScript, import the UserSchedule type too.
+
+```ts
+import snowfall, { UserSchedule } from '@erikwatson/snowfall'
+
+const userSchedule: UserSchedule = {
   from: { month: 12, day: 1 },
   to: { month: 12, day: 31 }
 }
-snowfall.schedule(userSchedule, {
+
+const config: UserConfig = {
   layers: [
     {
       colour: '#8d90b7'
     }
   ]
-})
+}
+
+snowfall.schedule(userSchedule, config)
 ```
 
 ### CDN Links
