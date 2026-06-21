@@ -8,7 +8,7 @@
   "files": [
     "dist/**/*"
   ],
-  "repository": "git@github.com:erikwatson/snowfall.js.git",
+  "repository": "git@github.com:erikwatson/snowfall.git",
   "author": "Erik Watson <erik@erikwatson.me>",
   "license": "MIT",
   "scripts": {
@@ -55,9 +55,9 @@
     "holiday",
     "seasonal"
   ],
-  "homepage": "https://github.com/erikwatson/snowfall.js",
+  "homepage": "https://github.com/erikwatson/snowfall",
   "bugs": {
-    "url": "https://github.com/erikwatson/snowfall.js/issues"
+    "url": "https://github.com/erikwatson/snowfall/issues"
   },
   "sideEffects": false,
   "exports": {
