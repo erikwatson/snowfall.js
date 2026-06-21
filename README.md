@@ -81,6 +81,8 @@ snowfall.schedule(userSchedule, {
 
 ### CDN Links
 
+[![](https://data.jsdelivr.com/v1/package/npm/@erikwatson/snowfall/badge)](https://www.jsdelivr.com/package/npm/@erikwatson/snowfall)
+
 - Latest 4.x (minified): `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/index.min.js`
 - Latest 4.x (unminified): `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/index.js`
 - Specific version: `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.0.0/dist/index.min.js`
