@@ -112,7 +112,11 @@ const imageLayerConfig = (
     density: layer.density || defaultLayer.density || DEFAULT_DENSITY,
     mode: 'image',
     image: layer.image || defaultLayer.image || DEFAULT_IMAGE,
-    opacity: layer.opacity || defaultLayer.opacity || DEFAULT_OPACITY,
+    opacity: {
+      ...DEFAULT_OPACITY,
+      ...defaultLayer.opacity,
+      ...layer?.opacity
+    },
     rotate: layer.rotate || defaultLayer.rotate || DEFAULT_ROTATE,
     mass: { ...DEFAULT_MASS, ...defaultLayer.mass, ...layer.mass },
     size: { ...DEFAULT_SIZE, ...defaultLayer.size, ...layer.size },

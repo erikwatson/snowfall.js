@@ -2,6 +2,7 @@ import { Graphics } from '@erikwatson/bramble'
 import { IImageLayer, ImageLayerConfig } from '../types'
 import { BaseLayer } from './base-layer'
 import { rotate } from '../math'
+import { getDefaultHighWaterMark } from 'stream'
 
 export class ImageLayer
   extends BaseLayer<ImageLayerConfig>
@@ -44,31 +45,33 @@ export class ImageLayer
       const size = flake.renderedSize
       const offset = size / 2
 
-      if (this.config.rotate) {
-        gfx.rotation(
-          () => {
-            gfx.image(
-              this.image,
-              {
-                x: flake.position.x - offset,
-                y: flake.position.y - offset
-              },
-              { width: size, height: size }
-            )
-          },
-          flake.rotation,
-          flake.position
-        )
-      } else {
-        gfx.image(
-          this.image,
-          {
-            x: flake.position.x - offset,
-            y: flake.position.y - offset
-          },
-          { width: size, height: size }
-        )
-      }
+      gfx.transparency(() => {
+        if (this.config.rotate) {
+          gfx.rotation(
+            () => {
+              gfx.image(
+                this.image,
+                {
+                  x: flake.position.x - offset,
+                  y: flake.position.y - offset
+                },
+                { width: size, height: size }
+              )
+            },
+            flake.rotation,
+            flake.position
+          )
+        } else {
+          gfx.image(
+            this.image,
+            {
+              x: flake.position.x - offset,
+              y: flake.position.y - offset
+            },
+            { width: size, height: size }
+          )
+        }
+      }, flake.opacity)
     })
   }
 }

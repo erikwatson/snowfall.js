@@ -128,7 +128,7 @@ describe('BaseLayer', () => {
 
     expect(layer.config.wind.angle).toBe(0)
     expect(layer.config.wind.strength).toBe(2)
-    expect(vec2.fromDegrees).toHaveBeenCalledWith(0)
+    expect(vec2.vec2FromDegrees).toHaveBeenCalledWith(0)
     expect(layer.windVector.x).toBeCloseTo(2)
     expect(layer.windVector.y).toBeCloseTo(0)
   })
@@ -141,7 +141,7 @@ describe('BaseLayer', () => {
     expect(layer.config.gravity.angle).toBe(90)
     expect(layer.config.gravity.strength).toBe(10)
     expect(clone).toHaveBeenCalledWith(layer.config)
-    expect(vec2.fromDegrees).toHaveBeenCalledWith(90)
+    expect(vec2.vec2FromDegrees).toHaveBeenCalledWith(90)
 
     // 90° = (0, 1) → multiplied by 10 = (0, 10)
     expect(layer.gravityVector.x).toBeCloseTo(0)

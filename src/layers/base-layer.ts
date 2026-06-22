@@ -12,6 +12,8 @@ import { getDegreesFromVec2 } from '../math'
 import { clone, makeSnowflakes, requiredSnowflakes } from '../utils'
 import * as TWEEN from '@tweenjs/tween.js'
 
+const { vec2FromDegrees } = vec2
+
 export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
   originalConfig: T
   config: T
@@ -85,7 +87,7 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
     this.config.gravity.strength = strength
     this.originalConfig = clone(this.config)
 
-    this.gravityVector = vec2.fromDegrees(degrees)
+    this.gravityVector = vec2FromDegrees(degrees)
     this.gravityVector.multiplyScalar(strength)
   }
 
@@ -95,7 +97,7 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
 
     const strength = this.gravityVector.getLength()
 
-    this.gravityVector = vec2.fromDegrees(degrees)
+    this.gravityVector = vec2FromDegrees(degrees)
     this.gravityVector.multiplyScalar(strength)
   }
 
@@ -105,7 +107,7 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
 
     const degrees = getDegreesFromVec2(this.gravityVector)
 
-    this.gravityVector = vec2.fromDegrees(degrees)
+    this.gravityVector = vec2FromDegrees(degrees)
     this.gravityVector.multiplyScalar(strength)
   }
 
@@ -117,7 +119,7 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
     this.config.wind.angle = degrees
     this.config.wind.strength = strength
 
-    this.windVector = vec2.fromDegrees(degrees)
+    this.windVector = vec2FromDegrees(degrees)
     this.windVector.multiplyScalar(strength)
   }
 
@@ -127,7 +129,7 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
 
     const strength = this.windVector.getLength()
 
-    this.windVector = vec2.fromDegrees(degrees)
+    this.windVector = vec2FromDegrees(degrees)
     this.windVector.multiplyScalar(strength)
   }
 
@@ -137,7 +139,7 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
 
     const degrees = getDegreesFromVec2(this.windVector)
 
-    this.windVector = vec2.fromDegrees(degrees)
+    this.windVector = vec2FromDegrees(degrees)
     this.windVector.multiplyScalar(strength)
   }
 

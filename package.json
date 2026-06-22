@@ -40,7 +40,7 @@
     "webpack-merge": "^6.0.1"
   },
   "dependencies": {
-    "@erikwatson/bramble": "^0.10.0",
+    "@erikwatson/bramble": "^0.11.2",
     "@tweenjs/tween.js": "^23.1.2",
     "seedrandom": "^3.0.5"
   },

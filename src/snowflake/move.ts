@@ -1,11 +1,12 @@
 import { Vec2, vec2 } from '@erikwatson/bramble'
 import { lerp, random, rotate } from '../math'
 import { Snowflake } from '../types'
-import { randomInt } from 'crypto'
+
+const { vec2FromDegrees } = vec2
 
 export function addWind(snowflake: Snowflake, angle: number, strength: number) {
   const w = vec2.create(0, 0)
-  const windVec = vec2.fromDegrees(angle)
+  const windVec = vec2FromDegrees(angle)
   windVec.multiplyScalar(strength)
 
   w.x = windVec.x
@@ -25,7 +26,7 @@ export function addGravity(
   strength: number
 ) {
   const g = vec2.create(0, 0)
-  const gravityVec = vec2.fromDegrees(angle)
+  const gravityVec = vec2FromDegrees(angle)
   gravityVec.multiplyScalar(strength)
 
   g.x = gravityVec.x
@@ -88,7 +89,7 @@ function grow(
   const currentPos = vec2.clone(snowflake.position)
   const delta = vec2.clone(currentPos)
   delta.subtract(prevPos)
-  const gravityDir = vec2.fromDegrees(gravity.angle)
+  const gravityDir = vec2FromDegrees(gravity.angle)
   const upDir = vec2.create(-gravityDir.x, -gravityDir.y)
   const dotProduct = delta.dot(upDir)
   if (dotProduct > 0) {
