@@ -218,6 +218,8 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
     this.snowflakes.forEach(snowflake => {
       snowflake.time += dt
 
+      snowflake.previousPosition = vec2.clone(snowflake.position)
+
       addWind(snowflake, wind.angle, wind.strength)
       addRotation(snowflake)
       addGravity(snowflake, gravity.angle, gravity.strength)

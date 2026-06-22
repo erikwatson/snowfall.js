@@ -82,12 +82,14 @@ export function makeSnowflakes(
     const posX = random(width)
     const posY = random(height)
     const position = vec2.create(posX, posY)
+    const previousPosition = vec2.clone(position)
 
     const size =
       config.size.min + random() * (config.size.max - config.mass.min)
 
     return {
       position,
+      previousPosition,
       // size: 3 + random() * 5,
       // size: 1 + random() * 2,
       mass: config.mass.min + random() * (config.mass.max - config.mass.min),

@@ -31,7 +31,8 @@ import {
   DEFAULT_IMAGE,
   DEFAULT_SIZE,
   DEFAULT_USER_CONFIG,
-  DEFAULT_OPACITY
+  DEFAULT_OPACITY,
+  DEFAULT_TRAIL
 } from './defaults'
 const simpleLayerConfig = (
   layer: Partial<SimpleLayerConfig>,
@@ -46,6 +47,7 @@ const simpleLayerConfig = (
       ...defaultLayer.opacity,
       ...layer?.opacity
     },
+    trail: layer.trail || defaultLayer.trail || DEFAULT_TRAIL,
     density: layer.density || defaultLayer.density || DEFAULT_DENSITY,
     mode: 'simple',
     mass: { ...DEFAULT_MASS, ...defaultLayer.mass, ...layer.mass },

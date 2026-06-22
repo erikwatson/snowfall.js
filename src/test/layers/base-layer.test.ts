@@ -16,7 +16,6 @@ jest.mock('../../snowflake')
 jest.mock('../../math')
 jest.mock('../../utils')
 
-// Perfect mock — works everywhere
 jest.mock('@erikwatson/bramble', () => ({
   vec2: {
     create: jest.fn(() => ({
@@ -98,7 +97,6 @@ describe('BaseLayer', () => {
     expect(layer.height).toBe(1080)
     expect(layer.paused).toBe(false)
 
-    // Safe checks — never compare Vec2 instances directly
     expect(layer.windVector.x).toBe(0)
     expect(layer.windVector.y).toBe(0)
     expect(layer.gravityVector.x).toBe(0)
@@ -143,7 +141,7 @@ describe('BaseLayer', () => {
     expect(clone).toHaveBeenCalledWith(layer.config)
     expect(vec2.vec2FromDegrees).toHaveBeenCalledWith(90)
 
-    // 90° = (0, 1) → multiplied by 10 = (0, 10)
+    // 90 degrees = (0, 1) -> multiplied by 10 = (0, 10)
     expect(layer.gravityVector.x).toBeCloseTo(0)
     expect(layer.gravityVector.y).toBeCloseTo(10)
   })

@@ -130,6 +130,12 @@ export interface SimpleLayerConfig extends BaseLayerConfig {
    * @default '#8d90b7'
    */
   colour: string
+
+  /**
+   * Should the snowflakes be drawn with a trail, so they elongate slightly as they move?
+   * @default false
+   */
+  trail: boolean
 }
 
 export interface ImageLayerConfig extends BaseLayerConfig {
@@ -227,6 +233,7 @@ export interface UserSchedule {
 
 export type Snowflake = {
   position: Vec2
+  previousPosition: Vec2
   mass: number
   size: number
   renderedSize: number

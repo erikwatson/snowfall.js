@@ -11,6 +11,7 @@ describe('SimpleLayer', () => {
     config = {
       mode: 'simple',
       colour: '#FFFFFF',
+      trail: false,
       opacity: { min: 0, max: 1 },
       density: 100,
       sway: { amplitude: 1, frequency: 0.5 },
@@ -48,6 +49,7 @@ describe('SimpleLayer', () => {
     layer.snowflakes = [
       {
         position: vec2.create(100, 100),
+        previousPosition: vec2.create(100, 100),
         mass: 3,
         size: 5,
         renderedSize: 5,
@@ -61,6 +63,7 @@ describe('SimpleLayer', () => {
       },
       {
         position: vec2.create(200, 200),
+        previousPosition: vec2.create(200, 200),
         mass: 4,
         size: 10,
         renderedSize: 10,

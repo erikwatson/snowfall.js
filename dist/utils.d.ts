@@ -5,6 +5,7 @@ export declare function requiredSnowflakes(width: number, height: number, densit
 export declare function clone(obj: any): any;
 export declare function makeSnowflakes(num: number, config: BaseLayerConfig | SimpleLayerConfig | ImageLayerConfig, width: number, height: number): {
     position: import("@erikwatson/bramble").Vec2;
+    previousPosition: import("@erikwatson/bramble").Vec2;
     mass: number;
     size: number;
     renderedSize: number;

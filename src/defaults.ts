@@ -25,6 +25,8 @@ export const DEFAULT_IMAGE =
 export const DEFAULT_OPACITY_MIN = 1
 export const DEFAULT_OPACITY_MAX = 1
 
+export const DEFAULT_TRAIL = false
+
 // Mass
 export const DEFAULT_MASS = {
   min: DEFAULT_MASS_MIN,
@@ -131,6 +133,7 @@ export const BASE_LAYER_CONFIG: BaseLayerConfig = {
 export const DEFAULT_SIMPLE_LAYER: SimpleLayerConfig = {
   ...BASE_LAYER_CONFIG,
   colour: DEFAULT_SNOW_COLOR,
+  trail: DEFAULT_TRAIL,
   mode: 'simple'
 }
 
