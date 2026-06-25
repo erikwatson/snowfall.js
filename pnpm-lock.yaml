@@ -8,8 +8,8 @@ importers:
   .:
     dependencies:
       '@erikwatson/bramble':
-        specifier: ^0.12.0
-        version: 0.12.0
+        specifier: ^0.13.5
+        version: 0.13.5
       '@tweenjs/tween.js':
         specifier: ^23.1.2
         version: 23.1.3
@@ -979,10 +979,10 @@ packages:
       }
     engines: { node: '>=10.0.0' }
 
-  '@erikwatson/bramble@0.12.0':
+  '@erikwatson/bramble@0.13.5':
     resolution:
       {
-        integrity: sha512-0RPVAIHYXp8lSve+X+XxcrhwtDszfzVyEYNUSWs90TmbTBWy1dr+ht06f/g9+o6fJTKIcRtBioN6BX4/hJBhXg==
+        integrity: sha512-P32ETDmSJSjQC2vaPA9OGoVQNWTHUPTMn7cbfKqR927jnFSVx4/xKligEYdflQ6BXQ3hR1lLnCr+ax8lrkN60A==
       }
 
   '@istanbuljs/load-nyc-config@1.1.0':
@@ -4966,7 +4966,7 @@ snapshots:
 
   '@discoveryjs/json-ext@0.5.7': {}
 
-  '@erikwatson/bramble@0.12.0': {}
+  '@erikwatson/bramble@0.13.5': {}
 
   '@istanbuljs/load-nyc-config@1.1.0':
     dependencies:

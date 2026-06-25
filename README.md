@@ -11,8 +11,9 @@ displayed over the top. [Check out this example](http://erikwatson.me/?snow).
 - Beautiful
 - Highly configurable | [API docs](https://erikwatson.github.io/snowfall-docs/) | [Config editor](https://erikwatson.github.io/snowfall-editor/)
 - Consistent density of snowflakes, regardless of screen size
-- No bunching on resize
+- No bunching or thinning on resize
 - Scheduling, so you can set it and forget it
+- Scrolls with the page
 - [React wrapper](https://www.npmjs.com/package/@erikwatson/react-snowfall)
 
 ## Instructions
@@ -39,7 +40,7 @@ It's recommended that you make it full screen and attach it to the background, s
 If you're using a CDN, add the following
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.1/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.3/dist/index.min.js"></script>
 <script>
   snowfall.start({
     layers: [{}]
@@ -112,7 +113,10 @@ snowfall.schedule(userSchedule, config)
 
 - Latest 4.x (minified): `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/index.min.js`
 - Latest 4.x (unminified): `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4/dist/index.js`
-- Specific version: `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.0.0/dist/index.min.js`
+- Latest 4.3.x (minified): `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.3/dist/index.min.js`
+- Latest 4.3.x (unminified): `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.3/dist/index.js`
+- Specific version (minified): `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.3.0/dist/index.min.js`
+- Specific version (unminified): `https://cdn.jsdelivr.net/npm/@erikwatson/snowfall@4.3.0/dist/index.min.js`
 
 ## Author
 

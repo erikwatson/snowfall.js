@@ -1,4 +1,9 @@
-import { Graphics, game } from '@erikwatson/bramble'
+import {
+  Graphics,
+  RenderCallbackOptions,
+  UpdateCallbackOptions,
+  game
+} from '@erikwatson/bramble'
 
 import { Config, Simulation, UserConfig } from './types'
 import { merge } from './config'
@@ -6,7 +11,7 @@ import * as TWEEN from '@tweenjs/tween.js'
 import { seededRandom } from './math'
 import { SimpleLayer } from './layers/simple-layer'
 import { ImageLayer } from './layers/image-layer'
-import { DEFAULT_BASE_CONFIG, DEFAULT_USER_CONFIG } from './defaults'
+import { DEFAULT_USER_CONFIG } from './defaults'
 
 export function create(): Simulation {
   let config: Config
@@ -105,19 +110,19 @@ export function create(): Simulation {
       config.attachTo.offsetWidth,
       config.attachTo.offsetHeight
     )
-    simulation.setUpdate(options => update(options.dt))
-    simulation.setRender(options => render(options.gfx))
+    simulation.setUpdate(options => update(options))
+    simulation.setRender(options => render(options))
     simulation.start()
   }
 
-  function update(dt: number) {
+  function update({ dt, input }: UpdateCallbackOptions) {
     TWEEN.update()
     layers.forEach(layer => {
-      layer.update(dt)
+      layer.update(dt, input)
     })
   }
 
-  function render(gfx: Graphics) {
+  function render({ gfx }: RenderCallbackOptions) {
     gfx.clear()
     layers.forEach(layer => {
       layer.render(gfx)
@@ -304,6 +309,7 @@ export function create(): Simulation {
       layers = []
       simulation.stop()
       simulation.canvas.remove()
+      TWEEN.removeAll()
     }
   }
 }

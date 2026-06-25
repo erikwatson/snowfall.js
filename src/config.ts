@@ -32,7 +32,8 @@ import {
   DEFAULT_SIZE,
   DEFAULT_USER_CONFIG,
   DEFAULT_OPACITY,
-  DEFAULT_TRAIL
+  DEFAULT_TRAIL,
+  DEFAULT_SCROLL
 } from './defaults'
 const simpleLayerConfig = (
   layer: Partial<SimpleLayerConfig>,
@@ -49,6 +50,7 @@ const simpleLayerConfig = (
     },
     trail: layer.trail || defaultLayer.trail || DEFAULT_TRAIL,
     density: layer.density || defaultLayer.density || DEFAULT_DENSITY,
+    scroll: layer.scroll || defaultLayer.scroll || DEFAULT_SCROLL,
     mode: 'simple',
     mass: { ...DEFAULT_MASS, ...defaultLayer.mass, ...layer.mass },
     size: { ...DEFAULT_SIZE, ...defaultLayer.size, ...layer.size },
@@ -112,6 +114,7 @@ const imageLayerConfig = (
   const defaultLayer = DEFAULT_IMAGE_LAYER
   return {
     density: layer.density || defaultLayer.density || DEFAULT_DENSITY,
+    scroll: layer.scroll || defaultLayer.scroll || DEFAULT_SCROLL,
     mode: 'image',
     image: layer.image || defaultLayer.image || DEFAULT_IMAGE,
     opacity: {

@@ -1,16 +1,10 @@
-import { Graphics, Vec2, vec2, Sprite, sprite } from '@erikwatson/bramble'
+import { Graphics, InputState, Vec2, vec2 } from '@erikwatson/bramble'
 import { BaseLayerConfig, IBaseLayer, Snowflake } from '../types'
-import {
-  addWind,
-  addGravity,
-  addSwayMotion,
-  screenWrap,
-  addRotation,
-  fadeIn
-} from '../snowflake'
+import { addWind, addGravity, addSwayMotion, screenWrap } from '../snowflake'
 import { getDegreesFromVec2 } from '../math'
 import { clone, makeSnowflakes, requiredSnowflakes } from '../utils'
 import * as TWEEN from '@tweenjs/tween.js'
+import { addScrollMotion } from '../snowflake/move'
 
 const { vec2FromDegrees } = vec2
 
@@ -25,6 +19,12 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
   gravityVector: Vec2
   fadeWindIn?: TWEEN.Tween<T>
   fadeWindOut?: TWEEN.Tween<T>
+  scrollOffsetX = 0
+  scrollOffsetY = 0
+  scrollVelocityX = 0
+  scrollVelocityY = 0
+  lastScrollY = 0
+  lastScrollX = 0
 
   constructor(
     config: T,
@@ -43,6 +43,18 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
     this.height = height
     this.windVector = vec2.create(0, 0)
     this.gravityVector = vec2.create(0, 0)
+
+    const x = window.scrollX
+    const y = window.scrollY
+
+    this.lastScrollX = x
+    this.lastScrollY = y
+
+    this.scrollOffsetX = 0
+    this.scrollOffsetY = 0
+
+    this.scrollVelocityX = 0
+    this.scrollVelocityY = 0
 
     const originalWindStrength = this.config.wind.strength
 
@@ -208,23 +220,59 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
     this.originalConfig = clone(this.config)
   }
 
-  update(dt: number): void {
-    if (this.paused) {
-      return
-    }
+  update(dt: number, input: InputState): void {
+    if (this.paused) return
 
     const { sway, gravity, wind } = this.config
 
+    const x = window.scrollX
+    const y = window.scrollY
+
+    const scrollDeltaX = x - (this.lastScrollX ?? x)
+    const scrollDeltaY = y - (this.lastScrollY ?? y)
+
+    this.lastScrollX = x
+    this.lastScrollY = y
+
+    this.scrollVelocityX += scrollDeltaX / 25
+    this.scrollVelocityY += scrollDeltaY / 25
+
+    this.scrollVelocityX *= 0.85
+    this.scrollVelocityY *= 0.85
+
+    this.scrollOffsetX = this.scrollVelocityX
+    this.scrollOffsetY = this.scrollVelocityY
+
+    this.scrollOffsetX *= 0.85
+    this.scrollOffsetY *= 0.85
+
     this.snowflakes.forEach(snowflake => {
       snowflake.time += dt
-
       snowflake.previousPosition = vec2.clone(snowflake.position)
 
       addWind(snowflake, wind.angle, wind.strength)
-      addRotation(snowflake)
       addGravity(snowflake, gravity.angle, gravity.strength)
       addSwayMotion(snowflake, gravity, sway)
-      screenWrap(snowflake, this.width, this.height, gravity)
+
+      if (this.config.scroll) {
+        if (this.scrollOffsetX !== 0 || this.scrollOffsetY !== 0) {
+          addScrollMotion(
+            snowflake.position,
+            -this.scrollOffsetX,
+            -this.scrollOffsetY
+          )
+
+          addScrollMotion(
+            snowflake.previousPosition,
+            -this.scrollOffsetX,
+            -this.scrollOffsetY
+          )
+        }
+      }
+
+      if (screenWrap(snowflake, this.width, this.height)) {
+        snowflake.previousPosition = vec2.clone(snowflake.position)
+      }
     })
   }
 
@@ -262,6 +310,9 @@ export class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
   }
 
   restart(): void {
+    this.fadeWindIn?.stop()
+    this.fadeWindOut?.stop()
+
     this.fadeWindIn?.stopChainedTweens()
     this.fadeWindOut?.stopChainedTweens()
 

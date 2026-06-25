@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        background-color: black;
+        color: white;
+        font-family: sans-serif;
+        width: 400vw;
+      }
+
+      /* snowfall background */
+      #snowfall {
+        position: fixed;
+        inset: 0;
+        /* pointer-events: none; */
+        z-index: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      /* foreground scroll container */
+      #content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 80px 24px;
+      }
+
+      .spacer {
+        height: 120vh;
+      }
+
+      h1 {
+        font-size: 48px;
+        margin-bottom: 24px;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="snowfall"></div>
+
+    <div id="content">
+      <h1>Snowfall Scroll Test</h1>
+
+      <p>Scroll down to test how snowfall behaves behind content.</p>
+
+      <div class="spacer"></div>
+
+      <h2>Section 2</h2>
+      <p>
+        This is additional content to ensure the page is long enough to scroll.
+      </p>
+
+      <div class="spacer"></div>
+
+      <h2>Section 3</h2>
+      <p>
+        More content. The snowfall should remain fixed in the background while
+        this moves.
+      </p>
+
+      <div class="spacer"></div>
+    </div>
+
+    <script src="../../dist/index.js"></script>
+    <script>
+      snowfall.start({
+        layers: [
+          {
+            mode: 'image',
+            scroll: true,
+            size: { min: 10, max: 100 },
+            rotate: true
+          },
+          {
+            scroll: true,
+            trail: false
+          }
+        ]
+      })
+    </script>
+  </body>
+</html>

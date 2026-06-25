@@ -1,4 +1,4 @@
-import { Graphics } from '@erikwatson/bramble';
+import { Graphics, InputState } from '@erikwatson/bramble';
 import { IImageLayer, ImageLayerConfig } from '../types';
 import { BaseLayer } from './base-layer';
 export declare class ImageLayer extends BaseLayer<ImageLayerConfig> implements IImageLayer {
@@ -6,5 +6,6 @@ export declare class ImageLayer extends BaseLayer<ImageLayerConfig> implements I
     image: HTMLImageElement;
     constructor(config: ImageLayerConfig, width: number, height: number, strength: number, durationIn: number, windDelayIn: number, durationOut: number, windDelayOut: number, changeChance: number);
     setImage(image: string): void;
+    update(dt: number, input: InputState): void;
     render(gfx: Graphics): void;
 }

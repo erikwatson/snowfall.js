@@ -1,4 +1,4 @@
-import { Graphics, Vec2 } from '@erikwatson/bramble';
+import { Graphics, InputState, Vec2 } from '@erikwatson/bramble';
 import { BaseLayerConfig, IBaseLayer, Snowflake } from '../types';
 import * as TWEEN from '@tweenjs/tween.js';
 export declare class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer {
@@ -12,6 +12,12 @@ export declare class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer 
     gravityVector: Vec2;
     fadeWindIn?: TWEEN.Tween<T>;
     fadeWindOut?: TWEEN.Tween<T>;
+    scrollOffsetX: number;
+    scrollOffsetY: number;
+    scrollVelocityX: number;
+    scrollVelocityY: number;
+    lastScrollY: number;
+    lastScrollX: number;
     constructor(config: T, width: number, height: number, strength: number, durationIn: number, windDelayIn: number, durationOut: number, windDelayOut: number, changeChance: number);
     setAmplitude(num: number): void;
     setFrequency(freq: number): void;
@@ -35,7 +41,7 @@ export declare class BaseLayer<T extends BaseLayerConfig> implements IBaseLayer 
     setWindOutDelayMin(min: number): void;
     setWindOutDelayMax(max: number): void;
     setWindOutChangeChance(chance: number): void;
-    update(dt: number): void;
+    update(dt: number, input: InputState): void;
     render(gfx: Graphics): void;
     start(): void;
     pause(): void;

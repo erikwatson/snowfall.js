@@ -1,8 +1,7 @@
-import { Graphics } from '@erikwatson/bramble'
+import { Graphics, InputState } from '@erikwatson/bramble'
 import { IImageLayer, ImageLayerConfig } from '../types'
 import { BaseLayer } from './base-layer'
-import { rotate } from '../math'
-import { getDefaultHighWaterMark } from 'stream'
+import { addRotation } from '../snowflake'
 
 export class ImageLayer
   extends BaseLayer<ImageLayerConfig>
@@ -38,6 +37,13 @@ export class ImageLayer
 
   setImage(image: string): void {
     throw new Error('Method not implemented.')
+  }
+
+  update(dt: number, input: InputState) {
+    super.update(dt, input)
+    for (const snowflake of this.snowflakes) {
+      addRotation(snowflake, dt)
+    }
   }
 
   render(gfx: Graphics) {

@@ -12,6 +12,7 @@ export declare const DEFAULT_IMAGE = "data:image/png;base64,iVBORw0KGgoAAAANSUhE
 export declare const DEFAULT_OPACITY_MIN = 1;
 export declare const DEFAULT_OPACITY_MAX = 1;
 export declare const DEFAULT_TRAIL = false;
+export declare const DEFAULT_SCROLL = false;
 export declare const DEFAULT_MASS: {
     min: number;
     max: number;

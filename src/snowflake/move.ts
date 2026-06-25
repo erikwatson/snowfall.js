@@ -16,8 +16,10 @@ export function addWind(snowflake: Snowflake, angle: number, strength: number) {
   snowflake.position.add(w)
 }
 
-export function addRotation(snowflake: Snowflake) {
-  snowflake.rotation++
+export function addRotation(snowflake: Snowflake, dt: number) {
+  const vx = (snowflake.position.x - snowflake.previousPosition.x) / dt
+  const rotationFactor = 0.0075 // TODO: expose this
+  snowflake.rotation += vx * rotationFactor
 }
 
 export function addGravity(
@@ -57,6 +59,15 @@ export function addSwayMotion(
   snowflake.position.add(sine)
 }
 
+export function addScrollMotion(
+  position: Vec2,
+  deltaX: number,
+  deltaY: number
+) {
+  position.x += deltaX
+  position.y += deltaY
+}
+
 export function fadeIn(snowflake: Snowflake) {
   if (snowflake.renderedSize < snowflake.mass) {
     snowflake.renderedSize = lerp(snowflake.renderedSize, snowflake.mass, 0.025)
@@ -69,16 +80,10 @@ function isVisible(
   screenWidth: number,
   screenHeight: number
 ): boolean {
-  const size = snowflake.size // ideally the diagonal length of a square of our size
-
-  const inBoundsHorizontal =
-    snowflake.position.x + size >= 0 &&
-    snowflake.position.x - size <= screenWidth
-  const inBoundsVertical =
-    snowflake.position.y + size >= 0 &&
-    snowflake.position.y - size <= screenHeight
-
-  return inBoundsHorizontal && inBoundsVertical
+  return (
+    isInBoundsHorizontal(snowflake, screenWidth) &&
+    isInBoundsVertical(snowflake, screenHeight)
+  )
 }
 
 function grow(
@@ -97,97 +102,57 @@ function grow(
   }
 }
 
-function moveToTop(snowflake: Snowflake, screenWidth: number) {
-  snowflake.position.y = -snowflake.size
-  snowflake.position.x = random(screenWidth) // deterministic x
+function isInBoundsHorizontal(snowflake: Snowflake, screenWidth: number) {
+  const result =
+    snowflake.position.x + snowflake.renderedSize >= 0 &&
+    snowflake.position.x - snowflake.renderedSize <= screenWidth
+
+  return result
 }
 
-function moveToBottom(
-  snowflake: Snowflake,
-  screenWidth: number,
-  screenHeight: number
-) {
-  snowflake.position.y = screenHeight + snowflake.size
-  snowflake.position.x = random(screenWidth) // deterministic x
+function isInBoundsVertical(snowflake: Snowflake, screenHeight: number) {
+  const result =
+    snowflake.position.y + snowflake.renderedSize >= 0 &&
+    snowflake.position.y - snowflake.renderedSize <= screenHeight
+
+  return result
 }
 
-function moveToLeft(snowflake: Snowflake, screenHeight: number) {
-  snowflake.position.y = random(screenHeight) // deterministic y
-  snowflake.position.x = -snowflake.size
-}
-
-function moveToRight(
-  snowflake: Snowflake,
-  screenWidth: number,
-  screenHeight: number
-) {
-  snowflake.position.y = random(screenHeight) // deterministic y
-  snowflake.position.x = screenWidth + snowflake.size
-}
-
-function moveRandom(
-  snowflake: Snowflake,
-  screenWidth: number,
-  screenHeight: number,
-  gravity: { angle: number; strength: number },
-  prevPos: Vec2
-) {
-  // Determine the side moved from (exit side)
-  let from_side: string
-  if (snowflake.position.y > screenHeight) from_side = 'bottom'
-  else if (snowflake.position.y < 0) from_side = 'top'
-  else if (snowflake.position.x < 0) from_side = 'left'
-  else if (snowflake.position.x > screenWidth) from_side = 'right'
-  else from_side = 'bottom'
-
-  // Compute velocity
-  const vel = vec2.create(
-    snowflake.position.x - prevPos.x,
-    snowflake.position.y - prevPos.y
-  )
-
-  // Determine moving directions
-  const moving_in: string[] = []
-  if (vel.x > 0) moving_in.push('right')
-  if (vel.x < 0) moving_in.push('left')
-  if (vel.y > 0) moving_in.push('bottom')
-  if (vel.y < 0) moving_in.push('top')
-
-  // Possible sides to move to
-  const sides = ['top', 'bottom', 'left', 'right'].filter(
-    s => s !== from_side && !moving_in.includes(s)
-  )
-
-  // Choose side using seededRandom
-  const chosen = sides[Math.floor(random(0, sides.length))]
-
-  const opposites: Record<string, string> = {
-    top: 'bottom',
-    bottom: 'top',
-    left: 'right',
-    right: 'left'
+function wrapX(snowflake: Snowflake, width: number, height: number) {
+  if (snowflake.position.x + snowflake.renderedSize < 0) {
+    snowflake.position.x += width + 2 * snowflake.renderedSize
+    snowflake.position.y = random(height)
+  } else if (snowflake.position.x - snowflake.renderedSize > width) {
+    snowflake.position.x -= width + 2 * snowflake.renderedSize
+    snowflake.position.y = random(height)
   }
-  const up_side = opposites[from_side]
+}
 
-  // Move to chosen side
-  if (chosen === 'top') moveToTop(snowflake, screenWidth)
-  else if (chosen === 'bottom')
-    moveToBottom(snowflake, screenWidth, screenHeight)
-  else if (chosen === 'left') moveToLeft(snowflake, screenHeight)
-  else if (chosen === 'right') moveToRight(snowflake, screenWidth, screenHeight)
-
-  // Grow if moving to the "up" side
-  if (chosen === up_side) grow(snowflake, gravity, prevPos)
+function wrapY(snowflake: Snowflake, height: number, width: number) {
+  if (snowflake.position.y + snowflake.renderedSize < 0) {
+    snowflake.position.y += height + 2 * snowflake.renderedSize
+    snowflake.position.x = random(width)
+  } else if (snowflake.position.y - snowflake.renderedSize > height) {
+    snowflake.position.y -= height + 2 * snowflake.renderedSize
+    snowflake.position.x = random(width)
+  }
 }
 
 export function screenWrap(
   snowflake: Snowflake,
   width: number,
-  height: number,
-  gravity: { angle: number; strength: number }
+  height: number
 ) {
-  const prevPos = vec2.clone(snowflake.position)
-  if (!isVisible(snowflake, width, height)) {
-    moveRandom(snowflake, width, height, gravity, prevPos)
+  let wrapped = false
+  if (!isInBoundsHorizontal(snowflake, width)) {
+    wrapX(snowflake, width, height)
+    wrapped = true
   }
+
+  if (!isInBoundsVertical(snowflake, height)) {
+    wrapY(snowflake, height, width)
+    wrapped = true
+  }
+
+  return wrapped
 }

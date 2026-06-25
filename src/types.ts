@@ -1,4 +1,4 @@
-import { Graphics, Vec2 } from '@erikwatson/bramble'
+import { Graphics, InputState, Vec2 } from '@erikwatson/bramble'
 
 export type SizeBounds = {
   min: number
@@ -121,6 +121,8 @@ export interface BaseLayerConfig {
   wind: Wind
 
   opacity: SizeBounds
+
+  scroll: boolean
 }
 
 export interface SimpleLayerConfig extends BaseLayerConfig {
@@ -322,7 +324,7 @@ export interface IBaseLayer extends HasGravity, HasWind, HasSway {
   pause(): void
   resume(): void
   restart(): void
-  update(dt: number): void
+  update(dt: number, input: InputState): void
   setPaused(pause: boolean): void
   togglePaused(): void
 }

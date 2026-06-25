@@ -26,6 +26,7 @@ export const DEFAULT_OPACITY_MIN = 1
 export const DEFAULT_OPACITY_MAX = 1
 
 export const DEFAULT_TRAIL = false
+export const DEFAULT_SCROLL = false
 
 // Mass
 export const DEFAULT_MASS = {
@@ -127,13 +128,15 @@ export const BASE_LAYER_CONFIG: BaseLayerConfig = {
   sway: DEFAULT_SWAY,
   gravity: DEFAULT_GRAVITY,
   wind: DEFAULT_WIND,
-  opacity: DEFAULT_OPACITY
+  opacity: DEFAULT_OPACITY,
+  scroll: DEFAULT_SCROLL
 }
 
 export const DEFAULT_SIMPLE_LAYER: SimpleLayerConfig = {
   ...BASE_LAYER_CONFIG,
   colour: DEFAULT_SNOW_COLOR,
   trail: DEFAULT_TRAIL,
+
   mode: 'simple'
 }
 
